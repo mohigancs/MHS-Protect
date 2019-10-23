@@ -1,0 +1,886 @@
+{
+   "people": [
+      {
+         "name": "Kristine Alvarez",
+         "role": "Teacher",
+         "email": "kalvarez@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Brandi Ammons",
+         "role": "Teacher",
+         "email": "bammons@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Ginger Ault",
+         "role": "K12 Staff",
+         "email": "ginger.ault@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Hannah Barnes",
+         "role": "Teacher",
+         "email": "hebarnes@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Joel Barrett",
+         "role": "Teacher",
+         "email": "jcbarret@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Crystal Batson",
+         "role": "K12 Staff",
+         "email": "crystal.batson@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Michelle Beckman",
+         "role": "Teacher",
+         "email": "michelle.beckman@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Thomas Belden",
+         "role": "Teacher",
+         "email": "tbelden@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jason Bennett",
+         "role": "Teacher",
+         "email": "jason.t.bennett@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "becky berry",
+         "role": "Teacher",
+         "email": "baberry@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Daniel Berry",
+         "role": "Teacher",
+         "email": "dnlberry@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Steven Blinco",
+         "role": "Teacher",
+         "email": "sblinco@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Chris Boggs",
+         "role": "Teacher",
+         "email": "ccboggs@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Barbara Born",
+         "role": "Teacher",
+         "email": "bborn@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "randi bourne",
+         "role": "School Aide",
+         "email": "rbourne@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "John Bowers",
+         "role": "Asst. Principal",
+         "email": "jsbowers@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Kathy Bowman",
+         "role": "K12 Staff",
+         "email": "kathy.bowman@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Lauren Brandon",
+         "role": "Teacher",
+         "email": "lauren.brandon@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "John Brosky",
+         "role": "K12 Staff",
+         "email": "john.brosky@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Brandon Brown",
+         "role": "Teacher",
+         "email": "brandon.brown@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Samuel Brunett",
+         "role": "Teacher",
+         "email": "sjbrunet@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Victoria Bugg",
+         "role": "Teacher",
+         "email": "victoria.bugg@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Drew Calandrelli",
+         "role": "Teacher",
+         "email": "drew.calandrelli@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Caitlin Campbell",
+         "role": "Teacher",
+         "email": "c.r.campbell@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Carlie Canter",
+         "role": "Teacher",
+         "email": "carlie.canter@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Regina Chisler",
+         "role": "Teacher",
+         "email": "rchisler@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Kevin Colistra",
+         "role": "Teacher",
+         "email": "kcolistra@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Matthew Cooper",
+         "role": "Teacher",
+         "email": "mdcooper@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Densel Crouso",
+         "role": "Teacher",
+         "email": "dcrouso@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Sherri Cumpston",
+         "role": "Teacher",
+         "email": "scumpsto@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "David Dalton",
+         "role": "K12 Staff",
+         "email": "david.dalton@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Deborah Dalton",
+         "role": "School Aide",
+         "email": "deborah.dalton@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jessica Dalton",
+         "role": "Teacher",
+         "email": "jessica.dalton@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "tiphani davis",
+         "role": "Teacher",
+         "email": "tiphani.davis@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jenny Dayton",
+         "role": "Teacher",
+         "email": "jenny.dayton@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Michael DeSimone",
+         "role": "Teacher",
+         "email": "michael.desimone@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Robert Earliwine",
+         "role": "K12 Staff",
+         "email": "robert.earliwine@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Rebekah Edwards",
+         "role": "K12 Staff",
+         "email": "rebekah.edwards@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Laticia Elliott",
+         "role": "School Nurse",
+         "email": "laticia.elliott@k12.wv.us",
+         "phone": "304-291-9335"
+      },
+      {
+         "name": "Stephanie Estlack",
+         "role": "School Aide",
+         "email": "stephanie.estlack@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Anna Fleming",
+         "role": "Counselor",
+         "email": "anflemin@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Melissa Forinash",
+         "role": "Teacher",
+         "email": "mforinash@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Alexis George",
+         "role": "Teacher",
+         "email": "alexis.m.george@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Gretchen Gibson",
+         "role": "Teacher",
+         "email": "ggibson@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Kimberly Grimes",
+         "role": "K12 Staff",
+         "email": "kimberly.grimes@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Elizabeth Hardin",
+         "role": "Teacher",
+         "email": "elizabeth.hardin@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Mary Beth Hardy",
+         "role": "Teacher",
+         "email": "m.b.hardy@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jessica Harmening",
+         "role": "Teacher",
+         "email": "jessica.harmening@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Cullen Hencke",
+         "role": "Teacher",
+         "email": "cullen.hencke@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "james hendricks",
+         "role": "Teacher",
+         "email": "jrhendri@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Crystal Hilling",
+         "role": "K12 Staff",
+         "email": "crystal.hilling@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Devin Hilling",
+         "role": "K12 Staff",
+         "email": "devin.hilling@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Judy Hilling",
+         "role": "K12 Staff",
+         "email": "judy.hilling@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Pam Hoover",
+         "role": "Teacher",
+         "email": "plhoover@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Sharon Hovland",
+         "role": "Teacher",
+         "email": "shovland@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Lorne Hyskell",
+         "role": "Teacher",
+         "email": "lorne.hyskell@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Brian Jackson",
+         "role": "Teacher",
+         "email": "btjackso@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Erica Janes",
+         "role": "Teacher",
+         "email": "ejanes@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Matthew Jernigan",
+         "role": "Teacher",
+         "email": "matthew.jernigan@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Alaska Jimenez",
+         "role": "Teacher",
+         "email": "ajimenez@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Robin Johnson",
+         "role": "Teacher",
+         "email": "rljohnso@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Ryan Justus",
+         "role": "Teacher",
+         "email": "ryan.justus@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Brindi Kandel",
+         "role": "Teacher",
+         "email": "brindi.kandel@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Matthew Kelly",
+         "role": "Teacher",
+         "email": "mmkelly@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Michele Kelly",
+         "role": "Teacher",
+         "email": "mlkelly@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Daniel Kimble",
+         "role": "Teacher",
+         "email": "dskimble@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Eric Kincaid",
+         "role": "Teacher",
+         "email": "ekincaid@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "stacy knaggs",
+         "role": "Teacher",
+         "email": "sknaggs@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jeanette Konchesky",
+         "role": "Asst. Principal",
+         "email": "jkobasko@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jason Kruger",
+         "role": "Teacher",
+         "email": "jkruger@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Linda Laishley",
+         "role": "K12 Staff",
+         "email": "linda.laishley@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Brenda Lawrence",
+         "role": "Teacher",
+         "email": "blawrenc@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Bethany Leighty-Gibson",
+         "role": "Teacher",
+         "email": "bleightygibson@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Matthew Lemine",
+         "role": "Teacher",
+         "email": "mlemine@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Chase Leone",
+         "role": "Teacher",
+         "email": "chase.leone@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Katherine Leone",
+         "role": "Teacher",
+         "email": "katherine.leone@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Judy Leydig",
+         "role": "Secretary",
+         "email": "jleydig@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Charles Lott",
+         "role": "K12 Staff",
+         "email": "charles.lott@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Veronica Loughry",
+         "role": "K12 Staff",
+         "email": "veronica.loughry@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Deanna Luci",
+         "role": "School Aide",
+         "email": "deanna.luci@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Nicole Luci",
+         "role": "K12 Staff",
+         "email": "nicole.luci@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Megan Malott",
+         "role": "K12 Staff",
+         "email": "megan.malott@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Rhonda Marshall",
+         "role": "K12 Staff",
+         "email": "rmarshall@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Joshua Mason",
+         "role": "Teacher",
+         "email": "joshua.mason@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Crissy McCabe",
+         "role": "Teacher",
+         "email": "cmccabe@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Kimberly McCarty",
+         "role": "Teacher",
+         "email": "kmccarty@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Mark McCarty",
+         "role": "Teacher",
+         "email": "mamccart@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Joseph Melia",
+         "role": "Teacher",
+         "email": "jmelia@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Kim Mellie",
+         "role": "Teacher",
+         "email": "lmellie@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Linda Menear",
+         "role": "K12 Staff",
+         "email": "linda.menear@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Paul Mihalko",
+         "role": "Principal",
+         "email": "pjmihalko@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Joyce Miker",
+         "role": "K12 Staff",
+         "email": "joyce.miker@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Donna Monahan",
+         "role": "Teacher",
+         "email": "dmonahan@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "James Moore",
+         "role": "K12 Staff",
+         "email": "james.moore@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Kay Moore",
+         "role": "Teacher",
+         "email": "kkmoore@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Pamela Murray",
+         "role": "K12 Staff",
+         "email": "pamela.murray@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Dorsey Nicholson",
+         "role": "K12 Staff",
+         "email": "dorsey.nicholson@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Anna Noon",
+         "role": "K12 Staff",
+         "email": "anna.noon@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jonquil Ogden",
+         "role": "Teacher",
+         "email": "jogden@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "kristina palumbo",
+         "role": "Teacher",
+         "email": "kpalumbo@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Brianna Parks",
+         "role": "Teacher",
+         "email": "brianna.parks@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Sharon Parks",
+         "role": "Secretary",
+         "email": "srparks@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "James Pfaff",
+         "role": "Teacher",
+         "email": "james.pfaff@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Thomas Powers",
+         "role": "Teacher",
+         "email": "tpowers@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Brittany Protzman",
+         "role": "K12 Staff",
+         "email": "brittany.protzman@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jennifer Protzman",
+         "role": "K12 Staff",
+         "email": "jennifer.protzman@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Alissa Rathbun-Thorn",
+         "role": "Teacher",
+         "email": "alissa.rathbunthorn@k12.wv.us",
+         "phone": "304-284-2890"
+      },
+      {
+         "name": "Alfred Reed",
+         "role": "Teacher",
+         "email": "akreed@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Tracy Riffon",
+         "role": "Secretary",
+         "email": "triffon@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Kevin Riggleman",
+         "role": "K12 Staff",
+         "email": "kdriggleman@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jessica Robertson",
+         "role": "Teacher",
+         "email": "jessica.robertson@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Christian Root",
+         "role": "Teacher",
+         "email": "croot@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jeremy Ruckman",
+         "role": "Teacher",
+         "email": "jruckman@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Brian Ruehle",
+         "role": "Counselor",
+         "email": "bruehle@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Scott Ryan",
+         "role": "Teacher",
+         "email": "spryan@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Charlene Scott",
+         "role": "Teacher",
+         "email": "charlene.scott@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jennifer Secreto",
+         "role": "Teacher",
+         "email": "jsecreto@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Joshua Sims",
+         "role": "K12 Staff",
+         "email": "joshua.sims@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Virginia Sine",
+         "role": "K12 Staff",
+         "email": "virginia.sine@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Kristen Smallwood",
+         "role": "Teacher",
+         "email": "kristen.smallwood@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Amber Smith",
+         "role": "Counselor",
+         "email": "absmith@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Lauren Smith",
+         "role": "Counselor",
+         "email": "lauren.smith@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Sam Snyder",
+         "role": "Teacher",
+         "email": "sam.snyder@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Anna Sommer",
+         "role": "Teacher",
+         "email": "anna.sommer@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Michelle Stambaugh",
+         "role": "K12 Staff",
+         "email": "michelle.stambaugh@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Elvira Stanescu",
+         "role": "Teacher",
+         "email": "estanescu@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jeanne Sutton",
+         "role": "Teacher",
+         "email": "jeanne.sutton@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Dan Sweeney",
+         "role": "Teacher",
+         "email": "dsweeney@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "David Tallman",
+         "role": "Teacher",
+         "email": "dstallman@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "nathan tallman",
+         "role": "Teacher",
+         "email": "ntallman@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Sara ter Haseborg",
+         "role": "Teacher",
+         "email": "shaseborg@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Colleen Titus",
+         "role": "Teacher",
+         "email": "ctitus@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Andrew Tuck",
+         "role": "Teacher",
+         "email": "andrew.tuck@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Sandy Twigg",
+         "role": "School Aide",
+         "email": "stwigg@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Danielle Uglik",
+         "role": "Technology Integration Specialist",
+         "email": "duglik@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Richard Vidulich",
+         "role": "Asst. Principal",
+         "email": "rvidulic@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Paula Vigil-Yates",
+         "role": "Secretary",
+         "email": "paula.vigilyates@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Adam Warbel",
+         "role": "Teacher",
+         "email": "awarbel@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Megan Ward",
+         "role": "Teacher",
+         "email": "mmward@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jennifer Waugh",
+         "role": "Teacher",
+         "email": "jgwaugh@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Linda Weber",
+         "role": "Teacher",
+         "email": "ljweber@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Ciara Williams",
+         "role": "Teacher",
+         "email": "ciara.williams@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "sherri williamson",
+         "role": "Teacher",
+         "email": "shawilli@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Michelle Wolfe",
+         "role": "Secretary",
+         "email": "mkwolfe@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Donald Young",
+         "role": "Teacher",
+         "email": "donald.young@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Stacey Yuhase",
+         "role": "Teacher",
+         "email": "syuhase@k12.wv.us",
+         "phone": "304-291-9260"
+      },
+      {
+         "name": "Jim Zaveski",
+         "role": "K12 Staff",
+         "email": "jazaveski@k12.wv.us",
+         "phone": "304-291-9260"
+      }
+   ]
+}
