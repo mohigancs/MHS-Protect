@@ -5,6 +5,7 @@ import KeyScreen from './src/screens/KeyScreen';
 import AdminScreen from './src/screens/AdminScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import ConfirmScreen from './src/screens/ConfirmScreen';
+import MessageScreen from './src/screens/MessageScreen';
 
 import firebase from 'firebase';
 import { firebaseConfig } from './config';
@@ -15,6 +16,9 @@ firebase.initializeApp(firebaseConfig);
 const MainStack = createStackNavigator({
   Home: { 
     screen: HomeScreen 
+  },
+  Messages: {
+    screen: MessageScreen
   },
   Admin: {
     screen: AdminScreen

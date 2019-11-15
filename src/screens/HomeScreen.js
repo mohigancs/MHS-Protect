@@ -44,6 +44,14 @@ export default class HomeScreen extends Component {
         <TouchableOpacity 
           style={styles.button}
           onPress={() => {
+            this.props.navigation.navigate('Messages')
+          }}
+        >
+          <Text>Messages</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => {
             db.logOutUser();
             this.props.navigation.navigate('Login')
           }}
