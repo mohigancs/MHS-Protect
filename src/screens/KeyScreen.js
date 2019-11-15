@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import Database from './components/Database';
 const db = new Database();
 
@@ -20,6 +20,10 @@ export default class KeyScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <Image
+                    style={{width: 50, height: 50}}
+                    source={require('../images/logo.jpg')} 
+                />
                 <Text style={styles.title}>Enter Your Key Below</Text>
                 <TextInput
                     style={styles.input}
