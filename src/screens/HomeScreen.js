@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import firebase from 'firebase';
-
 import Database from './components/Database';
 const db = new Database()
 

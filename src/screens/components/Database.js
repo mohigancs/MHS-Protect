@@ -29,7 +29,7 @@ class Database {
     reportEmergency = (title, description) => { // panic button prototype
         this.getUserState().then(uid => {
             this.fetchUser(uid).then(user => {
-                firebase.database().ref('alerts/').push({
+                firebase.database().ref('alerts/emergency/').push({
                     user: uid,
                     name: user.name,
                     phone: user.phone,
@@ -37,6 +37,17 @@ class Database {
                     location: 'coords',
                     title: title,
                     description: description
+                })
+            })
+        })
+    }
+
+    sendMessage = (text) => {   // send message to database
+        this.getUserState().then(uid => {
+            this.fetchUser(uid).then(user => {
+                firebase.database().ref('alerts/messages/').push({
+                    name: user.name,
+                    text: text
                 })
             })
         })

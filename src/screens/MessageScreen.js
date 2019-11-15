@@ -10,17 +10,24 @@ export default class KeyScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Messages</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Access Code"
-                    returnKeyType="go"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    onChange={(text) => this.key = text.nativeEvent.text}
-                    //onSubmitEditing={() => {}}
-                />
-                <TouchableOpacity style={styles.button}>
+                    <TextInput
+                        style={styles.input}
+                        onChange={(text) => this.message = text.nativeEvent.text}
+                    />
+                <TouchableOpacity 
+                    style={styles.button}
+                    onPress={() => {
+                        db.sendMessage(this.message)
+                    }}
+                >
                     <Text>Send Message</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => this.props.navigation.navigate('Home')}
+                    >
+                    <Text>Return Home</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -40,7 +47,6 @@ const styles = StyleSheet.create({
         width: 200,
         height: 40,
         backgroundColor: '#e6e6e6',
-        marginBottom: 20,
         marginTop: 20,
         borderColor: 'black',
         borderWidth: 0.5,
@@ -55,5 +61,6 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
+        marginTop: 20,
     },
 });
