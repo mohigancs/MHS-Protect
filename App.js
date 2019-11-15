@@ -43,7 +43,7 @@ const RootStack = createSwitchNavigator ({
   Main: {
     screen: MainStack
   }
-}, {
+  }, {
   initialRouteName: 'Login',
   headerMode: 'none',
   defaultNavigationOptions: {
@@ -51,6 +51,10 @@ const RootStack = createSwitchNavigator ({
   },
 }
 );
+
+// firebase.database().ref('alerts/').on('child_added', (snapshot) => {
+//   console.log(snapshot.val().description)
+// })
 
 const App = new createAppContainer(RootStack);
 

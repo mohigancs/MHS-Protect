@@ -11,7 +11,7 @@ export default class KeyScreen extends React.Component {
         db.getUserState().then(loggedin => {
             if (loggedin == 'true') {
                 this.props.navigation.navigate('Main')
-            } 
+            }
         })
     }
 
