@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import firebase from 'firebase';
 
 import Database from './components/Database';
 const db = new Database()
 
+/*firebase.database().ref('alerts/').on('child_added', ()=>{
+  console.log('aaaa');
+});*/
+
 export default class HomeScreen extends Component {
 
+  
 
   render() {
     return (

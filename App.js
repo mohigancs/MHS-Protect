@@ -9,6 +9,7 @@ import ConfirmScreen from './src/screens/ConfirmScreen';
 import firebase from 'firebase';
 import { firebaseConfig } from './config';
 
+
 firebase.initializeApp(firebaseConfig);
 
 const MainStack = createStackNavigator({
@@ -51,6 +52,10 @@ const RootStack = createSwitchNavigator ({
   },
 }
 );
+
+firebase.database().ref('alerts/').on('child_added', (snapshot)=>{
+  console.log(snapshot.val().description);
+});
 
 const App = new createAppContainer(RootStack);
 
