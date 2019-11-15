@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
-
 import Database from './components/Database';
 const db = new Database();
+
 
 export default class KeyScreen extends React.Component {
 
@@ -48,6 +48,7 @@ export default class KeyScreen extends React.Component {
                 >
                     <Text>SUBMIT</Text>
                 </TouchableOpacity>
+
             </View>
         );
     }
