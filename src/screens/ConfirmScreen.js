@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Alert, TouchableOpacity } from 'react-native';
+import { Image, Text, View, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 
 import Database from './components/Database';
 const db = new Database();
-
 export default class ConfirmScreen extends React.Component {
 
     user = this.props.navigation.getParam('user','error');
+
     
     // add logic if user is 'error', go back
 
@@ -14,40 +14,47 @@ export default class ConfirmScreen extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>
-                    Is This Information Correct?
-                </Text>
-                <Text style={styles.option}>
-                    { this.user[0].name }
-                </Text>
-                <Text style={styles.option}>
-                    { this.user[0].email }
-                </Text>
-                <Text style={styles.option}>
-                    { this.user[0].phone }
-                </Text>
+                <View style = {styles.textContainer}>
+                    <Text style={styles.title}>
+                        Is This Information Correct?
+                    </Text>
+                    <Image
+                    style={styles.image}
+                    source={require('../images/logo.jpg')} 
+                    />
+                    <Text style={styles.option}>
+                        { this.user[0].name }
+                    </Text>
+                    <Text style={styles.option}>
+                        { this.user[0].email }
+                    </Text>
+                    <Text style={styles.option}>
+                        { this.user[0].phone }
+                    </Text>
+                </View>
+                <View style = {styles.buttonContainer}>
+                    <TouchableOpacity style={styles.button}
+                    onPress={() => {
+                        Alert.alert("We're sorry...", 'Ask Mr. Gibson for help.');
+                        this.props.navigation.navigate('Key')
+                    }}
+                    >
+                        <Text style = {styles.buttonText}>NO</Text>
+                    </TouchableOpacity>
+                    <Text>
 
-                <TouchableOpacity 
-                style={styles.button}
-                onPress={() => {
-                    db.logInUser(this.user[1]).then(() => {
-                        this.props.navigation.navigate('Home');
-                        //this.removekey(this.user[1]);
-                    })
-                }}
-                >
-                    <Text>YES</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                style={styles.button}
-                onPress={() => {
-                    Alert.alert("We're sorry...", 'Ask Mr. Gibson for help.');
-                    this.props.navigation.navigate('Key')
-                }}
-                >
-                    <Text>NO</Text>
-                </TouchableOpacity>
+                    </Text>
+                    <TouchableOpacity style={styles.button}
+                    onPress={() => {
+                        db.logInUser(this.user[1]).then(() => {
+                            //this.removekey(this.user[1]);
+                            this.props.navigation.navigate('Home')
+                        })
+                    }}
+                    >
+                        <Text style = {styles.buttonText}>YES</Text>
+                    </TouchableOpacity>
+                </View>
 
             </View>
         );
@@ -56,18 +63,43 @@ export default class ConfirmScreen extends React.Component {
 
 
 const styles = StyleSheet.create({
+    image: {
+        marginTop: 10,
+        height: 300,
+        width: 300,
+        alignItems: 'center',
+        resizeMode: 'cover',
+    },
+    textContainer: {
+        flex: 6,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        position: 'relative',
+        top: 60,
+        alignItems: 'center',
+    },
+    buttonContainer: {
+        flex: 3,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     container: {
         flex: 1,
-        justifyContent: 'center',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
         alignItems: 'center',
     },
     title: {
         fontSize: 30,
-        marginBottom: 50
+        fontWeight: 'bold',
+        marginBottom: 10,
+        marginTop: 20,
     },
     option: {
-        fontSize: 16,
-        marginBottom: 10
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
     },
     input: {
         width: 200,
@@ -81,13 +113,20 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     button: {
-        width: 200,
+        width: 185,
         height: 40,
-        marginTop: 20,
+        marginLeft: 5,
+        marginRight: 5,
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
+        backgroundColor: 'blue',
     },
+    buttonText: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: '#ffffff',
+    }
 });

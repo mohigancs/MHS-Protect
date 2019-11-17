@@ -4,9 +4,8 @@ import Database from './components/Database';
 const db = new Database();
 
 
+
 export default class KeyScreen extends React.Component {
-
-
     componentDidMount() {
         db.getUserState().then(loggedin => {
             if (loggedin == 'true') {
@@ -21,7 +20,7 @@ export default class KeyScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <Image
-                    style={{width: 50, height: 50}}
+                    style={styles.image}
                     source={require('../images/logo.jpg')} 
                 />
                 <Text style={styles.title}>Enter Your Key Below</Text>
@@ -50,7 +49,7 @@ export default class KeyScreen extends React.Component {
                     });
                 }}
                 >
-                    <Text>SUBMIT</Text>
+                    <Text style = {styles.text}>SUBMIT</Text>
                 </TouchableOpacity>
 
             </View>
@@ -64,11 +63,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    image: {
+        height: 300,
+        width: 300,
+        resizeMode: 'cover',
+    },
     title: {
-        fontSize: 22,
+        fontSize: 26,
+    },
+    text: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'white',
     },
     input: {
-        width: 200,
+        width: 300,
         height: 40,
         backgroundColor: '#e6e6e6',
         marginBottom: 20,
@@ -79,12 +88,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     button: {
-        width: 200,
+        width: 300,
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
-        borderColor: 'black',
+        backgroundColor: 'red',
+        borderColor: 'red',
         borderWidth: 0.5,
         borderRadius: 5,
+        resizeMode: 'cover',
     },
 });
