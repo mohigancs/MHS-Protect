@@ -4,6 +4,16 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Database from './components/Database';
 const db = new Database()
 
+db.getUserState().then((uid) => {
+  db.fetchUser(uid).then((usr) => {
+    if (usr.role == 'Teacher') {
+      text = 'boring'
+    } else {
+      text = 'special'
+    }
+  });
+});
+
 export default class HomeScreen extends Component {
 
 
@@ -44,6 +54,7 @@ export default class HomeScreen extends Component {
         >
           <Text>LOG OUT</Text>
         </TouchableOpacity>
+        <Text>{text}</Text>
       </View>
     );
   }

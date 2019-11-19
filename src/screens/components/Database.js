@@ -42,7 +42,6 @@ class Database {
         })
     }
 
-
     removekey = (id, verbose) => { // from admin screen
         firebase.database().ref('people/' + id + '/key').remove()
         if (verbose) {
@@ -73,12 +72,11 @@ class Database {
 
     getUserState = async () => {
         try {
-        return await AsyncStorage.getItem('loggedin');
+            return await AsyncStorage.getItem('loggedin');
         } catch (error) {
-        console.log(error)
+            console.log(error)
         }
     };
-
 
     fetchUser = async (userID) => {
         let user = ''
