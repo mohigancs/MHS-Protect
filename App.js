@@ -53,6 +53,6 @@ const RootStack = createSwitchNavigator ({
 );
 
 const App = new createAppContainer(RootStack);
-
+console.disableYellowBox = true;
 export default App;
 

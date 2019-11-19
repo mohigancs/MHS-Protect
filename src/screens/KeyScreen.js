@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     image: {
-        height: 300,
-        width: 300,
+        height: 200,
+        width: 200,
         resizeMode: 'cover',
     },
     title: {
@@ -92,8 +92,8 @@ const styles = StyleSheet.create({
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'red',
-        borderColor: 'red',
+        backgroundColor: '#c80d00',
+        borderColor: '#c80d00',
         borderWidth: 0.5,
         borderRadius: 5,
         resizeMode: 'cover',

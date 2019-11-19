@@ -65,8 +65,8 @@ export default class ConfirmScreen extends React.Component {
 const styles = StyleSheet.create({
     image: {
         marginTop: 10,
-        height: 300,
-        width: 300,
+        height: 200,
+        width: 200,
         alignItems: 'center',
         resizeMode: 'cover',
     },
@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     buttonContainer: {
-        flex: 3,
+        flex: 2,
+        marginTop: 10,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
@@ -93,7 +94,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         fontWeight: 'bold',
-        marginBottom: 10,
         marginTop: 20,
     },
     option: {
@@ -119,10 +119,10 @@ const styles = StyleSheet.create({
         marginRight: 5,
         alignItems: 'center',
         justifyContent: 'center',
-        borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
-        backgroundColor: 'blue',
+        backgroundColor: '#0a007e',
+        borderColor: '#0a007e',
     },
     buttonText: {
         fontWeight: 'bold',
