@@ -1,8 +1,9 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import Database from './components/Database';
 const db = new Database();
-
+const screenWidth = Math.round(Dimensions.get('window').width);
+const screenHeight = Math.round(Dimensions.get('window').height);
 
 
 export default class KeyScreen extends React.Component {
@@ -27,6 +28,7 @@ export default class KeyScreen extends React.Component {
                 <TextInput
                     style={styles.input}
                     placeholder="Access Code"
+                    placeholderTextColor = "black"
                     returnKeyType="go"
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -77,19 +79,19 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     input: {
-        width: 300,
-        height: 40,
-        backgroundColor: '#e6e6e6',
-        marginBottom: 20,
-        marginTop: 20,
+        width: screenWidth*0.7299,
+        height: screenHeight*0.0534,
+        backgroundColor: '#d3d3d3',
+        marginBottom: screenHeight*0.027,
+        marginTop: screenHeight*0.027,
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
         paddingHorizontal: 20,
     },
     button: {
-        width: 300,
-        height: 40,
+        width: screenWidth*0.7299,
+        height: screenHeight*0.0534,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#c80d00',

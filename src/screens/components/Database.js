@@ -1,5 +1,5 @@
 var firebase = require('firebase')
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Alert } from 'react-native';
 
 class Database {
 

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Image, Text, View, StyleSheet, Alert, TouchableOpacity } from 'react-native';
+import { Image, Text, Dimensions, View, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 
 import Database from './components/Database';
 const db = new Database();
+const screenWidth = Math.round(Dimensions.get('window').width);
+const screenHeight = Math.round(Dimensions.get('window').height);
 export default class ConfirmScreen extends React.Component {
 
     user = this.props.navigation.getParam('user','error');
@@ -64,7 +66,7 @@ export default class ConfirmScreen extends React.Component {
 
 const styles = StyleSheet.create({
     image: {
-        marginTop: 10,
+        marginTop: screenHeight*0.0133,
         height: 200,
         width: 200,
         alignItems: 'center',
@@ -75,15 +77,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         position: 'relative',
-        top: 60,
         alignItems: 'center',
     },
     buttonContainer: {
         flex: 2,
-        marginTop: 10,
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
     },
     container: {
         flex: 1,
@@ -92,31 +91,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontSize: 30,
+        fontSize: 26,
         fontWeight: 'bold',
-        marginTop: 20,
+        marginTop: screenHeight*0.0267,
     },
     option: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 20,
-    },
-    input: {
-        width: 200,
-        height: 40,
-        backgroundColor: '#e6e6e6',
-        marginBottom: 5,
-        marginTop: 20,
-        borderColor: 'black',
-        borderWidth: 0.5,
-        borderRadius: 5,
-        paddingHorizontal: 20,
+        marginTop: screenHeight*0.0267,
     },
     button: {
-        width: 185,
-        height: 40,
-        marginLeft: 5,
-        marginRight: 5,
+        width: screenWidth*0.45,
+        height: screenHeight*0.05,
+        marginLeft: screenWidth*0.0122,
+        marginRight: screenWidth*0.0122,
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 0.5,

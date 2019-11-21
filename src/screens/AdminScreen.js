@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { StyleSheet, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
+import { StyleSheet, Text, Dimensions, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
 
 import Database from './components/Database'
 const db = new Database();
+const screenWidth = Math.round(Dimensions.get('window').width);
+const screenHeight = Math.round(Dimensions.get('window').height);
 
 export default class AdminScreen extends React.Component {
 
@@ -30,23 +32,25 @@ export default class AdminScreen extends React.Component {
                     onPress={() => {
                         Alert.alert(
                             'Are you sure?',
-                            'Do you want to add the user with ID '+ this.entered_id + '?',
+                            'Do you want to add a key for the user with ID '+ this.entered_id + '?',
                             [
-                              {text: 'YES', onPress: () => {
-                                if (this.entered_id == 'ALL') {
-                                    for(i = 0; i < 147; i++) {
-                                        key = db.makekey(10);
-                                        db.addkey(i, key, false);
-                                        }
-                                } else {
-                                    key = db.makekey(10);
-                                    db.addkey(this.entered_id, key, true);
-                                }
-                                console.log('YES pressed');
-                            }
-                            },
-                                {text: '',},
                                 {text: 'NO', style: 'cancel'},
+                                {text: '',},
+                                {text: 'YES', onPress: () => {
+                                    if (this.entered_id == 'ALL') {
+                                        for(i = 0; i < 147; i++) {
+                                            key = db.makekey(10);
+                                            db.addkey(i, key, false);
+                                            }
+                                    } else {
+                                        key = db.makekey(10);
+                                        db.addkey(this.entered_id, key, true);
+                                    }
+                                    console.log('YES pressed');
+                                    console.log(screenHeight);
+                                    console.log(screenWidth);
+                                }
+                                },
                             ],
                             { cancelable: false }
                           );
@@ -73,24 +77,24 @@ export default class AdminScreen extends React.Component {
                     onPress={() => {
                         Alert.alert(
                             'Are you sure?',
-                            'Do you want to remove the user with ID '+ this.entered_id + '?',
+                            'Do you want to remove the key for the user with ID '+ this.entered_id + '?',
                             [
-                              {text: 'YES', onPress: () => {
-                                if (this.entered_id == 'ALL') {
-                                    for(i = 0; i < 147; i++) {
-                                        db.removekey(i, false);
-                                    }
-                                } else {
-                                    db.removekey(this.entered_id, true);
-                                }
-                                console.log('YES pressed');
-                            }
-                            },
+                                {text: 'NO', style: 'cancel'},                              
                                 {text: '',},
-                                {text: 'NO', style: 'cancel'},
+                                {text: 'YES', onPress: () => {
+                                    if (this.entered_id == 'ALL') {
+                                        for(i = 0; i < 147; i++) {
+                                            db.removekey(i, false);
+                                        }
+                                    } else {
+                                        db.removekey(this.entered_id, true);
+                                    }
+                                    console.log('YES pressed');
+                                    }
+                                },
                             ],
                             { cancelable: false }
-                          );
+                        );
                     }}
                 >
                     <Text style = {styles.text}>SUBMIT</Text>
@@ -112,37 +116,36 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     title: {
-        fontSize: 44,
+        fontSize: 34,
         fontWeight: 'bold',
         color: '#0a007e',
-        marginBottom: 50,
+        marginBottom: screenHeight*0.0534,
+        marginTop: screenHeight*0.0534,
     },
     option: {
         fontSize: 18,
         fontWeight: 'bold',
-        marginBottom: 10,
     },
     input: {
-        width: 300,
-        height: 40,
+        width: '72.99%',
+        height: '5.34%',
         backgroundColor: '#d9d9d9',
-        marginBottom: 5,
-        marginTop: 20,
+        marginTop: screenHeight*0.04,
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
         paddingHorizontal: 20,
     },
     button: {
-        width: 300,
-        height: 40,
-        marginTop: 30,
+        width: '72.99%',
+        height: '5.34%',
+        marginTop: screenHeight*0.04,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#c80d00',
         borderColor: '#c80d00',
         borderWidth: 0.5,
         borderRadius: 5,
-        marginBottom: 50,
+        marginBottom: screenHeight*0.0668,
     },
 });

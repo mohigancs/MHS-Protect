@@ -15,15 +15,15 @@ const MainStack = createStackNavigator({
   Home: { 
     screen: HomeScreen 
   },
+  Admin: {
+    screen: AdminScreen
+  },
 }, {
   initialRouteName: 'Home',
   headerMode: 'none',
 })
 
 const LoginStack = createStackNavigator({
-  Admin: {
-    screen: AdminScreen
-  },
   Key: { 
     screen: KeyScreen 
   },
@@ -31,7 +31,7 @@ const LoginStack = createStackNavigator({
     screen: ConfirmScreen
   },
 }, {
-  initialRouteName: 'Admin',
+  initialRouteName: 'Key',
   headerMode: 'none',
 })
 

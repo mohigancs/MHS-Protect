@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
 import Database from './components/Database';
 const db = new Database()
-
+const screenWidth = Math.round(Dimensions.get('window').width);
+const screenHeight = Math.round(Dimensions.get('window').height);
 export default class HomeScreen extends Component {
 
 
@@ -31,7 +32,7 @@ export default class HomeScreen extends Component {
             db.reportEmergency('foo', 'bar')
           }}
         >
-          <Text>EMERGENCY ALERT</Text>
+          <Text style = {{fontFamily: 'Roboto', fontWeight: 'bold'}}>EMERGENCY ALERT</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           style={styles.button}
@@ -39,7 +40,7 @@ export default class HomeScreen extends Component {
             console.log('request for help')
           }}
         >
-          <Text>REQUEST HELP</Text>
+          <Text style = {{fontFamily: 'Roboto', fontWeight: 'bold'}}>REQUEST HELP</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           style={styles.button}
@@ -47,7 +48,7 @@ export default class HomeScreen extends Component {
             console.log('principal push')
           }}
         >
-          <Text>PRINCIPAL PUSH</Text>
+          <Text style = {{fontFamily: 'Roboto', fontWeight: 'bold'}}>PRINCIPAL PUSH</Text>
         </TouchableOpacity>
         </View>
       </View>
@@ -73,31 +74,33 @@ const styles = StyleSheet.create({
       alignItems: 'center',
   },
   title: {
-      fontSize: 22,
+      fontSize: 26,
+      fontWeight: 'bold',
+      fontFamily: 'Roboto',
       position: 'relative',
-      bottom: 100,
+      bottom: screenHeight*0.1335,
   },
   logOut: {
     fontSize: 16,
-    marginLeft: 320,
-    marginTop: 20,
+    marginLeft: screenWidth*0.7786,
+    marginTop: screenHeight*0.0267,
   },
   image: {
     height: 200,
     width: 200,
-    bottom: 120,
+    bottom: screenHeight*0.1602,
     position: 'relative',
     resizeMode: 'cover',
   },
 
   button: {
-      width: 200,
-      height: 40,
+      width: screenWidth*0.487,
+      height: screenHeight*0.0534,
       alignItems: 'center',
       justifyContent: 'center',
       borderColor: 'black',
-      borderWidth: 0.5,
+      borderWidth: 1,
       borderRadius: 5,
-      marginBottom: 10
+      marginBottom: screenHeight*0.0333,
   },
 });
