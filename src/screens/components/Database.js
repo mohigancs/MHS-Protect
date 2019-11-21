@@ -53,6 +53,12 @@ class Database {
         })
     }
 
+    getMessages = async () => {
+        await firebase.database().ref('alerts/messages/').once('value', function(snapshot) {
+            return snapshot
+        })
+    }
+
 
     removekey = (id, verbose) => { // from admin screen
         firebase.database().ref('people/' + id + '/key').remove()

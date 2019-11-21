@@ -6,6 +6,7 @@ import AdminScreen from './src/screens/AdminScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import ConfirmScreen from './src/screens/ConfirmScreen';
 import MessageScreen from './src/screens/MessageScreen';
+import ChatScreen from './src/screens/ChatScreen';
 
 import firebase from 'firebase';
 import { firebaseConfig } from './config';
@@ -19,6 +20,9 @@ const MainStack = createStackNavigator({
   },
   Messages: {
     screen: MessageScreen
+  },
+  ChatScreen: {
+    screen: ChatScreen
   },
   Admin: {
     screen: AdminScreen
@@ -60,6 +64,8 @@ const RootStack = createSwitchNavigator ({
 firebase.database().ref('alerts/').on('child_added', (snapshot)=>{
   console.log(snapshot.val().description);
 });
+
+console.disableYellowBox = true;
 
 const App = new createAppContainer(RootStack);
 
