@@ -78,9 +78,9 @@ const styles = StyleSheet.create({
       bottom: 100,
   },
   logOut: {
-    fontSize: 14,
-    marginLeft: 310,
-    marginTop: 10,
+    fontSize: 16,
+    marginLeft: 320,
+    marginTop: 20,
   },
   image: {
     height: 200,

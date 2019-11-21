@@ -17,6 +17,7 @@ export default class AdminScreen extends React.Component {
                 <TextInput
                     style={styles.input}
                     placeholder="ID"
+                    placeholderTextColor = 'black'
                     returnKeyType="go"
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -27,25 +28,39 @@ export default class AdminScreen extends React.Component {
                 <TouchableOpacity 
                     style={styles.button}
                     onPress={() => {
-                        if (this.entered_id == 'ALL') {
-                            for(i = 0; i < 147; i++) {
-                                key = db.makekey(10);
-                                db.addkey(i, key, false);
+                        Alert.alert(
+                            'Are you sure?',
+                            'Do you want to add the user with ID '+ this.entered_id + '?',
+                            [
+                              {text: 'YES', onPress: () => {
+                                if (this.entered_id == 'ALL') {
+                                    for(i = 0; i < 147; i++) {
+                                        key = db.makekey(10);
+                                        db.addkey(i, key, false);
+                                        }
+                                } else {
+                                    key = db.makekey(10);
+                                    db.addkey(this.entered_id, key, true);
+                                }
+                                console.log('YES pressed');
                             }
-                        } else {
-                            key = db.makekey(10);
-                            db.addkey(this.entered_id, key, true);
-                        }
+                            },
+                                {text: '',},
+                                {text: 'NO', style: 'cancel'},
+                            ],
+                            { cancelable: false }
+                          );
                         //this.iskey(this.id).then((res) => console.log(res))
                     }}
                 >
-                    <Text>SUBMIT</Text>
+                    <Text style = {styles.text}>SUBMIT</Text>
                 </TouchableOpacity>
 
                 <Text style={styles.option}>Delete Key for User With ID</Text>
                 <TextInput
                     style={styles.input}
                     placeholder="ID"
+                    placeholderTextColor = 'black'
                     returnKeyType="go"
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -56,16 +71,29 @@ export default class AdminScreen extends React.Component {
                 <TouchableOpacity 
                     style={styles.button}
                     onPress={() => {
-                        if (this.entered_id == 'ALL') {
-                            for(i = 0; i < 147; i++) {
-                                db.removekey(i, false);
+                        Alert.alert(
+                            'Are you sure?',
+                            'Do you want to remove the user with ID '+ this.entered_id + '?',
+                            [
+                              {text: 'YES', onPress: () => {
+                                if (this.entered_id == 'ALL') {
+                                    for(i = 0; i < 147; i++) {
+                                        db.removekey(i, false);
+                                    }
+                                } else {
+                                    db.removekey(this.entered_id, true);
+                                }
+                                console.log('YES pressed');
                             }
-                        } else {
-                            db.removekey(this.entered_id, true);
-                        }
+                            },
+                                {text: '',},
+                                {text: 'NO', style: 'cancel'},
+                            ],
+                            { cancelable: false }
+                          );
                     }}
                 >
-                    <Text>SUBMIT</Text>
+                    <Text style = {styles.text}>SUBMIT</Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
         );
@@ -78,17 +106,26 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    text: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'white',
+    },
     title: {
-        fontSize: 30,
-        marginBottom: 50
+        fontSize: 44,
+        fontWeight: 'bold',
+        color: '#0a007e',
+        marginBottom: 50,
     },
     option: {
-        fontSize: 16
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10,
     },
     input: {
-        width: 200,
+        width: 300,
         height: 40,
-        backgroundColor: '#e6e6e6',
+        backgroundColor: '#d9d9d9',
         marginBottom: 5,
         marginTop: 20,
         borderColor: 'black',
@@ -97,14 +134,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     button: {
-        width: 200,
+        width: 300,
         height: 40,
-        marginTop: 20,
+        marginTop: 30,
         alignItems: 'center',
         justifyContent: 'center',
-        borderColor: 'black',
+        backgroundColor: '#c80d00',
+        borderColor: '#c80d00',
         borderWidth: 0.5,
         borderRadius: 5,
-        marginBottom: 50
+        marginBottom: 50,
     },
 });

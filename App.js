@@ -31,7 +31,7 @@ const LoginStack = createStackNavigator({
     screen: ConfirmScreen
   },
 }, {
-  initialRouteName: 'Key',
+  initialRouteName: 'Admin',
   headerMode: 'none',
 })
 
