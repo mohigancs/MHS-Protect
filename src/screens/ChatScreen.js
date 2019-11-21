@@ -14,6 +14,13 @@ export default class ChatScreen extends Component {
     };
 
     componentWillMount() {
+
+        stored = []
+
+        Promise.resolve(db.getMessages()).then(function(value) {
+            stored = value
+        })
+
         this.setState({
             messages: [
                 {
@@ -27,7 +34,22 @@ export default class ChatScreen extends Component {
                 },
             ],
         });
+
+        
+
+        
+        
     }
+
+    componentDidMount() {
+        db.refOn(message => {
+            this.setState(previousState => ({
+                messages: GiftedChat.append(previousState.messages, message),
+            }))
+        })
+    }
+
+    
 
     
     onSend(messages = []) {
@@ -35,8 +57,10 @@ export default class ChatScreen extends Component {
             messages: GiftedChat.append(previousState.messages,messages),
         }));
         
+
+        
         //messages is an array with an object inside
-        db.sendMessage(messages[0].text)
+        db.send()
     }
 
 
@@ -46,7 +70,7 @@ export default class ChatScreen extends Component {
             <View style={{flex:1}}>
                 <GiftedChat
                     messages={this.state.messages}
-                    onSend={messages => this.onSend(messages)}
+                    onSend={db.send}
                     user={{
                         _id:1,
                     }}

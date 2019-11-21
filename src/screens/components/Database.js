@@ -54,11 +54,58 @@ class Database {
     }
 
     getMessages = async () => {
-        await firebase.database().ref('alerts/messages/').once('value', function(snapshot) {
-            return snapshot
-        })
+
+        messages = []
+
+        let db_snapshot = await firebase.database().ref('alerts/messages').once('value');
+
+        db_snapshot.forEach(code_snapshot => {
+            messages.push(code_snapshot.val());
+        });
+
+        //console.log(messages)
+        return messages;
+        
     }
 
+    send = messages => {
+
+        for (let i = 0; i < messages.length; i++) {
+          const { text, user } = messages[i];
+          const timestamp = 1;
+          const message = {
+            text,
+            user,
+            timestamp,
+          };
+
+          firebase.database().ref('alerts/messages').push(message);
+        }
+    };
+
+    refOn = callback => {
+        firebase.database().ref('alerts/messages/')
+            .on('child_added', snapshot => {
+                console.log('child added')
+                callback(this.parse(snapshot))
+            })
+    }
+
+    parse = snapshot => {
+        const { timestamp: numberStamp, text, user } = snapshot.val();
+        const { key: id } = snapshot;
+        const { key: _id } = snapshot; //needed for giftedchat
+        const timestamp = new Date(numberStamp);
+    
+        const message = {
+          id,
+          _id,
+          timestamp,
+          text,
+          user,
+        };
+        return message;
+    };
 
     removekey = (id, verbose) => { // from admin screen
         firebase.database().ref('people/' + id + '/key').remove()
