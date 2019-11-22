@@ -27,7 +27,7 @@ export default class HomeScreen extends Component {
           />
         <Text style={styles.title}>MHS-Protect</Text>
         <TouchableOpacity 
-          style={styles.button}
+          style={styles.emergencyButton}
           onPress={() => {
             db.reportEmergency('foo', 'bar')
           }}
@@ -103,4 +103,14 @@ const styles = StyleSheet.create({
       borderRadius: 5,
       marginBottom: screenHeight*0.0333,
   },
+  emergencyButton: {
+    width: screenWidth*0.487,
+    height: screenHeight*0.0534,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: '#c80d00',
+    borderWidth: 2.5,
+    borderRadius: 5,
+    marginBottom: screenHeight*0.0333,
+},
 });
