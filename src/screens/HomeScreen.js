@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+
 import Database from './components/Database';
 const db = new Database()
 
-/*firebase.database().ref('alerts/').on('child_added', ()=>{
-  console.log('aaaa');
-});*/
-
 export default class HomeScreen extends Component {
-
-  
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>MHS-Protect</Text>
+
         <TouchableOpacity 
           style={styles.button}
           onPress={() => {
@@ -23,6 +19,7 @@ export default class HomeScreen extends Component {
         >
           <Text>EMERGENCY ALERT</Text>
         </TouchableOpacity>
+
         <TouchableOpacity 
           style={styles.button}
           onPress={() => {
@@ -31,6 +28,7 @@ export default class HomeScreen extends Component {
         >
           <Text>REQUEST HELP</Text>
         </TouchableOpacity>
+
         <TouchableOpacity 
           style={styles.button}
           onPress={() => {
@@ -39,22 +37,25 @@ export default class HomeScreen extends Component {
         >
           <Text>PRINCIPAL PUSH</Text>
         </TouchableOpacity>
+
         <TouchableOpacity 
           style={styles.button}
           onPress={() => {
-            this.props.navigation.navigate('Messages')
-          }}
-        >
-          <Text>Messages</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.button}
-          onPress={() => {
-            this.props.navigation.navigate('ChatScreen')
+            this.props.navigation.navigate('Chat')
           }}
         >
           <Text>Chat</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => {
+            this.props.navigation.navigate('Map')
+          }}
+        >
+          <Text>Map</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity 
           style={styles.button}
           onPress={() => {
@@ -64,6 +65,7 @@ export default class HomeScreen extends Component {
         >
           <Text>LOG OUT</Text>
         </TouchableOpacity>
+
       </View>
     );
   }

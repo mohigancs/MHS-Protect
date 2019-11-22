@@ -7,14 +7,14 @@ class Database {
         await firebase.database().ref('people/' + userID).once('value').then(function(snapshot) {
             user = snapshot.val()
         })
-        return user
+        return user // user is JSON data
     }
 
     logOutUser = async () => { // temporary function for development
         try {
             await AsyncStorage.setItem('loggedin', 'false');
         } catch (error) {
-            console.log(error)
+            console.log("logOutUser error = " + error)
         }
     }
 
@@ -22,7 +22,7 @@ class Database {
         try {
             return await AsyncStorage.getItem('loggedin');
         } catch (error) {
-            console.log(error)
+            console.log("getUserState error = " + error)
         }
     }
 
@@ -41,18 +41,6 @@ class Database {
             })
         })
     }
-
-    // NOT USED
-    // sendMessage = (text) => {   // send message to database
-    //     this.getUserState().then(uid => {
-    //         this.fetchUser(uid).then(user => {
-    //             firebase.database().ref('alerts/messages/').push({
-    //                 name: user.name,
-    //                 text: text
-    //             })
-    //         })
-    //     })
-    // }
 
     getMessages = async () => {
         messages = []
@@ -121,7 +109,7 @@ class Database {
         try {
             await AsyncStorage.setItem('loggedin', uid);
         } catch (error) {
-            console.log(error)
+            console.log("logInUser error = " + error)
         }
     }
 
@@ -142,7 +130,7 @@ class Database {
         try {
         return await AsyncStorage.getItem('loggedin');
         } catch (error) {
-        console.log(error)
+        console.log("getUserState error = " + error)
         }
     };
 
