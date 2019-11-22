@@ -4,6 +4,12 @@ import { KeyboardAvoidingView, View } from 'react-native';
 import Database from './components/Database';
 const db = new Database();
 
+db.getUserState().then(uid => {
+    db.fetchUser(uid).then(user => {
+        usr = user
+    })
+})
+
 
 export default class ChatScreen extends Component {
 
@@ -11,24 +17,17 @@ export default class ChatScreen extends Component {
         messages: [],
     };
 
-    get user() {
-        db.getUserState().then(uid => {
-            db.fetchUser(uid).then(user => {
-                return {
-                    name: user.name,
-                    email: user.email,
-                    _id: 1,
-                };
-            })
-        })
 
-        // proper format for user
-        // return {
-        //     name: "foo bar",
-        //     email: "foo@bar.bar",
-        //     _id: 1,
-        // }
+    get user() {
+        
+        //console.log(user.name)
+        return {
+            name: usr.name,
+            email: usr.email,
+            _id: 1,
+        };
     }
+
     componentWillMount() {
         stored = []
         Promise.resolve(db.getMessages()).then(function(value) {
