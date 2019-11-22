@@ -6,6 +6,7 @@ const db = new Database();
 
 db.getUserState().then(uid => {
     db.fetchUser(uid).then(user => {
+        id = uid
         usr = user
     })
 })
@@ -24,7 +25,7 @@ export default class ChatScreen extends Component {
         return {
             name: usr.name,
             email: usr.email,
-            _id: 1,
+            _id: id,
         };
     }
 
