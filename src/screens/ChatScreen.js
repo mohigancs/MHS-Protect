@@ -7,38 +7,37 @@ const db = new Database();
 
 export default class ChatScreen extends Component {
 
-    
-
     state = {
         messages: [],
     };
 
+    get user() {
+        db.getUserState().then(uid => {
+            db.fetchUser(uid).then(user => {
+                return {
+                    name: user.name,
+                    email: user.email,
+                    _id: 1,
+                };
+            })
+        })
+
+        // proper format for user
+        // return {
+        //     name: "foo bar",
+        //     email: "foo@bar.bar",
+        //     _id: 1,
+        // }
+    }
     componentWillMount() {
-
         stored = []
-
         Promise.resolve(db.getMessages()).then(function(value) {
             stored = value
         })
 
         this.setState({
-            messages: [
-                {
-                    _id: 1,
-                    text: "bruh",
-                    createdAt: new Date(),
-                    user: {
-                        _id: 2,
-                        name: "Foo Bar"
-                    },
-                },
-            ],
+            messages: [],
         });
-
-        
-
-        
-        
     }
 
     componentDidMount() {
@@ -49,36 +48,26 @@ export default class ChatScreen extends Component {
         })
     }
 
-    
-
-    
-    onSend(messages = []) {
-        this.setState(previousState => ({
-            messages: GiftedChat.append(previousState.messages,messages),
-        }));
+    // Works fine without this lol
+    // onSend(messages = []) {
+    //     this.setState(previousState => ({
+    //         messages: GiftedChat.append(previousState.messages,messages),
+    //     }));
         
-
-        
-        //messages is an array with an object inside
-        db.send()
-    }
-
+    //     //messages is an array with an object inside
+    //     db.send()
+    // }
 
     render() {
-        return (
-            
+        return (     
             <View style={{flex:1}}>
                 <GiftedChat
                     messages={this.state.messages}
                     onSend={db.send}
-                    user={{
-                        _id:1,
-                    }}
+                    user={this.user}
                 />
                 <KeyboardAvoidingView behavior={'padding'}/> 
             </View>
-            
-            
         )
     }
 }

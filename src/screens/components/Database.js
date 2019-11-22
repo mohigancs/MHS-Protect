@@ -42,19 +42,19 @@ class Database {
         })
     }
 
-    sendMessage = (text) => {   // send message to database
-        this.getUserState().then(uid => {
-            this.fetchUser(uid).then(user => {
-                firebase.database().ref('alerts/messages/').push({
-                    name: user.name,
-                    text: text
-                })
-            })
-        })
-    }
+    // NOT USED
+    // sendMessage = (text) => {   // send message to database
+    //     this.getUserState().then(uid => {
+    //         this.fetchUser(uid).then(user => {
+    //             firebase.database().ref('alerts/messages/').push({
+    //                 name: user.name,
+    //                 text: text
+    //             })
+    //         })
+    //     })
+    // }
 
     getMessages = async () => {
-
         messages = []
 
         let db_snapshot = await firebase.database().ref('alerts/messages').once('value');
@@ -65,30 +65,6 @@ class Database {
 
         //console.log(messages)
         return messages;
-        
-    }
-
-    send = messages => {
-
-        for (let i = 0; i < messages.length; i++) {
-          const { text, user } = messages[i];
-          const timestamp = 1;
-          const message = {
-            text,
-            user,
-            timestamp,
-          };
-
-          firebase.database().ref('alerts/messages').push(message);
-        }
-    };
-
-    refOn = callback => {
-        firebase.database().ref('alerts/messages/')
-            .on('child_added', snapshot => {
-                console.log('child added')
-                callback(this.parse(snapshot))
-            })
     }
 
     parse = snapshot => {
@@ -104,8 +80,35 @@ class Database {
           text,
           user,
         };
+        // console.log(message);
         return message;
     };
+
+    get timestamp() {
+        return firebase.database.ServerValue.TIMESTAMP;
+    }
+
+    send = messages => {
+        for (let i = 0; i < messages.length; i++) {
+        const { text, user } = messages[i];
+        const createdAt = this.timestamp;
+        const message = {
+            text,
+            user,
+            createdAt,
+        };
+
+        firebase.database().ref('alerts/messages').push(message);
+        }
+    };
+
+    refOn = callback => {
+        firebase.database().ref('alerts/messages/')
+            .on('child_added', snapshot => {
+                // console.log('child added')
+                callback(this.parse(snapshot))
+            })
+    }
 
     removekey = (id, verbose) => { // from admin screen
         firebase.database().ref('people/' + id + '/key').remove()
