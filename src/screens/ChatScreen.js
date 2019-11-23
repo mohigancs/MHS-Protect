@@ -4,41 +4,13 @@ import { KeyboardAvoidingView, View } from 'react-native';
 import Database from './components/Database';
 const db = new Database();
 
-db.getUserState().then(uid => {
-    db.fetchUser(uid).then(user => {
-        id = uid
-        usr = user
-    })
-})
-
-
 export default class ChatScreen extends Component {
+
+    usr = this.props.navigation.getParam('user','error');
 
     state = {
         messages: [],
     };
-
-
-    get user() {
-        
-        //console.log(user.name)
-        return {
-            name: usr.name,
-            email: usr.email,
-            _id: id,
-        };
-    }
-
-    componentWillMount() {
-        stored = []
-        Promise.resolve(db.getMessages()).then(function(value) {
-            stored = value
-        })
-
-        this.setState({
-            messages: [],
-        });
-    }
 
     componentDidMount() {
         db.refOn(message => {
@@ -48,15 +20,13 @@ export default class ChatScreen extends Component {
         })
     }
 
-    // Works fine without this lol
-    // onSend(messages = []) {
-    //     this.setState(previousState => ({
-    //         messages: GiftedChat.append(previousState.messages,messages),
-    //     }));
-        
-    //     //messages is an array with an object inside
-    //     db.send()
-    // }
+   get user() { 
+        return {
+            name: this.usr[0].name,
+            email: this.usr[0].email,
+            _id: this.usr[1],
+        };
+    }    
 
     render() {
         return (     
@@ -69,5 +39,9 @@ export default class ChatScreen extends Component {
                 <KeyboardAvoidingView behavior={'padding'}/> 
             </View>
         )
+    }
+
+    componentWillUnmount() {
+        db.refOff();
     }
 }

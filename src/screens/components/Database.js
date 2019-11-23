@@ -51,24 +51,22 @@ class Database {
             messages.push(code_snapshot.val());
         });
 
-        //console.log(messages)
         return messages;
     }
 
     parse = snapshot => {
         const { timestamp: numberStamp, text, user } = snapshot.val();
-        const { key: id } = snapshot;
+        // const { key: id } = snapshot;
         const { key: _id } = snapshot; //needed for giftedchat
         const timestamp = new Date(numberStamp);
     
         const message = {
-          id,
+        //   id,
           _id,
           timestamp,
           text,
           user,
         };
-        // console.log(message);
         return message;
     };
 
@@ -93,9 +91,12 @@ class Database {
     refOn = callback => {
         firebase.database().ref('alerts/messages/')
             .on('child_added', snapshot => {
-                // console.log('child added')
                 callback(this.parse(snapshot))
             })
+    }
+
+    refOff = () => {
+        firebase.database().ref('alerts/messages/').off();
     }
 
     removekey = (id, verbose) => { // from admin screen
@@ -126,23 +127,6 @@ class Database {
         return [keyIsFound, identifier]; 
     }
 
-    getUserState = async () => {
-        try {
-        return await AsyncStorage.getItem('loggedin');
-        } catch (error) {
-        console.log("getUserState error = " + error)
-        }
-    };
-
-
-    fetchUser = async (userID) => {
-        let user = ''
-        await firebase.database().ref('people/' + userID).once('value').then(function(snapshot) {
-            user = snapshot.val()
-        });
-        return user;
-    }
-
     makekey(length) {
         var result = '';
         var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -157,7 +141,7 @@ class Database {
         firebase.database().ref('people/' + id + '/key').once('value').then(function(snapshot) {
             if (!snapshot.exists()) {
                 firebase.database().ref('people/' + id).update({
-                    key: key // do you love me? are you riding? say you'll never ever leave from beside me 'cause i want ya, and i need ya, and i'm down for you always
+                    key: key 
                 });
                 if (verbose) { 
                     Alert.alert('The User With ID ' + id + ' Now Has Key "' + key + '"') 
@@ -180,7 +164,7 @@ class Database {
     replacekey(id, verbose) {
         key = this.makekey(10)
         firebase.database().ref('people/' + id).update({
-            key: key // do you love me? are you riding? say you'll never ever leave from beside me 'cause i want ya, and i need ya, and i'm down for you always
+            key: key 
         });
         if (verbose) { 
             Alert.alert('The User With ID : ' + id + ' Now Has An Updated Key : ' + key) 

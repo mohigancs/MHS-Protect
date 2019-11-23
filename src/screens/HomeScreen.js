@@ -32,17 +32,12 @@ export default class HomeScreen extends Component {
         <TouchableOpacity 
           style={styles.button}
           onPress={() => {
-            console.log('principal push')
-          }}
-        >
-          <Text>PRINCIPAL PUSH</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity 
-          style={styles.button}
-          onPress={() => {
-            this.props.navigation.navigate('Chat')
-          }}
+            db.getUserState().then(uid => {
+              db.fetchUser(uid).then(user => {
+                this.props.navigation.navigate('Chat', {user: [user, uid]})
+              })
+            })
+        }}
         >
           <Text>Chat</Text>
         </TouchableOpacity>
@@ -59,8 +54,13 @@ export default class HomeScreen extends Component {
         <TouchableOpacity 
           style={styles.button}
           onPress={() => {
-            db.logOutUser();
-            this.props.navigation.navigate('Login')
+            db.logOutUser().then(() => {
+              console.log("logged out");
+              db.getUserState().then((snapshot) => {
+                console.log(snapshot);
+              });
+              this.props.navigation.navigate('Login')
+            });
           }}
         >
           <Text>LOG OUT</Text>
