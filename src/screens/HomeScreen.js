@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   logOut: {
     fontSize: 20,
     marginLeft: screenWidth*0.7786,
-    top: screenHeight*0.037,
+    top: screenHeight*0.066,
   },
   image: {
     height: screenHeight*0.267,
