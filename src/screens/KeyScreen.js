@@ -66,15 +66,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     image: {
-        height: 200,
-        width: 200,
+        height: screenHeight*0.267,
+        width: screenWidth*0.487,
         resizeMode: 'cover',
     },
     title: {
         fontSize: 26,
     },
     text: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
         color: 'white',
     },
@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
+        fontSize: 20,
         paddingHorizontal: 20,
     },
     button: {
