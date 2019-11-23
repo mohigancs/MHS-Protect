@@ -3,11 +3,21 @@ import { AsyncStorage } from 'react-native';
 
 class Database {
 
+// ------------User Data------------------------------------------------------------------------------------------------
+
     fetchUser = async (userID) => {
         await firebase.database().ref('people/' + userID).once('value').then(function(snapshot) {
             user = snapshot.val()
         })
         return user // user is JSON data
+    }
+
+    logInUser = async (uid) => {
+        try {
+            await AsyncStorage.setItem('loggedin', uid);
+        } catch (error) {
+            console.log("logInUser error = " + error)
+        }
     }
 
     logOutUser = async () => { // temporary function for development
@@ -26,6 +36,11 @@ class Database {
         }
     }
 
+
+    
+// ------------Emergency Functions--------------------------------------------------------------------------------------
+
+
     reportEmergency = (title, description) => { // panic button prototype
         this.getUserState().then(uid => {
             this.fetchUser(uid).then(user => {
@@ -41,6 +56,10 @@ class Database {
             })
         })
     }
+
+
+
+// ------------Messages-------------------------------------------------------------------------------------------------
 
     getMessages = async () => {
         messages = []
@@ -99,18 +118,14 @@ class Database {
         firebase.database().ref('alerts/messages/').off();
     }
 
+
+
+// ------------Key Functions--------------------------------------------------------------------------------------------
+
     removekey = (id, verbose) => { // from admin screen
         firebase.database().ref('people/' + id + '/key').remove()
         if (verbose) {
             Alert.alert('The User With ID ' + id + ' Had Their Key Deleted!')
-        }
-    }
-
-    logInUser = async (uid) => {
-        try {
-            await AsyncStorage.setItem('loggedin', uid);
-        } catch (error) {
-            console.log("logInUser error = " + error)
         }
     }
 
@@ -125,16 +140,6 @@ class Database {
             }
         });
         return [keyIsFound, identifier]; 
-    }
-
-    makekey(length) {
-        var result = '';
-        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        var charactersLength = characters.length;
-        for ( var i = 0; i < length; i++ ) {
-           result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
     }
 
     addkey(id, key, verbose) {
@@ -171,6 +176,20 @@ class Database {
         }
     }
 
+
+
+// ------------ADMIN----------------------------------------------------------------------------------------------------
+
+    makekey(length) {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+
     async adduser(email, name, phone, role) {
         id = -1
         await firebase.database().ref('people/').once('value').then(function(snapshot) {
@@ -191,6 +210,7 @@ class Database {
     deleteuser(id) {
         firebase.database().ref('people/' + id).remove();
     } // decrement user-id's at some later date
+
 
 }
 
