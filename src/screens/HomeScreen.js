@@ -6,7 +6,6 @@ const screenWidth = Math.round(Dimensions.get('window').width);
 const screenHeight = Math.round(Dimensions.get('window').height);
 export default class HomeScreen extends Component {
 
-
   render() {
     return (
       <View style={styles.contentContainer}>
@@ -26,6 +25,8 @@ export default class HomeScreen extends Component {
             source={require('../images/logo.jpg')} 
           />
         <Text style={styles.title}>MHS-Protect</Text>
+        </View>
+
         <TouchableOpacity 
           style={styles.emergencyButton}
           onPress={() => {
@@ -34,6 +35,7 @@ export default class HomeScreen extends Component {
         >
           <Text style = {{fontFamily: 'Roboto', fontWeight: 'bold'}}>EMERGENCY ALERT</Text>
         </TouchableOpacity>
+
         <TouchableOpacity 
           style={styles.button}
           onPress={() => {
@@ -42,15 +44,44 @@ export default class HomeScreen extends Component {
         >
           <Text style = {{fontFamily: 'Roboto', fontWeight: 'bold'}}>REQUEST HELP</Text>
         </TouchableOpacity>
+
         <TouchableOpacity 
           style={styles.button}
           onPress={() => {
-            console.log('principal push')
+            db.getUserState().then(uid => {
+              db.fetchUser(uid).then(user => {
+                this.props.navigation.navigate('Chat', {user: [user, uid]})
+              })
+            })
+        }}
+        >
+          <Text>Chat</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => {
+            this.props.navigation.navigate('Map')
           }}
         >
-          <Text style = {{fontFamily: 'Roboto', fontWeight: 'bold'}}>PRINCIPAL PUSH</Text>
+          <Text>Map</Text>
         </TouchableOpacity>
-        </View>
+
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => {
+            db.logOutUser().then(() => {
+              console.log("logged out");
+              db.getUserState().then((snapshot) => {
+                console.log(snapshot);
+              });
+              this.props.navigation.navigate('Login')
+            });
+          }}
+        >
+          <Text>LOG OUT</Text>
+        </TouchableOpacity>
+
       </View>
     );
   }
@@ -112,5 +143,5 @@ const styles = StyleSheet.create({
     borderWidth: 2.5,
     borderRadius: 5,
     marginBottom: screenHeight*0.0333,
-},
+  },
 });
