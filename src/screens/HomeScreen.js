@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
 import Database from './components/Database';
 const db = new Database()
-const screenWidth = Math.round(Dimensions.get('window').width);
-const screenHeight = Math.round(Dimensions.get('window').height);
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 export default class HomeScreen extends Component {
 
 

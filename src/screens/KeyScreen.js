@@ -2,8 +2,8 @@ import React from 'react';
 import { Dimensions, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import Database from './components/Database';
 const db = new Database();
-const screenWidth = Math.round(Dimensions.get('window').width);
-const screenHeight = Math.round(Dimensions.get('window').height);
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 
 export default class KeyScreen extends React.Component {
