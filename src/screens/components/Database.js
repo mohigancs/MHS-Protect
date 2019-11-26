@@ -40,18 +40,16 @@ class Database {
 
 // ---------------------Emergency----------------------------------------------------------------    
 
-    reportEmergency = (title, description) => { // panic button prototype
+    reportEmergency = (description) => { // panic button prototype
         this.getUserState().then(uid => {
             this.fetchUser(uid).then(user => {
                 navigator.geolocation.getCurrentPosition(position => {
-                    console.log(position);
                     firebase.database().ref('alerts/emergency/').push({
                         user: uid,
                         name: user.name,
                         phone: user.phone,
                         email: user.email,
-                        location: {latitiude: position.coords.latitude, longitude: position.coords.longitude},
-                        title: title,
+                        location: {latitude: position.coords.latitude, longitude: position.coords.longitude},
                         description: description
                     })
                 }) 
@@ -69,10 +67,41 @@ class Database {
         let db_snapshot = await firebase.database().ref('alerts/emergency/').once('value');
 
         db_snapshot.forEach(code_snapshot => {
-            emergencies.push(code_snapshot.val());
+            marker = {
+                longitude: code_snapshot.val().location.longitude,
+                latitude: code_snapshot.val().location.latitiude,
+                titile: code_snapshot.val().name,
+                description: code_snapshot.val().description,
+            }
+            emergencies.push(marker);
         })
-
+        // console.log(emergencies);
         return emergencies;
+    }
+
+    mapOn = callback => {
+        firebase.database().ref('alerts/emergency/')
+            .on('child_added', snapshot => {
+                callback(this.edit(snapshot))
+            })
+            
+    }
+
+    mapOff = () => {
+        firebase.database().ref('alerts/emergency/').off();
+    }
+
+    edit = snapshot => {
+        const { name, description } = snapshot.val();
+        const { longitude, latitude } = snapshot.val().location;
+        const emergency = {
+          title: name, 
+          description, 
+          longitude, 
+          latitude,
+        };
+        
+        return emergency;
     }
 
 
@@ -81,12 +110,12 @@ class Database {
 
     parse = snapshot => {
         const { timestamp: numberStamp, text, user } = snapshot.val();
-        // const { key: id } = snapshot;
+        const { key: id } = snapshot;
         const { key: _id } = snapshot; //needed for giftedchat
         const timestamp = new Date(numberStamp);
     
         const message = {
-        //   id,
+          id,
           _id,
           timestamp,
           text,

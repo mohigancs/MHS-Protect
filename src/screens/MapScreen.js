@@ -2,39 +2,59 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
+import Database from './components/Database';
+const db = new Database()
+
 export default class MapScreen extends Component {
 
+  state = {
+    emergencies: [],
+  };
 
+  componentDidMount() {
+    db.mapOn(emergencies => {
+        this.setState(previousState => ({
+            emergencies: previousState.emergencies.concat(emergencies),
+        }))
+    })
+  }
 
-      render() {
-        return (
-          <View style={styles.container}> 
-            <MapView
-              style={styles.map}
-              mapType={"satellite"}
-              showsUserLocation={true}
-              region={{
-                  latitude: 39.625083,
-                  longitude:  -79.956796,
-                  latitudeDelta: 0.0025,
-                  longitudeDelta: 0.0025,
+  render() {
+    k = 0
+    return (
+      <View style={styles.container}> 
+        <MapView
+          style={styles.map}
+          mapType={"satellite"}
+          showsUserLocation={true}
+          region={{
+            latitude: 39.625083,
+            longitude:  -79.956796,
+            latitudeDelta: 0.0025,
+            longitudeDelta: 0.0025,
+          }}
+        >
+          {this.state.emergencies.map(emergency => {
+            
+            return (
+            <MapView.Marker 
+              key = {k++}
+              title={emergency.title}
+              description={emergency.description}
+              coordinate={{
+                latitude: emergency.latitude,
+                longitude: emergency.longitude,
               }}
-            >
-
-              <MapView.Marker
-            key={0}
-            coordinate={{latitude: 39.66233946313295,
-            longitude: -79.97040309453479}}
-            title={"title"}
-            description={"description"}
-
-         />
-
-
-            </MapView>
-          </View>
-        );
-      }
+            />
+            );
+          })}
+        </MapView>
+      </View>
+    );
+  }
+  componentWillUnmount(){
+    db.mapOff();
+  }
 }
 
 const styles = StyleSheet.create({
