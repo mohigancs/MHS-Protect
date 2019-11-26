@@ -10,6 +10,7 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.contentContainer}>
+
         <View style = {styles.horizontalContainer}>
           <TouchableOpacity 
               onPress={() => {
@@ -25,16 +26,19 @@ export default class HomeScreen extends Component {
           <Text style = {styles.logOut}>LOG OUT</Text>
           </TouchableOpacity>
         </View>
+
         <View style = {styles.container}>
           <Image
             style={styles.image}
             source={require('../images/logo.jpg')} 
           />
           <Text style={styles.title}>MHS-Protect</Text>
+
           <TouchableOpacity 
             style={styles.emergency}
             onPress={() => {
               db.reportEmergency('foo', 'bar')
+              console.log("emergency")
             }}
             >
             <Text style = {styles.buttonText}>EMERGENCY ALERT</Text>
@@ -48,7 +52,6 @@ export default class HomeScreen extends Component {
           >
             <Text style = {styles.buttonText}>REQUEST HELP</Text>
           </TouchableOpacity>
-        
         </View>
 
         <View style = {styles.horizontalContainer}>
@@ -96,7 +99,6 @@ const styles = StyleSheet.create({
   title: {
       fontSize: 26,
       fontWeight: 'bold',
-      fontFamily: 'Roboto',
       position: 'relative',
       marginBottom: screenHeight*0.02,
   },

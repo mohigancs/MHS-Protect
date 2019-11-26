@@ -3,6 +3,8 @@ import { AsyncStorage, Alert } from 'react-native';
 
 class Database {
 
+// ---------------------User----------------------------------------------------------------------
+
     fetchUser = async (userID) => {
         await firebase.database().ref('people/' + userID).once('value').then(function(snapshot) {
             user = snapshot.val()
@@ -18,6 +20,14 @@ class Database {
         }
     }
 
+    logInUser = async (uid) => {
+        try {
+            await AsyncStorage.setItem('loggedin', uid);
+        } catch (error) {
+            console.log("logInUser error = " + error)
+        }
+    }
+
     getUserState = async () => {
         try {
             return await AsyncStorage.getItem('loggedin');
@@ -26,33 +36,48 @@ class Database {
         }
     }
 
+
+
+// ---------------------Emergency----------------------------------------------------------------    
+
     reportEmergency = (title, description) => { // panic button prototype
         this.getUserState().then(uid => {
             this.fetchUser(uid).then(user => {
-                firebase.database().ref('alerts/emergency/').push({
-                    user: uid,
-                    name: user.name,
-                    phone: user.phone,
-                    email: user.email,
-                    location: 'coords',
-                    title: title,
-                    description: description
-                })
+                navigator.geolocation.getCurrentPosition(position => {
+                    console.log(position);
+                    firebase.database().ref('alerts/emergency/').push({
+                        user: uid,
+                        name: user.name,
+                        phone: user.phone,
+                        email: user.email,
+                        location: {latitiude: position.coords.latitude, longitude: position.coords.longitude},
+                        title: title,
+                        description: description
+                    })
+                }) 
             })
         })
     }
 
-    getMessages = async () => {
-        messages = []
 
-        let db_snapshot = await firebase.database().ref('alerts/messages').once('value');
+
+// ---------------------Map------------------------------------------------------------------------
+
+    getEmergencyLocations = async () => {
+        emergencies = []
+
+        let db_snapshot = await firebase.database().ref('alerts/emergency/').once('value');
 
         db_snapshot.forEach(code_snapshot => {
-            messages.push(code_snapshot.val());
-        });
+            emergencies.push(code_snapshot.val());
+        })
 
-        return messages;
+        return emergencies;
     }
+
+
+
+// ---------------------Messages-------------------------------------------------------------------
 
     parse = snapshot => {
         const { timestamp: numberStamp, text, user } = snapshot.val();
@@ -99,18 +124,14 @@ class Database {
         firebase.database().ref('alerts/messages/').off();
     }
 
+
+
+// ---------------------Key Functions------------------------------------------------------------    
+
     removekey = (id, verbose) => { // from admin screen
         firebase.database().ref('people/' + id + '/key').remove()
         if (verbose) {
             Alert.alert('The User With ID ' + id + ' Had Their Key Deleted!')
-        }
-    }
-
-    logInUser = async (uid) => {
-        try {
-            await AsyncStorage.setItem('loggedin', uid);
-        } catch (error) {
-            console.log("logInUser error = " + error)
         }
     }
 
@@ -170,6 +191,10 @@ class Database {
             Alert.alert('The User With ID : ' + id + ' Now Has An Updated Key : ' + key) 
         }
     }
+
+
+
+// ---------------------Admin------------------------------------------------------------------------
 
     async adduser(email, name, phone, role) {
         id = -1
