@@ -61,30 +61,13 @@ class Database {
 
 // ---------------------Map------------------------------------------------------------------------
 
-    getEmergencyLocations = async () => {
-        emergencies = []
 
-        let db_snapshot = await firebase.database().ref('alerts/emergency/').once('value');
-
-        db_snapshot.forEach(code_snapshot => {
-            marker = {
-                longitude: code_snapshot.val().location.longitude,
-                latitude: code_snapshot.val().location.latitiude,
-                titile: code_snapshot.val().name,
-                description: code_snapshot.val().description,
-            }
-            emergencies.push(marker);
-        })
-        // console.log(emergencies);
-        return emergencies;
-    }
 
     mapOn = callback => {
         firebase.database().ref('alerts/emergency/')
             .on('child_added', snapshot => {
                 callback(this.edit(snapshot))
             })
-            
     }
 
     mapOff = () => {

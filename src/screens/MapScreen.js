@@ -35,7 +35,12 @@ export default class MapScreen extends Component {
           }}
         >
           {this.state.emergencies.map(emergency => {
-            
+            if(k + 1 == this.state.emergencies.length){
+              color = 'red';
+            }
+            else {
+              color = 'orange';
+            }
             return (
             <MapView.Marker 
               key = {k++}
@@ -45,6 +50,8 @@ export default class MapScreen extends Component {
                 latitude: emergency.latitude,
                 longitude: emergency.longitude,
               }}
+              
+              pinColor={color}
             />
             );
           })}

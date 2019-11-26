@@ -39,7 +39,6 @@ export default class HomeScreen extends Component {
             style={styles.emergency}
             onPress={() => {
               db.reportEmergency('description')
-              console.log("emergency")
             }}
             >
             <Text style = {styles.buttonText}>EMERGENCY ALERT</Text>
