@@ -92,12 +92,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontSize: 26,
+        fontSize: screenWidth*0.0633,
         fontWeight: 'bold',
         marginTop: screenHeight*0.027,
     },
     option: {
-        fontSize: 24,
+        fontSize: screenWidth*0.0584,
         fontWeight: 'bold',
         top: screenHeight*0.06,
         marginTop: screenHeight*0.0267,
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: screenWidth*0.0438,
         color: '#ffffff',
     }
 });

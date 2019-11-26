@@ -111,19 +111,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        fontSize: 18,
+        fontSize: screenWidth*0.0438,
         fontWeight: 'bold',
         color: 'white',
     },
     title: {
-        fontSize: 34,
+        fontSize: screenWidth*0.073,
         fontWeight: 'bold',
         color: '#0a007e',
         marginBottom: screenHeight*0.0534,
         marginTop: screenHeight*0.0534,
     },
     option: {
-        fontSize: 18,
+        fontSize: screenWidth*0.0438,
         fontWeight: 'bold',
     },
     input: {
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
-        paddingHorizontal: 20,
+        paddingHorizontal: screenWidth*0.0487,
     },
     button: {
         width: '72.99%',

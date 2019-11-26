@@ -52,7 +52,7 @@ export default class HomeScreen extends Component {
         </View>
 
         <View style = {styles.horizontalContainer}>
-          <IconButton
+          <IconButton style = {styles.mapIcon}
             icon = 'google-maps'
             color = 'green'
             size={screenWidth*0.15}
@@ -60,10 +60,10 @@ export default class HomeScreen extends Component {
               this.props.navigation.navigate('Map')
             }}
           />
-          <IconButton
-            icon = 'message-processing'
+          <IconButton style = {styles.messageIcon}
+            icon= 'message-processing'
+            size = {screenWidth*0.15}
             color = '#57c9fa'
-            size={screenWidth*0.15}
             onPress={() => {
               db.getUserState().then(uid => {
                 db.fetchUser(uid).then(user => {
@@ -80,7 +80,7 @@ export default class HomeScreen extends Component {
 
 const styles = StyleSheet.create({
   horizontalContainer: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'row',
   },
   contentContainer: {
@@ -89,19 +89,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-      flex: 7,
+      flex: 10,
       justifyContent: 'center',
       alignItems: 'center',
   },
   title: {
-      fontSize: 26,
+      fontSize: screenWidth*0.0633,
       fontWeight: 'bold',
-      fontFamily: 'Roboto',
-      position: 'relative',
       marginBottom: screenHeight*0.02,
   },
   logOut: {
-    fontSize: 20,
+    fontSize: screenWidth*0.0487,
     marginLeft: screenWidth*0.7786,
     top: screenHeight*0.066,
   },
@@ -122,9 +120,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     marginBottom: screenHeight*0.0333,
-},
+  },
+  messageIcon: {
+    marginLeft: screenWidth*0.15,
+  },
+  mapIcon: {
+    marginRight: screenWidth*0.15,
+  },
   buttonText: {
-    fontSize: 20,
+    fontSize: screenWidth*0.0487,
     fontWeight: 'bold',
   },
   emergency: {
@@ -135,6 +139,6 @@ const styles = StyleSheet.create({
     borderColor: '#c80d00',
     borderWidth: 2.5,
     borderRadius: 5,
-    marginBottom: screenHeight*0.0333,
+    marginBottom: screenHeight*0.0344,
   },
 });

@@ -61,7 +61,7 @@ const RootStack = createSwitchNavigator ({
 }
 );
 
-// Disables Yellow text on the Virtural Device
+// Disables Yellow text on the Virtual Device
 console.disableYellowBox = true;
 
 const App = new createAppContainer(RootStack);

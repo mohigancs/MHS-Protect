@@ -71,10 +71,10 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     title: {
-        fontSize: 26,
+        fontSize: screenWidth*0.0633,
     },
     text: {
-        fontSize: 20,
+        fontSize: screenWidth*0.0487,
         fontWeight: 'bold',
         color: 'white',
     },
@@ -87,8 +87,8 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
-        fontSize: 20,
-        paddingHorizontal: 20,
+        fontSize: screenWidth*0.0487,
+        paddingHorizontal: screenWidth*0.0487,
     },
     button: {
         width: screenWidth*0.7299,
