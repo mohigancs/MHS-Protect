@@ -4,8 +4,8 @@ import { StyleSheet, Text, Dimensions, TextInput, TouchableOpacity, KeyboardAvoi
 
 import Database from './components/Database'
 const db = new Database();
-const screenWidth = Math.round(Dimensions.get('window').width);
-const screenHeight = Math.round(Dimensions.get('window').height);
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 export default class AdminScreen extends React.Component {
 
