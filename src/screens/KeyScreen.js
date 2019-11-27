@@ -33,7 +33,19 @@ export default class KeyScreen extends React.Component {
                     autoCapitalize="none"
                     autoCorrect={false}
                     onChange={(text) => this.key = text.nativeEvent.text}
-                    //onSubmitEditing={() => {}}
+                    onSubmitEditing={() => {
+                        db.isValidKey(this.key).then(result => {
+                            if (result[0]) {
+                                //Alert.alert('Success!', 'Your key was found in the database.')
+                                db.fetchUser(result[1]).then(user => {
+                                    this.props.navigation.navigate('Confirm', {user: [user, result[1]]})
+                                })
+                                //db.removekey(result[1], false)
+                            } else {
+                                Alert.alert('Key Not Found.', 'Visit Mr. Gibson for help.')
+                            }
+                        });
+                    }}
                 />
                 <TouchableOpacity 
                 style={styles.button}

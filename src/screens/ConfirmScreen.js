@@ -18,7 +18,7 @@ export default class ConfirmScreen extends React.Component {
             <View style={styles.container}>
                 <View style = {styles.textContainer}>
                     <Text style={styles.title}>
-                        Is This Information Correct?
+                        Is This Correct?
                     </Text>
                     <Image
                     style={styles.image}
@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: screenWidth*0.0633,
-        fontWeight: 'bold',
         marginTop: screenHeight*0.027,
     },
     option: {
