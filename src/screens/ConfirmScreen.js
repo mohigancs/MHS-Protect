@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontSize: screenWidth*0.0633,
+        fontSize: screenWidth*0.0666,
         marginTop: screenHeight*0.027,
     },
     option: {

@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
-import {IconButton, Colors} from 'react-native-paper';
+import { Text, Alert, Modal, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native';
+import {IconButton} from 'react-native-paper';
 import Database from './components/Database';
 const db = new Database()
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 export default class HomeScreen extends Component {
+  state = {
+    modalVisible: false,
+  };
+  details = '';
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
 
   render() {
     return (
@@ -34,16 +42,47 @@ export default class HomeScreen extends Component {
           <TouchableOpacity 
             style={styles.emergency}
             onPress={() => {
-              db.reportEmergency('foo', 'bar')
+              db.reportEmergency('foo', 'description')
             }}
             >
             <Text style = {styles.buttonText}>EMERGENCY ALERT</Text>
           </TouchableOpacity>
-
+          <Modal
+              animationType ="slide"
+              visible={this.state.modalVisible}
+              onRequestClose={() => {
+                Alert.alert('MESSAGE NOT SENT');
+                this.setModalVisible(false);
+                }}>
+              <View style = {styles.contentContainer}>
+              <Text style = {styles.modalTitle}>Please enter some information</Text>
+              <TextInput 
+                style={styles.input}
+                placeholder="Details"
+                placeholderTextColor = "black"
+                returnKeyType="go"
+                multiline = {true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                onChange={(text) => this.details = text.nativeEvent.text}
+                
+              />
+              <TouchableOpacity 
+                style = {styles.modalButton}
+                onPress = {() => {
+                  db.requestHelp(this.details);
+                  Alert.alert('MESSAGE SENT');
+                  this.setModalVisible(false);
+                }}
+                >
+                <Text style = {{fontWeight: 'bold', color: 'white', fontSize: screenWidth*0.0487}}>SUBMIT</Text>
+              </TouchableOpacity>
+              </View>
+          </Modal>
           <TouchableOpacity 
             style={styles.help}
             onPress={() => {
-              console.log('request for help')
+              this.setModalVisible(true);   
             }}
           >
             <Text style = {styles.buttonText}>REQUEST HELP</Text>
@@ -63,7 +102,7 @@ export default class HomeScreen extends Component {
           <IconButton style = {styles.messageIcon}
             icon= 'message-processing'
             size = {screenWidth*0.15}
-            color = '#57c9fa'
+            color = '#47b9ea'
             onPress={() => {
               db.getUserState().then(uid => {
                 db.fetchUser(uid).then(user => {
@@ -93,10 +132,25 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
   },
+  input: {
+    width: screenWidth*0.7299,
+    height: screenHeight*0.0534,
+    backgroundColor: '#d3d3d3',
+    borderColor: 'black',
+    borderWidth: 0.5,
+    borderRadius: 5,
+    fontSize: screenWidth*0.0487,
+    paddingHorizontal: screenWidth*0.0487,
+    marginBottom: screenHeight*0.0344,
+},
   title: {
       fontSize: screenWidth*0.0633,
       fontWeight: 'bold',
       marginBottom: screenHeight*0.02,
+  },
+  modalTitle: {
+    fontSize: screenWidth*0.0633,
+    marginBottom: screenHeight*0.05,
   },
   logOut: {
     fontSize: screenWidth*0.0487,
@@ -129,7 +183,17 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: screenWidth*0.0487,
+    color: 'black',
     fontWeight: 'bold',
+  },
+  modalButton: {
+    width: screenWidth*0.7299,
+    height: screenHeight*0.0534,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#c80d00',
+    borderWidth: 1,
+    borderRadius: 5,
   },
   emergency: {
     width: screenWidth*0.62,

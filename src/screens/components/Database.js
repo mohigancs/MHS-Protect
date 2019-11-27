@@ -41,6 +41,20 @@ class Database {
             })
         })
     }
+    requestHelp = (description) => {
+        this.getUserState().then(uid => {
+            this.fetchUser(uid).then(user => {
+                firebase.database().ref('alerts/help').push({
+                    user: uid,
+                    name: user.name,
+                    phone: user.phone,
+                    email: user.email,
+                    location: 'coords',
+                    description: description
+                })
+            })
+        })
+    }
 
     getMessages = async () => {
         messages = []
