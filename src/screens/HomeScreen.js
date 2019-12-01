@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text, Alert, Modal, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native';
 import {IconButton} from 'react-native-paper';
 import Database from './components/Database';
+import Communications from 'react-native-communications';
+//this is my favorite page that i've done so far uwu 
 const db = new Database()
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -48,14 +50,12 @@ export default class HomeScreen extends Component {
             <Text style = {styles.buttonText}>EMERGENCY ALERT</Text>
           </TouchableOpacity>
           <Modal
-              animationType ="slide"
               visible={this.state.modalVisible}
               onRequestClose={() => {
-                Alert.alert('MESSAGE NOT SENT');
                 this.setModalVisible(false);
                 }}>
               <View style = {styles.contentContainer}>
-              <Text style = {styles.modalTitle}>Please enter some information</Text>
+              <Text style = {styles.modalTitle}>Please provide details</Text>
               <TextInput 
                 style={styles.input}
                 placeholder="Details"
@@ -71,8 +71,10 @@ export default class HomeScreen extends Component {
                 style = {styles.modalButton}
                 onPress = {() => {
                   db.requestHelp(this.details);
-                  Alert.alert('MESSAGE SENT');
+                  //need to figure out how to text without bringing user out of app, also figure out how to not get modal to close so soon
+                  //Communications.textWithoutEncoding('3048255608', this.details);
                   this.setModalVisible(false);
+                  Alert.alert('MESSAGE SENT');
                 }}
                 >
                 <Text style = {{fontWeight: 'bold', color: 'white', fontSize: screenWidth*0.0487}}>SUBMIT</Text>
