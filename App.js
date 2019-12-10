@@ -1,7 +1,5 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-
-import KeyScreen from './src/screens/KeyScreen';
+import { createStackNavigator } from 'react-navigation-stack';import KeyScreen from './src/screens/KeyScreen';
 import AdminScreen from './src/screens/AdminScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import ConfirmScreen from './src/screens/ConfirmScreen';

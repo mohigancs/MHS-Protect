@@ -1,25 +1,37 @@
 import React from 'react';
-import { Dimensions, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ActivityIndicator, StatusBar } from 'react-native';
 import Database from './components/Database';
 const db = new Database();
+import * as Font from 'expo-font';
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 
 export default class KeyScreen extends React.Component {
-    componentDidMount() {
+    state = {
+        assetsLoaded: false,
+    };
+    
+    async componentDidMount() {
+        await Font.loadAsync({
+            'Billgates': require('../../assets/fonts/Billgates.ttf')
+        });
         db.getUserState().then(loggedin => {
             if (loggedin == 'true') {
                 this.props.navigation.navigate('Home')
             } 
         })
+    
+        this.setState({ assetsLoaded: true });
     }
 
     key = '';
 
     render() {
-        return (
-            <View style={styles.container}>
+        const {assetsLoaded} = this.state;
+        if( assetsLoaded ) {
+            return (
+                <View style={styles.container}>
                 <Image
                     style={styles.image}
                     source={require('../images/logo.jpg')} 
@@ -65,9 +77,17 @@ export default class KeyScreen extends React.Component {
                 >
                     <Text style = {styles.text}>SUBMIT</Text>
                 </TouchableOpacity>
+                <Text style = {{fontFamily : 'Billgates'}}>I want it that way tell me why</Text>
 
             </View>
         );
+    }
+    else {
+            return (
+                <View style={styles.container}>
+                </View>
+            );
+        }
     }
 }
 
