@@ -6,7 +6,6 @@ import * as Font from 'expo-font';
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-
 export default class KeyScreen extends React.Component {
     state = {
         assetsLoaded: false,
@@ -14,7 +13,8 @@ export default class KeyScreen extends React.Component {
     
     async componentDidMount() {
         await Font.loadAsync({
-            'Billgates': require('../../assets/fonts/Billgates.ttf')
+            'Cardo-Bold': require('../../assets/fonts/Cardo-Bold.ttf'),
+            'Cardo-Regular': require('../../assets/fonts/Cardo-Regular.ttf'),
         });
         db.getUserState().then(loggedin => {
             if (loggedin == 'true') {
@@ -77,7 +77,6 @@ export default class KeyScreen extends React.Component {
                 >
                     <Text style = {styles.text}>SUBMIT</Text>
                 </TouchableOpacity>
-                <Text style = {{fontFamily : 'Billgates'}}>I want it that way tell me why</Text>
 
             </View>
         );
@@ -103,10 +102,12 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     title: {
-        fontSize: screenWidth*0.0633,
+        fontFamily: 'Cardo-Bold',
+        fontSize: screenWidth*0.0933,
     },
     text: {
-        fontSize: screenWidth*0.0487,
+        fontSize: screenWidth*0.06,
+        fontFamily: 'Cardo-Bold',
         fontWeight: 'bold',
         color: 'white',
     },
@@ -119,6 +120,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
+        fontFamily: 'Cardo-Regular',
         fontSize: screenWidth*0.0487,
         paddingHorizontal: screenWidth*0.0487,
     },
