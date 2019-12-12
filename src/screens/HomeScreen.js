@@ -8,11 +8,19 @@ const db = new Database()
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 export default class HomeScreen extends Component {
-  state = {
-    modalVisible: false,
-  };
   details = '';
-
+  user = this.props.navigation.getParam('user','error');
+  state = {
+      assetsLoaded: false,
+      modalVisible: false,
+  };
+  
+  async componentDidMount() {
+      await Font.loadAsync({
+          'Alice-Regular': require('../../assets/fonts/Alice-Regular.ttf'),
+      });
+  this.setState({ assetsLoaded: true });
+  }
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
@@ -146,15 +154,17 @@ const styles = StyleSheet.create({
     marginBottom: screenHeight*0.0344,
 },
   title: {
+      fontFamily: 'Alice-Regular',
       fontSize: screenWidth*0.0633,
-      fontWeight: 'bold',
       marginBottom: screenHeight*0.02,
   },
   modalTitle: {
+    fontFamily: 'Alice-Regular',
     fontSize: screenWidth*0.0633,
     marginBottom: screenHeight*0.05,
   },
   logOut: {
+    fontFamily: 'Alice-Regular',
     fontSize: screenWidth*0.0487,
     marginLeft: screenWidth*0.7786,
     top: screenHeight*0.066,
@@ -185,8 +195,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: screenWidth*0.0487,
+    fontFamily: 'Alice-Regular',
     color: 'black',
-    fontWeight: 'bold',
   },
   modalButton: {
     width: screenWidth*0.7299,

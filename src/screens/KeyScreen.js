@@ -13,8 +13,7 @@ export default class KeyScreen extends React.Component {
     
     async componentDidMount() {
         await Font.loadAsync({
-            'Cardo-Bold': require('../../assets/fonts/Cardo-Bold.ttf'),
-            'Cardo-Regular': require('../../assets/fonts/Cardo-Regular.ttf'),
+            'Alice-Regular': require('../../assets/fonts/Alice-Regular.ttf'),
         });
         db.getUserState().then(loggedin => {
             if (loggedin == 'true') {
@@ -102,13 +101,12 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     title: {
-        fontFamily: 'Cardo-Bold',
-        fontSize: screenWidth*0.0933,
+        fontFamily: 'Alice-Regular',
+        fontSize: screenWidth*0.0833,
     },
     text: {
         fontSize: screenWidth*0.06,
-        fontFamily: 'Cardo-Bold',
-        fontWeight: 'bold',
+        fontFamily: 'Alice-Regular',
         color: 'white',
     },
     input: {
@@ -120,7 +118,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
-        fontFamily: 'Cardo-Regular',
+        fontFamily: 'Alice-Regular',
         fontSize: screenWidth*0.0487,
         paddingHorizontal: screenWidth*0.0487,
     },

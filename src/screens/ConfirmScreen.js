@@ -8,7 +8,16 @@ const screenHeight = Dimensions.get('window').height;
 export default class ConfirmScreen extends React.Component {
 
     user = this.props.navigation.getParam('user','error');
-
+    state = {
+        assetsLoaded: false,
+    };
+    
+    async componentDidMount() {
+        await Font.loadAsync({
+            'Alice-Regular': require('../../assets/fonts/Alice-Regular.ttf'),
+        });
+    this.setState({ assetsLoaded: true });
+    }
     
     // add logic if user is 'error', go back
 
@@ -94,10 +103,11 @@ const styles = StyleSheet.create({
     title: {
         fontSize: screenWidth*0.0666,
         marginTop: screenHeight*0.027,
+        fontFamily: 'Alice-Regular',
     },
     option: {
         fontSize: screenWidth*0.0584,
-        fontWeight: 'bold',
+        fontFamily: 'Alice-Regular',
         top: screenHeight*0.06,
         marginTop: screenHeight*0.0267,
     },
@@ -115,7 +125,6 @@ const styles = StyleSheet.create({
         borderColor: '#0a007e',
     },
     buttonText: {
-        fontWeight: 'bold',
         fontSize: screenWidth*0.0438,
         color: '#ffffff',
     }
