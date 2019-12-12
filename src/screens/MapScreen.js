@@ -35,6 +35,7 @@ export default class MapScreen extends Component {
           }}
         >
           {this.state.emergencies.map(emergency => {
+            console.log(emergency);
             if(k + 1 == this.state.emergencies.length){
               color = 'red';
             }
@@ -42,17 +43,16 @@ export default class MapScreen extends Component {
               color = 'orange';
             }
             return (
-            <MapView.Marker 
-              key = {k++}
-              title={emergency.title}
-              description={emergency.description}
-              coordinate={{
-                latitude: emergency.latitude,
-                longitude: emergency.longitude,
-              }}
-              
-              pinColor={color}
-            />
+              <MapView.Marker 
+                key = {k++}
+                title={emergency.title}
+                description={emergency.description}
+                coordinate={{
+                  latitude: emergency.latitude,
+                  longitude: emergency.longitude,
+                }}
+                pinColor={color}
+              />
             );
           })}
         </MapView>

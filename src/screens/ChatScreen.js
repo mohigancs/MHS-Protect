@@ -2,6 +2,8 @@ import { GiftedChat } from 'react-native-gifted-chat';
 import React, { Component } from 'react';
 import { KeyboardAvoidingView, View } from 'react-native';
 import Database from './components/Database';
+import { Platform } from '@unimodules/core';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
 const db = new Database();
 
 export default class ChatScreen extends Component {
@@ -15,6 +17,7 @@ export default class ChatScreen extends Component {
     componentDidMount() {
         db.refOn(message => {
             this.setState(previousState => ({
+                
                 messages: GiftedChat.append(previousState.messages, message),
             }))
         })
@@ -29,19 +32,35 @@ export default class ChatScreen extends Component {
     }    
 
     render() {
-        return (     
-            <View style={{flex:1}}>
-                <GiftedChat
-                    messages={this.state.messages}
-                    onSend={db.send}
-                    user={this.user}
-                />
-                <KeyboardAvoidingView behavior={'padding'}/> 
-            </View>
-        )
+        if (Platform.OS === 'ios') {
+            return (     
+                <View style={{flex:1}}>
+                    <GiftedChat
+                        messages={this.state.messages}
+                        onSend={db.send}
+                        user={this.user}
+                    />
+                    <KeyboardAvoidingView behavior={'position'}/> 
+                </View>
+            )
+        }
+        else {
+            return (     
+                <View style={{flex:1}}>
+                    <GiftedChat
+                        messages={this.state.messages}
+                        onSend={db.send}
+                        user={this.user}
+                    />
+                    
+                    <KeyboardAvoidingView behavior={'padding'}/> 
+                </View>
+            )
+        }
     }
 
     componentWillUnmount() {
         db.refOff();
     }
 }
+
