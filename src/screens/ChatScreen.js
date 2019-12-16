@@ -33,6 +33,7 @@ export default class ChatScreen extends Component {
             <View style={{flex:1}}>
                 <GiftedChat
                     messages={this.state.messages}
+                    //onSubmitEditing={db.send} this don't work and idk why hnghh
                     onSend={db.send}
                     user={this.user}
                 />

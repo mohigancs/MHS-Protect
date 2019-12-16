@@ -1,25 +1,36 @@
 import React from 'react';
-import { Dimensions, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ActivityIndicator, StatusBar } from 'react-native';
 import Database from './components/Database';
 const db = new Database();
-const screenWidth = Math.round(Dimensions.get('window').width);
-const screenHeight = Math.round(Dimensions.get('window').height);
-
+import * as Font from 'expo-font';
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 export default class KeyScreen extends React.Component {
-    componentDidMount() {
+    state = {
+        assetsLoaded: false,
+    };
+    
+    async componentDidMount() {
+        await Font.loadAsync({
+            'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
+        });
         db.getUserState().then(loggedin => {
             if (loggedin == 'true') {
                 this.props.navigation.navigate('Home')
             } 
         })
+    
+        this.setState({ assetsLoaded: true });
     }
 
     key = '';
 
     render() {
-        return (
-            <View style={styles.container}>
+        const {assetsLoaded} = this.state;
+        if( assetsLoaded ) {
+            return (
+                <View style={styles.container}>
                 <Image
                     style={styles.image}
                     source={require('../images/logo.jpg')} 
@@ -33,7 +44,19 @@ export default class KeyScreen extends React.Component {
                     autoCapitalize="none"
                     autoCorrect={false}
                     onChange={(text) => this.key = text.nativeEvent.text}
-                    //onSubmitEditing={() => {}}
+                    onSubmitEditing={() => {
+                        db.isValidKey(this.key).then(result => {
+                            if (result[0]) {
+                                //Alert.alert('Success!', 'Your key was found in the database.')
+                                db.fetchUser(result[1]).then(user => {
+                                    this.props.navigation.navigate('Confirm', {user: [user, result[1]]})
+                                })
+                                //db.removekey(result[1], false)
+                            } else {
+                                Alert.alert('Key Not Found.', 'Visit Mr. Gibson for help.')
+                            }
+                        });
+                    }}
                 />
                 <TouchableOpacity 
                 style={styles.button}
@@ -57,6 +80,13 @@ export default class KeyScreen extends React.Component {
             </View>
         );
     }
+    else {
+            return (
+                <View style={styles.container}>
+                </View>
+            );
+        }
+    }
 }
 
 const styles = StyleSheet.create({
@@ -71,11 +101,12 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     title: {
-        fontSize: 26,
+        fontFamily: 'Lato-Bold',
+        fontSize: screenWidth*0.0833,
     },
     text: {
-        fontSize: 20,
-        fontWeight: 'bold',
+        fontSize: screenWidth*0.06,
+        fontFamily: 'Lato-Bold',
         color: 'white',
     },
     input: {
@@ -87,8 +118,9 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
-        fontSize: 20,
-        paddingHorizontal: 20,
+        fontFamily: 'Lato-Bold',
+        fontSize: screenWidth*0.0487,
+        paddingHorizontal: screenWidth*0.0487,
     },
     button: {
         width: screenWidth*0.7299,

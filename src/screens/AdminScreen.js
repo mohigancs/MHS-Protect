@@ -4,12 +4,22 @@ import { StyleSheet, Text, Dimensions, TextInput, TouchableOpacity, KeyboardAvoi
 
 import Database from './components/Database'
 const db = new Database();
-const screenWidth = Math.round(Dimensions.get('window').width);
-const screenHeight = Math.round(Dimensions.get('window').height);
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 export default class AdminScreen extends React.Component {
 
     entered_id = -1;
+    state = {
+        assetsLoaded: false,
+    };
+    
+    async componentDidMount() {
+        await Font.loadAsync({
+            'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
+        });
+    this.setState({ assetsLoaded: true });
+    }
 
     render() {
         return (
@@ -111,20 +121,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        fontSize: 18,
+        fontSize: screenWidth*0.0438,
         fontWeight: 'bold',
+        fontFamily: 'Lato-Bold',
         color: 'white',
     },
     title: {
-        fontSize: 34,
+        fontSize: screenWidth*0.073,
+        fontFamily: 'Lato-Bold',
         fontWeight: 'bold',
         color: '#0a007e',
         marginBottom: screenHeight*0.0534,
         marginTop: screenHeight*0.0534,
     },
     option: {
-        fontSize: 18,
+        fontSize: screenWidth*0.0438,
         fontWeight: 'bold',
+        fontFamily: 'Lato-Bold',
     },
     input: {
         width: '72.99%',
@@ -134,7 +147,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
-        paddingHorizontal: 20,
+        paddingHorizontal: screenWidth*0.0487,
     },
     button: {
         width: '72.99%',

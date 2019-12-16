@@ -3,12 +3,21 @@ import { Image, Text, Dimensions, View, StyleSheet, Alert, TouchableOpacity } fr
 
 import Database from './components/Database';
 const db = new Database();
-const screenWidth = Math.round(Dimensions.get('window').width);
-const screenHeight = Math.round(Dimensions.get('window').height);
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 export default class ConfirmScreen extends React.Component {
 
     user = this.props.navigation.getParam('user','error');
-
+    state = {
+        assetsLoaded: false,
+    };
+    
+    async componentDidMount() {
+        await Font.loadAsync({
+            'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
+        });
+    this.setState({ assetsLoaded: true });
+    }
     
     // add logic if user is 'error', go back
 
@@ -18,7 +27,7 @@ export default class ConfirmScreen extends React.Component {
             <View style={styles.container}>
                 <View style = {styles.textContainer}>
                     <Text style={styles.title}>
-                        Is This Information Correct?
+                        Is This Correct?
                     </Text>
                     <Image
                     style={styles.image}
@@ -92,13 +101,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontSize: 26,
-        fontWeight: 'bold',
+        fontSize: screenWidth*0.0666,
         marginTop: screenHeight*0.027,
+        fontFamily: 'Lato-Bold',
     },
     option: {
-        fontSize: 24,
-        fontWeight: 'bold',
+        fontSize: screenWidth*0.0584,
+        fontFamily: 'Lato-Bold',
         top: screenHeight*0.06,
         marginTop: screenHeight*0.0267,
     },
@@ -116,8 +125,7 @@ const styles = StyleSheet.create({
         borderColor: '#0a007e',
     },
     buttonText: {
-        fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: screenWidth*0.0438,
         color: '#ffffff',
     }
 });
