@@ -10,6 +10,16 @@ const screenHeight = Dimensions.get('window').height;
 export default class AdminScreen extends React.Component {
 
     entered_id = -1;
+    state = {
+        assetsLoaded: false,
+    };
+    
+    async componentDidMount() {
+        await Font.loadAsync({
+            'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
+        });
+    this.setState({ assetsLoaded: true });
+    }
 
     render() {
         return (
@@ -113,10 +123,12 @@ const styles = StyleSheet.create({
     text: {
         fontSize: screenWidth*0.0438,
         fontWeight: 'bold',
+        fontFamily: 'Lato-Bold',
         color: 'white',
     },
     title: {
         fontSize: screenWidth*0.073,
+        fontFamily: 'Lato-Bold',
         fontWeight: 'bold',
         color: '#0a007e',
         marginBottom: screenHeight*0.0534,
@@ -125,6 +137,7 @@ const styles = StyleSheet.create({
     option: {
         fontSize: screenWidth*0.0438,
         fontWeight: 'bold',
+        fontFamily: 'Lato-Bold',
     },
     input: {
         width: '72.99%',

@@ -14,7 +14,7 @@ export default class ConfirmScreen extends React.Component {
     
     async componentDidMount() {
         await Font.loadAsync({
-            'Alice-Regular': require('../../assets/fonts/Alice-Regular.ttf'),
+            'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
         });
     this.setState({ assetsLoaded: true });
     }
@@ -103,11 +103,11 @@ const styles = StyleSheet.create({
     title: {
         fontSize: screenWidth*0.0666,
         marginTop: screenHeight*0.027,
-        fontFamily: 'Alice-Regular',
+        fontFamily: 'Lato-Bold',
     },
     option: {
         fontSize: screenWidth*0.0584,
-        fontFamily: 'Alice-Regular',
+        fontFamily: 'Lato-Bold',
         top: screenHeight*0.06,
         marginTop: screenHeight*0.0267,
     },

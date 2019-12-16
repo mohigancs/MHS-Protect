@@ -13,7 +13,7 @@ export default class KeyScreen extends React.Component {
     
     async componentDidMount() {
         await Font.loadAsync({
-            'Alice-Regular': require('../../assets/fonts/Alice-Regular.ttf'),
+            'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
         });
         db.getUserState().then(loggedin => {
             if (loggedin == 'true') {
@@ -101,12 +101,12 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     title: {
-        fontFamily: 'Alice-Regular',
+        fontFamily: 'Lato-Bold',
         fontSize: screenWidth*0.0833,
     },
     text: {
         fontSize: screenWidth*0.06,
-        fontFamily: 'Alice-Regular',
+        fontFamily: 'Lato-Bold',
         color: 'white',
     },
     input: {
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
-        fontFamily: 'Alice-Regular',
+        fontFamily: 'Lato-Bold',
         fontSize: screenWidth*0.0487,
         paddingHorizontal: screenWidth*0.0487,
     },

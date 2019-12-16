@@ -17,7 +17,7 @@ export default class HomeScreen extends Component {
   
   async componentDidMount() {
       await Font.loadAsync({
-          'Alice-Regular': require('../../assets/fonts/Alice-Regular.ttf'),
+          'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
       });
   this.setState({ assetsLoaded: true });
   }
@@ -154,17 +154,17 @@ const styles = StyleSheet.create({
     marginBottom: screenHeight*0.0344,
 },
   title: {
-      fontFamily: 'Alice-Regular',
+      fontFamily: 'Lato-Bold',
       fontSize: screenWidth*0.0633,
       marginBottom: screenHeight*0.02,
   },
   modalTitle: {
-    fontFamily: 'Alice-Regular',
+    fontFamily: 'Lato-Bold',
     fontSize: screenWidth*0.0633,
     marginBottom: screenHeight*0.05,
   },
   logOut: {
-    fontFamily: 'Alice-Regular',
+    fontFamily: 'Lato-Bold',
     fontSize: screenWidth*0.0487,
     marginLeft: screenWidth*0.7786,
     top: screenHeight*0.066,
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: screenWidth*0.0487,
-    fontFamily: 'Alice-Regular',
+    fontFamily: 'Lato-Bold',
     color: 'black',
   },
   modalButton: {
