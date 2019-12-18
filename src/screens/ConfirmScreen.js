@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: screenWidth*0.0438,
-        color: '#ffffff',
+        color: 'white',
+        fontFamily: 'Lato-Bold',
     }
 });

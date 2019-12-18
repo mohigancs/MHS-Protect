@@ -1,8 +1,11 @@
 import { GiftedChat } from 'react-native-gifted-chat';
 import React, { Component } from 'react';
-import { KeyboardAvoidingView, View } from 'react-native';
+import {Appbar, IconButton} from 'react-native-paper';
+import { KeyboardAvoidingView, View, StyleSheet, Dimensions} from 'react-native';
 import Database from './components/Database';
 const db = new Database();
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 export default class ChatScreen extends Component {
 
@@ -30,15 +33,21 @@ export default class ChatScreen extends Component {
 
     render() {
         return (     
-            <View style={{flex:1}}>
-                <GiftedChat
+        <View style = {{flex:1}}>
+            <Appbar style={styles.top}>
+                <Appbar.Action
+                icon = 'arrow-left'
+                size = {24}
+                onPress={() => this.props.navigation.navigate('Home')} />
+            </Appbar>
+            <GiftedChat
                     messages={this.state.messages}
                     //onSubmitEditing={db.send} this don't work and idk why hnghh
                     onSend={db.send}
                     user={this.user}
-                />
-                <KeyboardAvoidingView behavior={'padding'}/> 
-            </View>
+            />
+            <KeyboardAvoidingView behavior={'padding'}/> 
+        </View>
         )
     }
 
@@ -46,3 +55,10 @@ export default class ChatScreen extends Component {
         db.refOff();
     }
 }
+const styles = StyleSheet.create({
+    top: {
+        position: 'relative',
+        marginTop: screenHeight*0.059,
+        backgroundColor: '#0a007e',
+    },
+});

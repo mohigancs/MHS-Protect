@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import {Appbar, IconButton} from 'react-native-paper';
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 export default class MapScreen extends Component {
 
@@ -8,9 +11,18 @@ export default class MapScreen extends Component {
 
       render() {
         return (
-          <View style={styles.container}> 
+          <View style={styles.absoluteFillView}>
+            <View>
+            <Appbar style={styles.top}>
+            <Appbar.Action 
+            icon = 'arrow-left'
+            size = {24}
+                onPress={() => this.props.navigation.navigate('Home')}
+            />
+            </Appbar>
+            </View>
             <MapView
-              style={styles.map}
+              style={styles.absoluteFillView}
               mapType={"satellite"}
               showsUserLocation={true}
               region={{
@@ -21,7 +33,7 @@ export default class MapScreen extends Component {
               }}
             >
 
-              <MapView.Marker
+            <MapView.Marker
             key={0}
             coordinate={{latitude: 39.66233946313295,
             longitude: -79.97040309453479}}
@@ -38,13 +50,15 @@ export default class MapScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  map: {
+  top: {
+    position: 'absolute',
+    top: screenHeight*0.059,
+    left:0,
+    right:0,
+    bottom:0,
+    backgroundColor: '#0a007e',
+},
+  absoluteFillView: {
     position: 'absolute',
     top: 0,
     left: 0,
