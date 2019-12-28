@@ -17,7 +17,6 @@ export default class ChatScreen extends Component {
     componentDidMount() {
         db.refOn(message => {
             this.setState(previousState => ({
-                
                 messages: GiftedChat.append(previousState.messages, message),
             }))
         })

@@ -36,6 +36,9 @@ class Database {
         }
     }
 
+    addToken(id, token) {
+        firebase.database().ref('people/' + id + '/push_token').set(token);
+    }
 
 
 // ---------------------Emergency----------------------------------------------------------------    
@@ -44,17 +47,56 @@ class Database {
         this.getUserState().then(uid => {
             this.fetchUser(uid).then(user => {
                 navigator.geolocation.getCurrentPosition(position => {
-                    firebase.database().ref('alerts/emergency/').push({
-                        user: uid,
-                        name: user.name,
-                        phone: user.phone,
-                        email: user.email,
-                        location: {latitude: position.coords.latitude, longitude: position.coords.longitude},
-                        description: description
+                    this.getUserTokens(uid).then((tokens) => {
+                        for (i = 0; i < tokens.length; i ++){
+                            this.sendPushNotification(tokens[i], user.name, user.name + " has pressed the Emergency Button.");
+                        }
+                        firebase.database().ref('alerts/emergency/').push({
+                            user: uid,
+                            name: user.name,
+                            phone: user.phone,
+                            email: user.email,
+                            location: {latitude: position.coords.latitude, longitude: position.coords.longitude},
+                            description: description
+                        })
                     })
                 }) 
             })
         })
+    }
+
+    
+
+// ---------------------Notification---------------------------------------------------------------    
+
+    sendPushNotification = (token, title, body) => {
+        let response = fetch('https://exp.host/--/api/v2/push/send',{
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                to: token,
+                sound:'default',
+                title: title,
+                body: body
+            })
+            
+        })
+    }
+    
+    getUserTokens = async(omit) => {
+        console.log("OMIT " + omit);
+        tokens = new Array();
+        let db_snapshot = await firebase.database().ref('people/').once('value');
+        db_snapshot.forEach(code_snapshot => {
+            if ((code_snapshot.val().push_token !== undefined) && (code_snapshot.key !== omit)) {
+                tokens.push(code_snapshot.val().push_token);
+            }
+        })
+        console.log(tokens);
+        return tokens;
     }
 
 
@@ -96,7 +138,7 @@ class Database {
         const { key: id } = snapshot;
         const { key: _id } = snapshot; //needed for giftedchat
         const timestamp = new Date(numberStamp);
-    
+        
         const message = {
           id,
           _id,
@@ -120,6 +162,11 @@ class Database {
             user,
             createdAt,
         };
+        this.getUserTokens(user._id).then((tokens) => {
+            for (i = 0; i < tokens.length; i ++){
+                this.sendPushNotification(tokens[i], user.name, text);
+            }
+        })
 
         firebase.database().ref('alerts/messages').push(message);
         }
@@ -154,9 +201,10 @@ class Database {
         db_snapshot.forEach(code_snapshot => {
             if (text == code_snapshot.val().key) {
                 keyIsFound = true;
-                identifier = code_snapshot.key;
+                identifier = code_snapshot.key;  //gets the key of the whole object not the json object
             }
         });
+        
         return [keyIsFound, identifier]; 
     }
 

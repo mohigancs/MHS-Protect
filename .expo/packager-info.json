@@ -1,9 +1,9 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 12604,
-  "expoServerNgrokUrl": "https://j9-3ve.mohigan.mhs-protect.exp.direct",
-  "packagerNgrokUrl": "https://packager.j9-3ve.mohigan.mhs-protect.exp.direct",
-  "ngrokPid": 14264,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "devToolsPort": 19002
 }
