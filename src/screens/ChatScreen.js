@@ -34,12 +34,16 @@ export default class ChatScreen extends Component {
     render() {
         return (     
         <View style = {{flex:1}}>
-            <Appbar style={styles.top}>
+            <Appbar.Header
+                dark = {true}
+                style={{backgroundColor:'#bfbfbf'}}
+            >
                 <Appbar.Action
                 icon = 'arrow-left'
                 size = {24}
+                color = '#ffffff'
                 onPress={() => this.props.navigation.navigate('Home')} />
-            </Appbar>
+            </Appbar.Header>
             <GiftedChat
                     messages={this.state.messages}
                     //onSubmitEditing={db.send} this don't work and idk why hnghh
@@ -58,7 +62,6 @@ export default class ChatScreen extends Component {
 const styles = StyleSheet.create({
     top: {
         position: 'relative',
-        marginTop: screenHeight*0.059,
-        backgroundColor: '#0a007e',
+        backgroundColor: '#bfbfbf',
     },
 });

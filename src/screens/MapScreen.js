@@ -12,15 +12,7 @@ export default class MapScreen extends Component {
       render() {
         return (
           <View style={styles.absoluteFillView}>
-            <View>
-            <Appbar style={styles.top}>
-            <Appbar.Action 
-            icon = 'arrow-left'
-            size = {24}
-                onPress={() => this.props.navigation.navigate('Home')}
-            />
-            </Appbar>
-            </View>
+
             <MapView
               style={styles.absoluteFillView}
               mapType={"satellite"}
@@ -39,11 +31,20 @@ export default class MapScreen extends Component {
             longitude: -79.97040309453479}}
             title={"title"}
             description={"description"}
-
-         />
-
-
+            />
             </MapView>
+            <Appbar.Header
+              dark = {true}
+              style={{backgroundColor:'#bfbfbf'}}
+            >
+            <Appbar.Action 
+            icon = 'arrow-left'
+            size = {24}
+                onPress={() =>{
+                   this.props.navigation.navigate('Home');
+                }}
+            />
+            </Appbar.Header>
           </View>
         );
       }
