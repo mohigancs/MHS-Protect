@@ -3,6 +3,10 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
+<<<<<<< HEAD
   "urlRandomness": "t8-t5y",
+=======
+  "urlRandomness": "7d-sjq",
+>>>>>>> map
   "https": false
 }

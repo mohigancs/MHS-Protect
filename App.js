@@ -10,7 +10,6 @@ import MapScreen from './src/screens/MapScreen';
 import firebase from 'firebase';
 import { firebaseConfig } from './config';
 
-
 firebase.initializeApp(firebaseConfig);
 
 const MainStack = createStackNavigator({

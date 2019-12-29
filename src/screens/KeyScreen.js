@@ -44,6 +44,7 @@ export default class KeyScreen extends React.Component {
                     autoCapitalize="none"
                     autoCorrect={false}
                     onChange={(text) => this.key = text.nativeEvent.text}
+                    
                     onSubmitEditing={() => {
                         db.isValidKey(this.key).then(result => {
                             if (result[0]) {

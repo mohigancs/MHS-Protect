@@ -2,10 +2,11 @@ import React from 'react';
 
 import { StyleSheet, Text, Dimensions, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
 
+const screenWidth = Dimensions.get('window').width
+const screenHeight = Dimensions.get('window').height
+
 import Database from './components/Database'
-const db = new Database();
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
+const db = new Database()
 
 export default class AdminScreen extends React.Component {
 
@@ -50,11 +51,11 @@ export default class AdminScreen extends React.Component {
                                     if (this.entered_id == 'ALL') {
                                         for(i = 0; i < 147; i++) {
                                             key = db.makekey(10);
-                                            db.addkey(i, key, false);
+                                            db.addkey(i, key);
                                             }
                                     } else {
                                         key = db.makekey(10);
-                                        db.addkey(this.entered_id, key, true);
+                                        db.addkey(this.entered_id, key);
                                     }
                                     console.log('YES pressed');
                                     console.log(screenHeight);
@@ -94,10 +95,10 @@ export default class AdminScreen extends React.Component {
                                 {text: 'YES', onPress: () => {
                                     if (this.entered_id == 'ALL') {
                                         for(i = 0; i < 147; i++) {
-                                            db.removekey(i, false);
+                                            db.removekey(i);
                                         }
                                     } else {
-                                        db.removekey(this.entered_id, true);
+                                        db.removekey(this.entered_id);
                                     }
                                     console.log('YES pressed');
                                     }

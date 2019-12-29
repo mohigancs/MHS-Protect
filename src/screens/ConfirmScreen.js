@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Image, Text, Dimensions, View, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 
-import Database from './components/Database';
-const db = new Database();
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
+const screenWidth = Dimensions.get('window').width
+const screenHeight = Dimensions.get('window').height
+
+import Database from './components/Database'
+const db = new Database()
+
 export default class ConfirmScreen extends React.Component {
 
     user = this.props.navigation.getParam('user','error');

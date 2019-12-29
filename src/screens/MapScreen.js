@@ -6,9 +6,6 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 export default class MapScreen extends Component {
-
-
-
       render() {
         return (
           <View style={styles.absoluteFillView}>
