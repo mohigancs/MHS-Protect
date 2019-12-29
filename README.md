@@ -1,5 +1,3 @@
 # MHS-Protect
 
-npm install firebase
-npm install react-navigation-stack
-npm install react-navigation
+This app will help keep schools safe and interconnected
