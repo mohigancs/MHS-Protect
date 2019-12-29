@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import {Appbar, IconButton} from 'react-native-paper';
+
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 

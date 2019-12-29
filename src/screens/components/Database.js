@@ -52,16 +52,17 @@ class Database {
                         })
                 }) 
             })
-        })
 
-        this.getUserTokens(uid).then((tokens) => { // send all users notifications
-            for (i = 0; i < tokens.length; i ++){
-                this.sendPushNotification(tokens[i], user.name, user.name + " has pressed the Emergency Button.")
-            }
-        })
+            this.getUserTokens(uid).then((tokens) => { // send all users notifications
+                for (i = 0; i < tokens.length; i ++){
+                    this.sendPushNotification(tokens[i], user.name, user.name + " has pressed the Emergency Button.")
+                }
+            })
 
+        })
     }
-    requestHelp = (description) => {
+
+    requestHelp = (description) => { // request help button (firebase function)
         this.getUserState().then(uid => {
             this.fetchUser(uid).then(user => {
                 firebase.database().ref('alerts/help').push({

@@ -4,6 +4,7 @@ import { IconButton } from 'react-native-paper';
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
 import Database from './components/Database';
+import * as Font from 'expo-font'
 
 const db = new Database()
 

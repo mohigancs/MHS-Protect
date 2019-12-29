@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import { Image, Text, Dimensions, View, StyleSheet, Alert, TouchableOpacity } from 'react-native';
+import React, { Component } from 'react'
+import { Image, Text, Dimensions, View, StyleSheet, Alert, TouchableOpacity } from 'react-native'
+import * as Font from 'expo-font'
+
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { StyleSheet, Text, Dimensions, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
+import * as Font from 'expo-font'
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
