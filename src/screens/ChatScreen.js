@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { KeyboardAvoidingView, View } from 'react-native';
 import Database from './components/Database';
 import { Platform } from '@unimodules/core';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
+
 const db = new Database();
 
 export default class ChatScreen extends Component {
@@ -15,7 +15,7 @@ export default class ChatScreen extends Component {
     };
 
     componentDidMount() {
-        db.refOn(message => {
+        db.chatOn(message => {
             this.setState(previousState => ({
                 messages: GiftedChat.append(previousState.messages, message),
             }))
@@ -51,7 +51,6 @@ export default class ChatScreen extends Component {
                         onSend={db.send}
                         user={this.user}
                     />
-                    
                     <KeyboardAvoidingView behavior={'padding'}/> 
                 </View>
             )
@@ -59,7 +58,7 @@ export default class ChatScreen extends Component {
     }
 
     componentWillUnmount() {
-        db.refOff();
+        db.chatOff();
     }
 }
 
