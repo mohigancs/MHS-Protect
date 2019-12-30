@@ -56,12 +56,14 @@ export default class HomeScreen extends Component {
       
       // POST the token to your backend server from where you can retrieve it to send push notifications.
       db.addToken(this.currentUser, token)
+
     } catch(error) {
       console.log(error);
     }
   }
 
   async componentDidMount(){
+
     db.getUserState().then(uid => {
       this.currentUser = uid;
     })
@@ -70,7 +72,9 @@ export default class HomeScreen extends Component {
   }
 
   render() {
+
     return (
+
       <View style={styles.contentContainer}>
 
         <View style = {styles.horizontalContainer}>
@@ -104,6 +108,7 @@ export default class HomeScreen extends Component {
             >
             <Text style = {styles.buttonText}>EMERGENCY ALERT</Text>
           </TouchableOpacity>
+
           <Modal
               visible={this.state.modalVisible}
               onRequestClose={() => {
@@ -126,7 +131,7 @@ export default class HomeScreen extends Component {
                 style = {styles.modalButton}
                 onPress = {() => {
                   db.requestHelp(this.details);
-                  //need to figure out how to text without bringing user out of app, also figure out how to not get modal to close so soon
+                  //TODO: need to figure out how to text without bringing user out of app, also figure out how to not get modal to close so soon
                   //Communications.textWithoutEncoding('3048255608', this.details);
                   this.setModalVisible(false);
                   Alert.alert('MESSAGE SENT');
@@ -136,6 +141,7 @@ export default class HomeScreen extends Component {
               </TouchableOpacity>
               </View>
           </Modal>
+
           <TouchableOpacity 
             style={styles.help}
             onPress={() => {
