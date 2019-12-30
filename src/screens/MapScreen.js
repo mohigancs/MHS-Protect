@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
-import {Appbar, IconButton} from 'react-native-paper';
+import React, { Component } from 'react'
+import { StyleSheet, View, Dimensions } from 'react-native'
+import MapView from 'react-native-maps'
+import { Appbar } from 'react-native-paper'
 
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
+const screenWidth = Dimensions.get('window').width
+const screenHeight = Dimensions.get('window').height
 
 export default class MapScreen extends Component {
       render() {
@@ -39,12 +39,12 @@ export default class MapScreen extends Component {
             icon = 'arrow-left'
             size = {24}
                 onPress={() =>{
-                   this.props.navigation.navigate('Home');
+                   this.props.navigation.navigate('Home')
                 }}
             />
             </Appbar.Header>
           </View>
-        );
+        )
       }
 }
 
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   }
-});
+})

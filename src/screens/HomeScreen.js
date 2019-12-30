@@ -1,71 +1,71 @@
-import React, { Component } from 'react';
-import { Text, Alert, Modal, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native';
-import { IconButton } from 'react-native-paper';
-import { Notifications } from 'expo';
-import * as Permissions from 'expo-permissions';
-import Database from './components/Database';
+import React, { Component } from 'react'
+import { Text, Alert, Modal, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { IconButton } from 'react-native-paper'
+import { Notifications } from 'expo'
+import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
 
+import Database from './components/Database'
 const db = new Database()
 
 const screenWidth = Math.round(Dimensions.get('window').width)
 const screenHeight = Math.round(Dimensions.get('window').height)
 
 export default class HomeScreen extends Component {
-  details = '';
-  user = this.props.navigation.getParam('user','error');
+  details = ''
+  user = this.props.navigation.getParam('user','error')
   state = {
       assetsLoaded: false,
       modalVisible: false,
-  };
+  }
   
   async componentDidMount() {
       await Font.loadAsync({
           'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
-      });
-  this.setState({ assetsLoaded: true });
+      })
+  this.setState({ assetsLoaded: true })
   }
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   registerForPushNotificationsAsync = async() => {
     const { status: existingStatus } = await Permissions.getAsync(
       Permissions.NOTIFICATIONS
-    );
-    let finalStatus = existingStatus;
+    )
+    let finalStatus = existingStatus
   
     // only ask if permissions have not already been determined, because
     // iOS won't necessarily prompt the user a second time.
     if (existingStatus !== 'granted') {
       // Android remote notification permissions are granted during the app
       // install, so this will only ask on iOS
-      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-      finalStatus = status;
+      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+      finalStatus = status
     }
   
     // Stop here if the user did not grant permissions
     if (finalStatus !== 'granted') {
       console.log("here")
-      return;
+      return
     }
     
     try {
       // Get the token that uniquely identifies this device
-      let token = await Notifications.getExpoPushTokenAsync();
+      let token = await Notifications.getExpoPushTokenAsync()
       
       // POST the token to your backend server from where you can retrieve it to send push notifications.
       db.addToken(this.currentUser, token)
 
     } catch(error) {
-      console.log(error);
+      console.log(error)
     }
   }
 
   async componentDidMount(){
 
     db.getUserState().then(uid => {
-      this.currentUser = uid;
+      this.currentUser = uid
     })
     
     await this.registerForPushNotificationsAsync()
@@ -81,12 +81,12 @@ export default class HomeScreen extends Component {
           <TouchableOpacity 
               onPress={() => {
                 db.logOutUser().then(() => {
-                  console.log("logged out");
+                  console.log("logged out")
                     db.getUserState().then((snapshot) => {
-                        console.log(snapshot);
-                      });
+                        console.log(snapshot)
+                      })
                     this.props.navigation.navigate('Login')
-                  });
+                  })
               }}
           >
           <Text style = {styles.logOut}>LOG OUT</Text>
@@ -112,7 +112,7 @@ export default class HomeScreen extends Component {
           <Modal
               visible={this.state.modalVisible}
               onRequestClose={() => {
-                this.setModalVisible(false);
+                this.setModalVisible(false)
                 }}>
               <View style = {styles.contentContainer}>
               <Text style = {styles.modalTitle}>Please provide details</Text>
@@ -130,11 +130,11 @@ export default class HomeScreen extends Component {
               <TouchableOpacity 
                 style = {styles.modalButton}
                 onPress = {() => {
-                  db.requestHelp(this.details);
+                  db.requestHelp(this.details)
                   //TODO: need to figure out how to text without bringing user out of app, also figure out how to not get modal to close so soon
-                  //Communications.textWithoutEncoding('3048255608', this.details);
-                  this.setModalVisible(false);
-                  Alert.alert('MESSAGE SENT');
+                  //Communications.textWithoutEncoding('3048255608', this.details)
+                  this.setModalVisible(false)
+                  Alert.alert('MESSAGE SENT')
                 }}
                 >
                 <Text style = {{fontWeight: 'bold', color: 'white', fontSize: screenWidth*0.0487}}>SUBMIT</Text>
@@ -145,7 +145,7 @@ export default class HomeScreen extends Component {
           <TouchableOpacity 
             style={styles.help}
             onPress={() => {
-              this.setModalVisible(true);   
+              this.setModalVisible(true)   
             }}
           >
             <Text style = {styles.buttonText}>REQUEST HELP</Text>
@@ -175,7 +175,7 @@ export default class HomeScreen extends Component {
           />
       </View>
     </View>
-    );
+    )
   }
 }
 
@@ -269,4 +269,4 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: screenHeight*0.0344,
   },
-});
+})

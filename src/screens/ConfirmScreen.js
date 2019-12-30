@@ -2,25 +2,24 @@ import React, { Component } from 'react'
 import { Image, Text, Dimensions, View, StyleSheet, Alert, TouchableOpacity } from 'react-native'
 import * as Font from 'expo-font'
 
+import Database from './components/Database'
+const db = new Database()
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
 
-import Database from './components/Database'
-const db = new Database()
-
 export default class ConfirmScreen extends React.Component {
 
-    user = this.props.navigation.getParam('user','error');
+    user = this.props.navigation.getParam('user','error')
     state = {
         assetsLoaded: false,
-    };
+    }
     
     async componentDidMount() {
         await Font.loadAsync({
             'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
-        });
-    this.setState({ assetsLoaded: true });
+        })
+    this.setState({ assetsLoaded: true })
     }
     
     // add logic if user is 'error', go back
@@ -50,7 +49,7 @@ export default class ConfirmScreen extends React.Component {
                 <View style = {styles.buttonContainer}>
                     <TouchableOpacity style={styles.button}
                     onPress={() => {
-                        Alert.alert("We're sorry...", 'Ask Mr. Gibson for help.');
+                        Alert.alert("We're sorry...", 'Ask Mr. Gibson for help.')
                         this.props.navigation.navigate('Key')
                     }}
                     >
@@ -62,7 +61,7 @@ export default class ConfirmScreen extends React.Component {
                     <TouchableOpacity style={styles.button}
                     onPress={() => {
                         db.logInUser(this.user[1]).then(() => {
-                            //this.removekey(this.user[1]);
+                            //this.removekey(this.user[1])
                             this.props.navigation.navigate('Home')
                         })
                     }}
@@ -72,7 +71,7 @@ export default class ConfirmScreen extends React.Component {
                 </View>
 
             </View>
-        );
+        )
     }
 }
 
@@ -133,4 +132,4 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'Lato-Bold',
     }
-});
+})

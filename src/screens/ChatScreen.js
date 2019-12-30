@@ -1,19 +1,19 @@
-import { GiftedChat } from 'react-native-gifted-chat';
-import React, { Component } from 'react';
-import {Appbar, IconButton} from 'react-native-paper';
-import { KeyboardAvoidingView, View } from 'react-native';
-import { Platform } from '@unimodules/core';
-import Database from './components/Database';
+import { GiftedChat } from 'react-native-gifted-chat'
+import React, { Component } from 'react'
+import { Appbar } from 'react-native-paper'
+import { KeyboardAvoidingView, View } from 'react-native'
+import { Platform } from '@unimodules/core'
 
-const db = new Database();
+import Database from './components/Database'
+const db = new Database()
 
 export default class ChatScreen extends Component {
 
-    usr = this.props.navigation.getParam('user','error');
+    usr = this.props.navigation.getParam('user','error')
 
     state = {
         messages: [],
-    };
+    }
 
     componentDidMount() {
         db.chatOn(message => {
@@ -28,7 +28,7 @@ export default class ChatScreen extends Component {
             name: this.usr[0].name,
             email: this.usr[0].email,
             _id: this.usr[1],
-        };
+        }
     }    
 
     render() {
@@ -80,6 +80,6 @@ export default class ChatScreen extends Component {
     }
 
     componentWillUnmount() {
-        db.chatOff();
+        db.chatOff()
     }
 }

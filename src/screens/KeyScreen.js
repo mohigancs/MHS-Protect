@@ -1,5 +1,5 @@
-import React from 'react';
-import { Dimensions, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ActivityIndicator, StatusBar } from 'react-native'
+import React from 'react'
+import { Dimensions, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native'
 import * as Font from 'expo-font'
 
 const screenWidth = Dimensions.get('window').width
@@ -11,43 +11,59 @@ const db = new Database()
 export default class KeyScreen extends React.Component {
     state = {
         assetsLoaded: false,
-    };
+    }
     
     async componentDidMount() {
         await Font.loadAsync({
             'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
-        });
+        })
         db.getUserState().then(loggedin => {
             if (loggedin == 'true') {
                 this.props.navigation.navigate('Home')
             } 
         })
     
-        this.setState({ assetsLoaded: true });
+        this.setState({ assetsLoaded: true })
     }
 
-    key = '';
+    key = ''
 
     render() {
-        const {assetsLoaded} = this.state;
+        const {assetsLoaded} = this.state
         if( assetsLoaded ) {
             return (
                 <View style={styles.container}>
-                <Image
-                    style={styles.image}
-                    source={require('../images/logo.jpg')} 
-                />
-                <Text style={styles.title}>Enter Your Key Below</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Access Code"
-                    placeholderTextColor = "black"
-                    returnKeyType="go"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    onChange={(text) => this.key = text.nativeEvent.text}
-                    
-                    onSubmitEditing={() => {
+                    <Image
+                        style={styles.image}
+                        source={require('../images/logo.jpg')} 
+                    />
+                    <Text style={styles.title}>Enter Your Key Below</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Access Code"
+                        placeholderTextColor = "black"
+                        returnKeyType="go"
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        onChange={(text) => this.key = text.nativeEvent.text}
+                        
+                        onSubmitEditing={() => {
+                            db.isValidKey(this.key).then(result => {
+                                if (result[0]) {
+                                    //Alert.alert('Success!', 'Your key was found in the database.')
+                                    db.fetchUser(result[1]).then(user => {
+                                        this.props.navigation.navigate('Confirm', {user: [user, result[1]]})
+                                    })
+                                    //db.removekey(result[1], false)
+                                } else {
+                                    Alert.alert('Key Not Found.', 'Visit Mr. Gibson for help.')
+                                }
+                            })
+                        }}
+                    />
+                    <TouchableOpacity 
+                    style={styles.button}
+                    onPress={() => {
                         db.isValidKey(this.key).then(result => {
                             if (result[0]) {
                                 //Alert.alert('Success!', 'Your key was found in the database.')
@@ -58,36 +74,18 @@ export default class KeyScreen extends React.Component {
                             } else {
                                 Alert.alert('Key Not Found.', 'Visit Mr. Gibson for help.')
                             }
-                        });
+                        })
                     }}
-                />
-                <TouchableOpacity 
-                style={styles.button}
-                onPress={() => {
-                    db.isValidKey(this.key).then(result => {
-                        if (result[0]) {
-                            //Alert.alert('Success!', 'Your key was found in the database.')
-                            db.fetchUser(result[1]).then(user => {
-                                this.props.navigation.navigate('Confirm', {user: [user, result[1]]})
-                            })
-                            //db.removekey(result[1], false)
-                        } else {
-                            Alert.alert('Key Not Found.', 'Visit Mr. Gibson for help.')
-                        }
-                    });
-                }}
-                >
-                    <Text style = {styles.text}>SUBMIT</Text>
-                </TouchableOpacity>
-
-            </View>
-        );
-    }
-    else {
+                    >
+                        <Text style = {styles.text}>SUBMIT</Text>
+                    </TouchableOpacity>
+                </View>
+            )
+        } else {
             return (
                 <View style={styles.container}>
                 </View>
-            );
+            )
         }
     }
 }
@@ -136,4 +134,4 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         resizeMode: 'cover',
     },
-});
+})

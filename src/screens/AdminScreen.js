@@ -1,26 +1,26 @@
-import React from 'react';
+import React from 'react'
 
-import { StyleSheet, Text, Dimensions, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
+import { StyleSheet, Text, Dimensions, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native'
 import * as Font from 'expo-font'
-
-const screenWidth = Dimensions.get('window').width
-const screenHeight = Dimensions.get('window').height
 
 import Database from './components/Database'
 const db = new Database()
 
+const screenWidth = Dimensions.get('window').width
+const screenHeight = Dimensions.get('window').height
+
 export default class AdminScreen extends React.Component {
 
-    entered_id = -1;
+    entered_id = -1
     state = {
         assetsLoaded: false,
-    };
+    }
     
     async componentDidMount() {
         await Font.loadAsync({
             'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
-        });
-    this.setState({ assetsLoaded: true });
+        })
+    this.setState({ assetsLoaded: true })
     }
 
     render() {
@@ -36,7 +36,7 @@ export default class AdminScreen extends React.Component {
                     autoCapitalize="none"
                     autoCorrect={false}
                     onChange={(text) => this.entered_id = text.nativeEvent.text}
-                    //onSubmitEditing={() => { this.email.focus(); }}
+                    //onSubmitEditing={() => { this.email.focus() }}
                 />
 
                 <TouchableOpacity 
@@ -51,21 +51,21 @@ export default class AdminScreen extends React.Component {
                                 {text: 'YES', onPress: () => {
                                     if (this.entered_id == 'ALL') {
                                         for(i = 0; i < 147; i++) {
-                                            key = db.makekey(10);
-                                            db.addkey(i, key);
+                                            key = db.makekey(10)
+                                            db.addkey(i, key)
                                             }
                                     } else {
-                                        key = db.makekey(10);
-                                        db.addkey(this.entered_id, key);
+                                        key = db.makekey(10)
+                                        db.addkey(this.entered_id, key)
                                     }
-                                    console.log('YES pressed');
-                                    console.log(screenHeight);
-                                    console.log(screenWidth);
+                                    console.log('YES pressed')
+                                    console.log(screenHeight)
+                                    console.log(screenWidth)
                                 }
                                 },
                             ],
                             { cancelable: false }
-                          );
+                          )
                         //this.iskey(this.id).then((res) => console.log(res))
                     }}
                 >
@@ -81,7 +81,7 @@ export default class AdminScreen extends React.Component {
                     autoCapitalize="none"
                     autoCorrect={false}
                     onChange={(text) => this.entered_id = text.nativeEvent.text}
-                    //onSubmitEditing={() => { this.email.focus(); }}
+                    //onSubmitEditing={() => { this.email.focus() }}
                 />
 
                 <TouchableOpacity 
@@ -96,23 +96,23 @@ export default class AdminScreen extends React.Component {
                                 {text: 'YES', onPress: () => {
                                     if (this.entered_id == 'ALL') {
                                         for(i = 0; i < 147; i++) {
-                                            db.removekey(i);
+                                            db.removekey(i)
                                         }
                                     } else {
-                                        db.removekey(this.entered_id);
+                                        db.removekey(this.entered_id)
                                     }
-                                    console.log('YES pressed');
+                                    console.log('YES pressed')
                                     }
                                 },
                             ],
                             { cancelable: false }
-                        );
+                        )
                     }}
                 >
                     <Text style = {styles.text}>SUBMIT</Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
-        );
+        )
     }
 }
 
@@ -163,4 +163,4 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: screenHeight*0.0668,
     },
-});
+})
