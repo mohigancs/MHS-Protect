@@ -18,6 +18,25 @@ class Database {
         return user
     }
 
+    // returns the ids of the police officers
+    findPoliceID = async () => {
+
+        // get the promise of all the users
+        let db_snapshot = await firebase.database().ref('people/').once('value')
+
+        var police = new Array()
+
+        // for each user in the users
+        db_snapshot.forEach(user_snapshot => {
+
+            if (user_snapshot.val().role == "Admin") {
+                police.push(user_snapshot.key)
+            }
+        })
+
+        return police
+    }
+
     // use asyncstorage to log in the user
     logInUser = async (uid) => await AsyncStorage.setItem('loggedin', uid)
 
@@ -75,6 +94,9 @@ class Database {
                 })
             })
         })
+
+        // send the request for help to the police
+        this.sendToPolice(description)
     }
 
     
@@ -84,6 +106,13 @@ class Database {
 
     */
 
+    // send a push notification to a specific user
+    sendToUser = (uid, title, description) => {
+        this.fetchUser(uid).then((user) => {
+            token = user.push_token
+            this.sendPushNotification(token, title, description)
+        })
+    }
 
     sendPushNotification = (token, title, body) => { // sends pushs notification to the API
         let response = fetch('https://exp.host/--/api/v2/push/send',{ 
@@ -119,7 +148,18 @@ class Database {
         return tokens
     }
 
+    // get the tokens of the police
+    sendToPolice = async (description) => {
 
+        // get the id of the police officers (async function)
+        this.findPoliceID().then((police_ids) => {
+
+            for (i = 0; i < police_ids.length; i ++) {
+
+                this.sendToUser(police_ids[i], "Help", description)
+            }
+        })
+    }
     /*
 
     MAP FUNCTIONS
@@ -129,8 +169,8 @@ class Database {
 
     mapOn = callback => { // ???
         firebase.database().ref('alerts/emergency/').on('child_added', snapshot => {
-                callback(this.edit(snapshot))
-            })
+            callback(this.edit(snapshot))
+        })
     }
 
     mapOff = () => { // ???

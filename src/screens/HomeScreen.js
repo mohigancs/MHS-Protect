@@ -17,16 +17,16 @@ export default class HomeScreen extends Component {
   state = {
       assetsLoaded: false,
       modalVisible: false,
-  };
+  }
   
   async componentDidMount() {
       await Font.loadAsync({
           'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
       });
-  this.setState({ assetsLoaded: true });
+  this.setState({ assetsLoaded: true })
   }
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   registerForPushNotificationsAsync = async() => {
@@ -112,10 +112,12 @@ export default class HomeScreen extends Component {
           <Modal
               visible={this.state.modalVisible}
               onRequestClose={() => {
-                this.setModalVisible(false);
-                }}>
+                Alert.alert('Request for help cancelled')
+              }}>
+
               <View style = {styles.contentContainer}>
               <Text style = {styles.modalTitle}>Please provide details</Text>
+
               <TextInput 
                 style={styles.input}
                 placeholder="Details"
@@ -129,14 +131,16 @@ export default class HomeScreen extends Component {
               />
               <TouchableOpacity 
                 style = {styles.modalButton}
+
                 onPress = {() => {
-                  db.requestHelp(this.details);
+                  db.requestHelp(this.details)
                   //TODO: need to figure out how to text without bringing user out of app, also figure out how to not get modal to close so soon
                   //Communications.textWithoutEncoding('3048255608', this.details);
-                  this.setModalVisible(false);
-                  Alert.alert('MESSAGE SENT');
+                  //this.setModalVisible(!this.state.modalVisible)
+                  Alert.alert('MESSAGE SENT')
                 }}
-                >
+
+              >
                 <Text style = {{fontWeight: 'bold', color: 'white', fontSize: screenWidth*0.0487}}>SUBMIT</Text>
               </TouchableOpacity>
               </View>
