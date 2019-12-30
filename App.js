@@ -1,16 +1,16 @@
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import KeyScreen from './src/screens/KeyScreen';
-import AdminScreen from './src/screens/AdminScreen';
-import HomeScreen from './src/screens/HomeScreen';
-import ConfirmScreen from './src/screens/ConfirmScreen';
-import ChatScreen from './src/screens/ChatScreen';
-import MapScreen from './src/screens/MapScreen';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
+import KeyScreen from './src/screens/KeyScreen'
+import AdminScreen from './src/screens/AdminScreen'
+import HomeScreen from './src/screens/HomeScreen'
+import ConfirmScreen from './src/screens/ConfirmScreen'
+import ChatScreen from './src/screens/ChatScreen'
+import MapScreen from './src/screens/MapScreen'
 
-import firebase from 'firebase';
-import { firebaseConfig } from './config';
+import firebase from 'firebase'
+import { firebaseConfig } from './config'
 
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig)
 
 const MainStack = createStackNavigator({
   Home: { 
@@ -60,9 +60,8 @@ const RootStack = createSwitchNavigator ({
 );
 
 // Disables Yellow text on the Virtual Device
-console.disableYellowBox = true;
+console.disableYellowBox = true
 
-const App = new createAppContainer(RootStack);
-console.disableYellowBox = true;
-export default App;
+const App = new createAppContainer(RootStack)
+export default App
 

@@ -42,23 +42,22 @@ class Database {
         this.getUserState().then(uid => { // add alert to the database
             this.fetchUser(uid).then(user => {
                 navigator.geolocation.getCurrentPosition(position => {
-                        firebase.database().ref('alerts/emergency/').push({
-                            user: uid,
-                            name: user.name,
-                            phone: user.phone,
-                            email: user.email,
-                            location: {latitude: position.coords.latitude, longitude: position.coords.longitude},
-                            description: description
-                        })
+                    firebase.database().ref('alerts/emergency/').push({
+                        user: uid,
+                        name: user.name,
+                        phone: user.phone,
+                        email: user.email,
+                        location: {latitude: position.coords.latitude, longitude: position.coords.longitude},
+                        description: description
+                    })
                 }) 
+            
+                this.getUserTokens(uid).then((tokens) => { // send all users notifications
+                    for (i = 0; i < tokens.length; i ++){
+                        this.sendPushNotification(tokens[i], user.name, user.name + " has pressed the Emergency Button.")
+                    }
+                })
             })
-
-            this.getUserTokens(uid).then((tokens) => { // send all users notifications
-                for (i = 0; i < tokens.length; i ++){
-                    this.sendPushNotification(tokens[i], user.name, user.name + " has pressed the Emergency Button.")
-                }
-            })
-
         })
     }
 

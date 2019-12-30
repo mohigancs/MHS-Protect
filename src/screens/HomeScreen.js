@@ -4,6 +4,7 @@ import { IconButton } from 'react-native-paper'
 import { Notifications } from 'expo'
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
+import FlashMessage, { showMessage } from 'react-native-flash-message'
 
 import Database from './components/Database'
 const db = new Database()
@@ -103,7 +104,17 @@ export default class HomeScreen extends Component {
           <TouchableOpacity 
             style={styles.emergency}
             onPress={() => {
-              db.reportEmergency('description')
+              showMessage({
+                message: 'Simple message',
+                type: 'info',
+                color: '#000000',
+                backgroundColor: '#DDDDDD',
+                type: 'success',
+                onPress: () => {
+                  this.props.navigation.navigate('Map')
+                }
+              });
+              //db.reportEmergency('description')
             }}
             >
             <Text style = {styles.buttonText}>EMERGENCY ALERT</Text>
@@ -174,6 +185,7 @@ export default class HomeScreen extends Component {
           }}
           />
       </View>
+      <FlashMessage position="top" />
     </View>
     )
   }

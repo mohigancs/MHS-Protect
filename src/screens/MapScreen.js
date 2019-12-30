@@ -1,62 +1,82 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Dimensions } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import MapView from 'react-native-maps'
 import { Appbar } from 'react-native-paper'
 
-const screenWidth = Dimensions.get('window').width
-const screenHeight = Dimensions.get('window').height
+import Database from './components/Database'
+const db = new Database()
 
 export default class MapScreen extends Component {
-      render() {
-        return (
-          <View style={styles.absoluteFillView}>
 
-            <MapView
-              style={styles.absoluteFillView}
-              mapType={"satellite"}
-              showsUserLocation={true}
-              region={{
-                  latitude: 39.625083,
-                  longitude:  -79.956796,
-                  latitudeDelta: 0.0025,
-                  longitudeDelta: 0.0025,
-              }}
-            >
+  state = {
+    emergencies: [],
+  };
 
-            <MapView.Marker
-            key={0}
-            coordinate={{latitude: 39.66233946313295,
-            longitude: -79.97040309453479}}
-            title={"title"}
-            description={"description"}
-            />
-            </MapView>
-            <Appbar.Header
-              dark = {true}
-              style={{backgroundColor:'#bfbfbf'}}
-            >
-            <Appbar.Action 
-            icon = 'arrow-left'
-            size = {24}
-                onPress={() =>{
-                   this.props.navigation.navigate('Home')
+  componentDidMount() {
+    db.mapOn(emergencies => {
+        this.setState(previousState => ({
+            emergencies: previousState.emergencies.concat(emergencies),
+        }))
+    })
+  }
+
+  render() {
+    k = 0
+    return (
+      <View style={styles.absoluteFillView}>
+        <MapView
+          style={styles.absoluteFillView}
+          mapType={"satellite"}
+          showsUserLocation={true}
+          region={{
+            latitude: 39.625083,
+            longitude:  -79.956796,
+            latitudeDelta: 0.0025,
+            longitudeDelta: 0.0025,
+          }}
+        >
+          {this.state.emergencies.map(emergency => {
+            if(k + 1 == this.state.emergencies.length){
+              color = 'red';
+            }
+            else {
+              color = 'orange';
+            }
+            return (
+              <MapView.Marker 
+                key = {k++}
+                title={emergency.title}
+                description={emergency.description}
+                coordinate={{
+                  latitude: emergency.latitude,
+                  longitude: emergency.longitude,
                 }}
-            />
-            </Appbar.Header>
-          </View>
-        )
-      }
+                pinColor={color}
+              />
+            );
+          })}
+        </MapView>
+        <Appbar.Header
+          dark = {true}
+          style={{backgroundColor:'#bfbfbf'}}
+        >
+        <Appbar.Action 
+          icon = 'arrow-left'
+          size = {24}
+            onPress={() =>{
+              this.props.navigation.navigate('Home')
+            }}
+        />
+        </Appbar.Header>
+      </View>
+    );
+  }
+  componentWillUnmount(){
+    db.mapOff();
+  }
 }
 
 const styles = StyleSheet.create({
-  top: {
-    position: 'absolute',
-    top: screenHeight*0.059,
-    left:0,
-    right:0,
-    bottom:0,
-    backgroundColor: '#0a007e',
-},
   absoluteFillView: {
     position: 'absolute',
     top: 0,
