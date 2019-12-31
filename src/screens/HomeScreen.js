@@ -4,7 +4,7 @@ import { IconButton } from 'react-native-paper'
 import { Notifications } from 'expo'
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
-import FlashMessage, { showMessage } from 'react-native-flash-message'
+import FlashMessage from 'react-native-flash-message'
 
 import Database from './components/Database'
 const db = new Database()
@@ -19,13 +19,14 @@ export default class HomeScreen extends Component {
       assetsLoaded: false,
       modalVisible: false,
   }
-  
-  async componentDidMount() {
-      await Font.loadAsync({
-          'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
-      })
-  this.setState({ assetsLoaded: true })
-  }
+
+  // async componentDidMount() {
+  //   await Font.loadAsync({
+  //       'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
+  //   })
+  //   this.setState({ assetsLoaded: true })
+  // }
+
   setModalVisible(visible) {
     this.setState({modalVisible: visible})
   }
@@ -64,13 +65,15 @@ export default class HomeScreen extends Component {
   }
 
   async componentDidMount(){
-
     db.getUserState().then(uid => {
       this.currentUser = uid
     })
-    
+    db.mNotifOn()
+    db.cNotifOn()
     await this.registerForPushNotificationsAsync()
   }
+
+
 
   render() {
 
@@ -104,17 +107,7 @@ export default class HomeScreen extends Component {
           <TouchableOpacity 
             style={styles.emergency}
             onPress={() => {
-              showMessage({
-                message: 'Simple message',
-                type: 'info',
-                color: '#000000',
-                backgroundColor: '#DDDDDD',
-                type: 'success',
-                onPress: () => {
-                  this.props.navigation.navigate('Map')
-                }
-              });
-              //db.reportEmergency('description')
+              db.reportEmergency('description')
             }}
             >
             <Text style = {styles.buttonText}>EMERGENCY ALERT</Text>
@@ -188,6 +181,10 @@ export default class HomeScreen extends Component {
       <FlashMessage position="top" />
     </View>
     )
+  }
+  componentWillUnmount(){
+    db.mNotifOff()
+    db.cNotifOff();
   }
 }
 

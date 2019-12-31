@@ -3,7 +3,8 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://6q-2ny.mohigan.mhs-protect.exp.direct",
+  "packagerNgrokUrl": "https://packager.6q-2ny.mohigan.mhs-protect.exp.direct",
+  "ngrokPid": 16864,
+  "webpackServerPort": null
 }
