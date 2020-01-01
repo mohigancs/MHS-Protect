@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Text, Alert, Modal, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { Text, Alert, Modal, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
 import Database from './components/Database';
 import * as Font from 'expo-font'
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 const db = new Database()
 
@@ -12,21 +13,23 @@ const screenWidth = Math.round(Dimensions.get('window').width)
 const screenHeight = Math.round(Dimensions.get('window').height)
 
 export default class HomeScreen extends Component {
+
   details = '';
   user = this.props.navigation.getParam('user','error');
   state = {
       assetsLoaded: false,
-      modalVisible: false,
+      modalVisible: false
   }
   
   async componentDidMount() {
-      await Font.loadAsync({
-          'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
-      });
-  this.setState({ assetsLoaded: true })
+    await Font.loadAsync({
+      'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
+    });
+    this.setState({ assetsLoaded: true })
   }
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible})
+
+  setModalVisible = (visible) => {
+    this.setState({modalVisible: visible})   
   }
 
   registerForPushNotificationsAsync = async() => {
@@ -115,35 +118,46 @@ export default class HomeScreen extends Component {
                 Alert.alert('Request for help cancelled')
               }}>
 
-              <View style = {styles.contentContainer}>
-              <Text style = {styles.modalTitle}>Please provide details</Text>
+              <KeyboardAvoidingView style = {styles.contentContainer} behavior='padding'>
 
-              <TextInput 
-                style={styles.input}
-                placeholder="Details"
-                placeholderTextColor = "black"
-                returnKeyType="go"
-                multiline = {true}
-                autoCapitalize="none"
-                autoCorrect={false}
-                onChange={(text) => this.details = text.nativeEvent.text}
+                {/* wrapped in view so it moves at the same time as other elements */}
+                <View><Text style = {styles.modalTitle}>Please provide details</Text></View> 
                 
-              />
-              <TouchableOpacity 
-                style = {styles.modalButton}
 
-                onPress = {() => {
-                  db.requestHelp(this.details)
-                  //TODO: need to figure out how to text without bringing user out of app, also figure out how to not get modal to close so soon
-                  //Communications.textWithoutEncoding('3048255608', this.details);
-                  //this.setModalVisible(!this.state.modalVisible)
-                  Alert.alert('MESSAGE SENT')
-                }}
+                <TextInput 
+                  style={styles.input}
+                  placeholder="Details"
+                  placeholderTextColor = "black"
+                  //returnKeyType="send"
+                  multiline = {true}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  onChange={(text) => this.details = text.nativeEvent.text}
+                  
+                />
+                <TouchableOpacity 
+                  style = {styles.modalButton}
 
-              >
-                <Text style = {{fontWeight: 'bold', color: 'white', fontSize: screenWidth*0.0487}}>SUBMIT</Text>
-              </TouchableOpacity>
-              </View>
+                  onPress = {() => {
+                    
+                    //TODO: need to figure out how to text without bringing user out of app, also figure out how to not get modal to close so soon
+                    //Communications.textWithoutEncoding('3048255608', this.details);
+
+                    db.requestHelp(this.details)
+                    this.setModalVisible(!this.state.modalVisible)
+
+                    // when the alert is shown, it cannot set the modal invisible for some reason
+                    // seems to be a bug so we force it to wait
+                    setTimeout(() => {
+                      Alert.alert('MESSAGE SENT')
+                    }, 0)
+                    
+                  }}
+                >
+                  <Text style = {{fontWeight: 'bold', color: 'white', fontSize: screenWidth*0.0487}}>SUBMIT</Text>
+                </TouchableOpacity>
+
+              </KeyboardAvoidingView>
           </Modal>
 
           <TouchableOpacity 
