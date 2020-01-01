@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     image: {
         height: screenHeight*0.267,
         width: screenWidth*0.487,
-        resizeMode: 'cover',
+        resizeMode: 'contain',
     },
     title: {
         fontFamily: 'Lato-Bold',

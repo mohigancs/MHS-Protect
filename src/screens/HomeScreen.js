@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     bottom: screenHeight*0.035,
     marginBottom: screenHeight*0.05,
     position: 'relative',
-    resizeMode: 'cover',
+    resizeMode: 'contain',
   },
   help: {
     width: screenWidth*0.62,
