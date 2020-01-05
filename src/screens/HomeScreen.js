@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { Text, Alert, Modal, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native'
 import { IconButton } from 'react-native-paper'
 import { Notifications } from 'expo'
+import AlertAsync from "react-native-alert-async"
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
 import FlashMessage, { showMessage } from 'react-native-flash-message'
-
 import Database from './components/Database'
-const db = new Database()
 
+const db = new Database()
 const screenWidth = Math.round(Dimensions.get('window').width)
 const screenHeight = Math.round(Dimensions.get('window').height)
 
@@ -20,16 +20,31 @@ export default class HomeScreen extends Component {
       modalVisible: false,
   }
   
-  async componentDidMount() {
-      await Font.loadAsync({
-          'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
-      })
-  this.setState({ assetsLoaded: true })
-  }
   setModalVisible(visible) {
     this.setState({modalVisible: visible})
   }
 
+  alert = async () => {
+
+    const choice = await AlertAsync(
+      'Message Sent',
+      '',
+      [
+        {text: 'OK', onPress: () => 'yes'},
+      ],
+      {
+        cancelable: true,
+        onDismiss: () => 'yes',
+      },
+    )
+  
+    if (choice === 'yes') {
+      this.setModalVisible(false)
+    }
+    else {
+    }
+  }
+  
   registerForPushNotificationsAsync = async() => {
     const { status: existingStatus } = await Permissions.getAsync(
       Permissions.NOTIFICATIONS
@@ -64,6 +79,10 @@ export default class HomeScreen extends Component {
   }
 
   async componentDidMount(){
+    await Font.loadAsync({
+      'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
+    })
+    this.setState({ assetsLoaded: true })
 
     db.getUserState().then(uid => {
       this.currentUser = uid
@@ -142,10 +161,9 @@ export default class HomeScreen extends Component {
                 style = {styles.modalButton}
                 onPress = {() => {
                   db.requestHelp(this.details)
-                  //TODO: need to figure out how to text without bringing user out of app, also figure out how to not get modal to close so soon
+                  //TODO: need to figure out how to text without bringing user out of app
                   //Communications.textWithoutEncoding('3048255608', this.details)
-                  this.setModalVisible(false)
-                  Alert.alert('MESSAGE SENT')
+                  this.alert()
                 }}
                 >
                 <Text style = {{fontWeight: 'bold', color: 'white', fontSize: screenWidth*0.0487}}>SUBMIT</Text>
