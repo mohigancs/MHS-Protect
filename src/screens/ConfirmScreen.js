@@ -34,7 +34,7 @@ export default class ConfirmScreen extends React.Component {
                     </Text>
                     <Image
                     style={styles.image}
-                    source={require('../images/logo.jpg')} 
+                    source={require('../images/logo.png')} 
                     />
                     <Text style={styles.option}>
                         { this.user[0].name }
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         height: screenHeight*0.267,
         width: screenWidth*0.487,
         alignItems: 'center',
-        resizeMode: 'cover',
+        resizeMode: 'contain',
     },
     textContainer: {
         flex: 6,

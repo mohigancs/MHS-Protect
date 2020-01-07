@@ -116,7 +116,7 @@ export default class HomeScreen extends Component {
         <View style = {styles.container}>
           <Image
             style={styles.image}
-            source={require('../images/logo.jpg')} 
+            source={require('../images/logo.png')} 
           />
           <Text style={styles.title}>MHS-Protect</Text>
 
@@ -264,8 +264,8 @@ const styles = StyleSheet.create({
     height: screenHeight*0.0534,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: 'black',
-    borderWidth: 1,
+    borderColor: 'orange',
+    borderWidth: 2.5,
     borderRadius: 5,
     marginBottom: screenHeight*0.0333,
   },

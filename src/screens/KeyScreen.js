@@ -35,7 +35,7 @@ export default class KeyScreen extends React.Component {
                 <View style={styles.container}>
                     <Image
                         style={styles.image}
-                        source={require('../images/logo.jpg')} 
+                        source={require('../images/logo.png')} 
                     />
                     <Text style={styles.title}>Enter Your Key Below</Text>
                     <TextInput
