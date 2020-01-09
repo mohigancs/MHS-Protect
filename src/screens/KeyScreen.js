@@ -48,6 +48,8 @@ export default class KeyScreen extends React.Component {
                         onChange={(text) => this.key = text.nativeEvent.text}
                         
                         onSubmitEditing={() => {
+                            console.log(screenWidth)
+                            console.log(screenHeight)
                             db.isValidKey(this.key).then(result => {
                                 if (result[0]) {
                                     //Alert.alert('Success!', 'Your key was found in the database.')
@@ -100,6 +102,7 @@ const styles = StyleSheet.create({
         height: screenHeight*0.267,
         width: screenWidth*0.487,
         resizeMode: 'contain',
+        marginBottom: screenHeight*0.05
     },
     title: {
         fontFamily: 'Lato-Bold',
