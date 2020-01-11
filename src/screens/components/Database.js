@@ -300,13 +300,13 @@ class Database {
 
         id = -1
 
+        console.log(firebase.database().ref().child('people').getChildrenCount())
+
         await firebase.database().ref('people/').once('value').then(function(snapshot) { // finds last user id
-            snapshot.forEach((child) => {
-                id = child.key
-            }) // TODO: find a better way to get last id without cycling through all ids
+            console.log(snapshot.getChildrenCount()) // TODO: find a better way to get last id without cycling through all ids
         })
 
-        firebase.database().ref('people/' + (parseInt(id) + 1)).set({ // appends user to [last user id] + 1
+        /*firebase.database().ref('people/' + (parseInt(id) + 1)).set({ // appends user to [last user id] + 1
             email: email,
             name: name,
             phone: phone,
@@ -314,7 +314,7 @@ class Database {
         })
     
         Alert.alert('Success!', 'User ' + name + ' Added to the Database.')
-        this.addkey(parseInt(id) + 1, false) // give the new user an access key
+        this.addkey(parseInt(id) + 1, false) // give the new user an access key*/
 
     }
 

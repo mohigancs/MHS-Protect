@@ -191,8 +191,17 @@ export default class HomeScreen extends Component {
               })
           }}
           />
+        </View>
+
+          <View style= {styles.horizontalContainer}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('Admin')
+              }}
+            ><Text>BRUH</Text></TouchableOpacity>
+          </View>
+
       </View>
-    </View>
     );
   }
 }
