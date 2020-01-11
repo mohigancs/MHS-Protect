@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 import MapView from 'react-native-maps'
 import { Appbar } from 'react-native-paper'
+import FlashMessage from 'react-native-flash-message'
 
 import Database from './components/Database'
 const db = new Database()
@@ -13,6 +14,7 @@ export default class MapScreen extends Component {
   };
 
   componentDidMount() {
+    db.cNotifOn()
     db.mapOn(emergencies => {
         this.setState(previousState => ({
             emergencies: previousState.emergencies.concat(emergencies),
@@ -68,11 +70,13 @@ export default class MapScreen extends Component {
             }}
         />
         </Appbar.Header>
+        <FlashMessage position="bottom" />
       </View>
     );
   }
   componentWillUnmount(){
-    db.mapOff();
+    db.cNotifOff()
+    db.mapOff()
   }
 }
 

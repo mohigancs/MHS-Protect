@@ -1,9 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 36992,
-  "expoServerNgrokUrl": "https://6q-2ny.anonymous.mhs-protect.exp.direct",
-  "packagerNgrokUrl": "https://packager.6q-2ny.anonymous.mhs-protect.exp.direct",
-  "ngrokPid": 7956
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://6q-2ny.mohigan.mhs-protect.exp.direct",
+  "packagerNgrokUrl": "https://packager.6q-2ny.mohigan.mhs-protect.exp.direct",
+  "ngrokPid": 16864,
+  "webpackServerPort": null
 }

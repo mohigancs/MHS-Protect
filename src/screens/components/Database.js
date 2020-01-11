@@ -1,5 +1,6 @@
 var firebase = require('firebase')
-import { AsyncStorage, Alert } from 'react-native'
+import { AsyncStorage, Alert, Vibration } from 'react-native'
+import { showMessage } from 'react-native-flash-message'
 
 class Database {
 
@@ -50,7 +51,8 @@ class Database {
                         location: {latitude: position.coords.latitude, longitude: position.coords.longitude},
                         description: description
                     })
-                }) 
+                })
+                
             
                 this.getUserTokens(uid).then((tokens) => { // send all users notifications
                     for (i = 0; i < tokens.length; i ++){
@@ -83,6 +85,25 @@ class Database {
 
     */
 
+
+    sendInAppNotification = (name, description, omit) => {
+        this.getUserState().then(uid => {
+            if (omit !== uid){
+                Vibration.vibrate(1000);
+                showMessage({
+                    message: name,
+                    description: description,
+                    type: 'info',
+                    color: '#000000',
+                    backgroundColor: '#DDDDDD',
+                    type: 'success',
+                    onPress: () => {
+                        console.log("Send user to next screen")
+                    }
+                })
+            }
+        })
+    }
 
     sendPushNotification = (token, title, body) => { // sends pushs notification to the API
         let response = fetch('https://exp.host/--/api/v2/push/send',{ 
@@ -118,6 +139,38 @@ class Database {
         return tokens
     }
 
+    cNotifOn = () => { // Chat Notification
+        var ignoreItems = true;
+        var ref = firebase.database().ref('alerts/messages/')
+            ref.on('child_added', (code_snapshot) => {
+        if (!ignoreItems) {
+            this.sendInAppNotification(code_snapshot.val().user.name, code_snapshot.val().text, code_snapshot.val().user._id);
+        }
+        });
+            ref.once('value', function(snapshot) {
+            ignoreItems = false;
+        });
+    }
+    cNotifOff = () => { // Chat Notification
+        firebase.database().ref('alerts/messages/').off()
+    }
+
+    mNotifOn = () => { // Map Notificaiton
+        var ignoreItems = true;
+        var ref = firebase.database().ref('alerts/emergency/')
+            ref.on('child_added', (code_snapshot) => {
+        if (!ignoreItems) {
+            this.sendInAppNotification(code_snapshot.val().name, "Pressed the Emergency Button", code_snapshot.val().user);
+        }
+        });
+            ref.once('value', function(snapshot) {
+            ignoreItems = false;
+        });
+    }
+    mNotifOff = () => { // Map Notificaiton
+        firebase.database().ref('alerts/emergency/').off()
+    }
+
 
     /*
 
@@ -128,8 +181,8 @@ class Database {
 
     mapOn = callback => { // ???
         firebase.database().ref('alerts/emergency/').on('child_added', snapshot => {
-                callback(this.edit(snapshot))
-            })
+            callback(this.edit(snapshot))
+        })
     }
 
     mapOff = () => { // ???
@@ -167,7 +220,7 @@ class Database {
         return message
     }
 
-    get timestamp() { // gets firebase timestamp for giftedchat
+    timestamp() { // gets firebase timestamp for giftedchat
         return firebase.database.ServerValue.TIMESTAMP
     }
 
@@ -176,7 +229,7 @@ class Database {
         for (let i = 0; i < messages.length; i++) {
 
             const { text, user } = messages[i]
-            const createdAt = this.timestamp
+            const createdAt = this.timestamp()
             const message = { text, user, createdAt }
 
             firebase.database().ref('alerts/messages').push(message) // add the message to the firebase
