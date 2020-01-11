@@ -109,7 +109,7 @@ export default class HomeScreen extends Component {
                   })
               }}
           >
-          <Text style = {styles.logOut}>LOG OUT</Text>
+          <Text style = {styles.close}>LOG OUT</Text>
           </TouchableOpacity>
         </View>
 
@@ -123,16 +123,26 @@ export default class HomeScreen extends Component {
           <TouchableOpacity 
             style={styles.emergency}
             onPress={() => {
-              showMessage({
-                message: 'Simple message',
-                type: 'info',
-                color: '#000000',
-                backgroundColor: '#DDDDDD',
-                type: 'success',
-                onPress: () => {
-                  this.props.navigation.navigate('Map')
-                }
-              });
+              Alert.alert(
+                'Are you sure you want to report an emergency?',
+                '',
+                [
+                  {text: 'No', onPress: () => {}},
+                  {text: 'Yes', onPress: () => {              
+                    showMessage({
+                      message: 'Simple message',
+                      type: 'info',
+                      color: '#000000',
+                      backgroundColor: '#DDDDDD',
+                      type: 'success',
+                    onPress: () => {
+                      this.props.navigation.navigate('Map')
+                      }
+                    });
+                  }},
+                ],
+                {cancelable: false}
+              )
               //db.reportEmergency('description')
             }}
             >
@@ -145,29 +155,40 @@ export default class HomeScreen extends Component {
                 this.setModalVisible(false)
                 }}>
               <View style = {styles.contentContainer}>
-              <Text style = {styles.modalTitle}>Please provide details</Text>
-              <TextInput 
-                style={styles.input}
-                placeholder="Details"
-                placeholderTextColor = "black"
-                returnKeyType="go"
-                multiline = {true}
-                autoCapitalize="none"
-                autoCorrect={false}
-                onChange={(text) => this.details = text.nativeEvent.text}
+                <View style = {styles.horizontalModalContainer}>
+                  <TouchableOpacity
+                    onPress = {() => {
+                      this.setModalVisible(false)
+                    }}
+                  >
+                    <Text style = {styles.close}>Close</Text>
+                  </TouchableOpacity>
+                </View>
+                <View style = {styles.container}>
+                  <Text style = {styles.modalTitle}>Please provide details</Text>
+                  <TextInput 
+                    style={styles.input}
+                    placeholder="Details"
+                    placeholderTextColor = "black"
+                    returnKeyType="go"
+                    multiline = {true}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    onChange={(text) => this.details = text.nativeEvent.text}
                 
-              />
-              <TouchableOpacity 
-                style = {styles.modalButton}
-                onPress = {() => {
-                  db.requestHelp(this.details)
-                  //TODO: need to figure out how to text without bringing user out of app
-                  //Communications.textWithoutEncoding('3048255608', this.details)
-                  this.alert()
-                }}
-                >
-                <Text style = {{fontWeight: 'bold', color: 'white', fontSize: screenWidth*0.0487}}>SUBMIT</Text>
-              </TouchableOpacity>
+                  />
+                  <TouchableOpacity 
+                    style = {styles.modalButton}
+                    onPress = {() => {
+                      db.requestHelp(this.details)
+                      //TODO: need to figure out how to text without bringing user out of app
+                      //Communications.textWithoutEncoding('3048255608', this.details)
+                      this.alert()
+                    }}
+                    >
+                    <Text style = {styles.text}>SUBMIT</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
           </Modal>
 
@@ -214,6 +235,10 @@ const styles = StyleSheet.create({
     flex: 2,
     flexDirection: 'row',
   },
+  horizontalModalContainer: {
+    flex:1,
+    flexDirection: 'row',
+  },
   contentContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -245,11 +270,16 @@ const styles = StyleSheet.create({
     fontSize: screenWidth*0.0633,
     marginBottom: screenHeight*0.05,
   },
-  logOut: {
+  close: {
     fontFamily: 'Lato-Bold',
     fontSize: screenWidth*0.0487,
     marginLeft: screenWidth*0.7786,
     top: screenHeight*0.066,
+  },
+  text: {
+    fontWeight: 'bold',
+    color: 'white',
+    fontSize: screenWidth*0.0487,
   },
   image: {
     height: screenHeight*0.267,
