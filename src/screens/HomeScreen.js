@@ -6,6 +6,7 @@ import AlertAsync from "react-native-alert-async"
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
 import FlashMessage from 'react-native-flash-message'
+
 import Database from './components/Database'
 
 const db = new Database()
@@ -92,8 +93,7 @@ export default class HomeScreen extends Component {
     await this.registerForPushNotificationsAsync()
   }
 
-
-
+  
   render() {
 
     return (
@@ -128,25 +128,15 @@ export default class HomeScreen extends Component {
             onPress={() => {
               Alert.alert(
                 'Are you sure you want to report an emergency?',
-                '',
+                '$500 fine for false alarms',
                 [
                   {text: 'No', onPress: () => {}},
                   {text: 'Yes', onPress: () => {              
-                    showMessage({
-                      message: 'Simple message',
-                      type: 'info',
-                      color: '#000000',
-                      backgroundColor: '#DDDDDD',
-                      type: 'success',
-                    onPress: () => {
-                      this.props.navigation.navigate('Map')
-                      }
-                    });
+                    db.reportEmergency('description')
                   }},
                 ],
                 {cancelable: false}
               )
-              //db.reportEmergency('description')
             }}
             >
             <Text style = {styles.buttonText}>EMERGENCY ALERT</Text>
