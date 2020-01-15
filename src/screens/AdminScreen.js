@@ -49,7 +49,7 @@ export default class AdminScreen extends React.Component {
                                 {text: 'NO', style: 'cancel'},
                                 {text: '',},
                                 {text: 'YES', onPress: () => {
-                                    if (this.entered_id == 'ALL') {
+                                    /*if (this.entered_id == 'ALL') {
                                         for(i = 0; i < 147; i++) {
                                             key = db.makekey(10);
                                             db.addkey(i, key);
@@ -60,7 +60,8 @@ export default class AdminScreen extends React.Component {
                                     }
                                     console.log('YES pressed');
                                     console.log(screenHeight);
-                                    console.log(screenWidth);
+                                    console.log(screenWidth);*/
+                                    db.adduser('bruh', 'bruh', 'bruh', 'bruh')
                                 }
                                 },
                             ],
