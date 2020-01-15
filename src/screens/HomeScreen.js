@@ -168,6 +168,16 @@ export default class HomeScreen extends Component {
           >
             <Text style = {styles.buttonText}>REQUEST HELP</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Admin')
+            }}
+          >
+            <Text>Admin</Text>
+          </TouchableOpacity>
+
+
         </View>
 
         <View style = {styles.horizontalContainer}>

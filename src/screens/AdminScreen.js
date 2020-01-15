@@ -111,6 +111,29 @@ export default class AdminScreen extends React.Component {
                 >
                     <Text style = {styles.text}>SUBMIT</Text>
                 </TouchableOpacity>
+
+
+                <Text style={styles.option}>Add user with room number</Text>
+
+                <TextInput
+                    style={styles.input}
+                    placeholder="ID"
+                    placeholderTextColor = 'black'
+                    returnKeyType="go"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    onChange={(text) => this.entered_id = text.nativeEvent.text}
+                />
+
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                        db.adduser(this.entered_id, 'bruh@bruh.bruh', 'a', '304-290-0000', 'teacher')
+                    }}
+                >
+                    <Text style = {styles.text}>SUBMIT</Text>
+                </TouchableOpacity>
+
             </KeyboardAvoidingView>
         );
     }
