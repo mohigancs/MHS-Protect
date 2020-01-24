@@ -298,19 +298,9 @@ class Database {
 
     async adduser(roomnumber, email, name, phone, role) { // adds a user to the database
 
-        id = roomnumber
-
-        /*await firebase.database().ref('people/').once('value').then(function(snapshot) { // finds last user id
-            snapshot.forEach((child) => {
-                id = child.key
-            }) // TODO: find a better way to get last id without cycling through all ids
-        })*/
-
-        
-
         var exists = false
-
         
+        // fetches the user with id = {}
         await this.fetchUser(roomnumber).then(user => {
             if (user != null) {
                 exists = true
@@ -321,7 +311,8 @@ class Database {
         })
         
 
-        if (!exists) {
+        if (!exists) { // if there is not a user with that roomnumber
+
             firebase.database().ref('people/' + (parseInt(roomnumber))).set({ // appends user to [last user id] + 1
                 email: email,
                 name: name,
@@ -330,14 +321,11 @@ class Database {
             })
         
             Alert.alert('Success!', 'User ' + name + ' Added to the Database.')
-            this.addkey(parseInt(roomnumber), false) // give the new user an access key
+            this.addkey(parseInt(roomnumber), makekey(8)) // give the new user an access key
         } 
         else {
             Alert.alert('User with room number ' + roomnumber + ' already exists.')
         }
-
-        
-        
 
     }
 
