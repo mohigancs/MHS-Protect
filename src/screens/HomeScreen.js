@@ -18,14 +18,17 @@ export default class HomeScreen extends Component {
   state = {
       assetsLoaded: false,
       modalVisible: false,
+      helpModalVisible: false,
   }
   
   setModalVisible(visible) {
     this.setState({modalVisible: visible})
   }
+  setHelpModalVisible(visible) {
+    this.setState({helpModalVisible: visible})
+  }
 
   alert = async () => {
-
     const choice = await AlertAsync(
       'Message Sent',
       '',
@@ -101,20 +104,43 @@ export default class HomeScreen extends Component {
       <View style={styles.contentContainer}>
 
         <View style = {styles.horizontalContainer}>
-          <TouchableOpacity 
-              onPress={() => {
-                db.logOutUser().then(() => {
-                  console.log("logged out")
-                    db.getUserState().then((snapshot) => {
-                        console.log(snapshot)
-                      })
-                    this.props.navigation.navigate('Login')
-                  })
-              }}
-          >
-          <Text style = {styles.close}>LOG OUT</Text>
-          </TouchableOpacity>
+          <IconButton style = {styles.helpIcon}
+            icon= 'help-circle-outline'
+            size = {screenWidth*0.08}
+            color = 'black'
+            onPress={() => {
+              this.setHelpModalVisible(true)
+            }}
+          />
         </View>
+        <Modal
+              visible={this.state.helpModalVisible}
+              onRequestClose={() => {
+                this.setHelpModalVisible(false)
+                }}>
+              <View style = {styles.contentContainer}>
+                <View style = {styles.horizontalModalContainer}>
+                  <TouchableOpacity
+                    onPress = {() => {
+                      this.setHelpModalVisible(false)
+                      console.log('pressed')
+                    }}
+                  >
+                    <Text style = {styles.close}>Close</Text>
+                  </TouchableOpacity>
+                </View>
+                <View style = {styles.container}>
+                  <Image
+                    style={styles.image}
+                    source={require('../images/logo.png')} 
+                  />
+                  <Text style = {styles.text}>
+                    Welcome to MHS-Protect, an app dedicated to keeping our school safe.
+                  </Text>
+                </View>
+              </View>
+          </Modal>
+
 
         <View style = {styles.container}>
           <Image
@@ -189,7 +215,7 @@ export default class HomeScreen extends Component {
                       this.alert()
                     }}
                     >
-                    <Text style = {styles.text}>SUBMIT</Text>
+                    <Text style = {styles.buttonText}>SUBMIT</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -283,10 +309,15 @@ const styles = StyleSheet.create({
     marginLeft: screenWidth*0.7786,
     top: screenHeight*0.066,
   },
+  helpIcon: {
+    marginLeft: screenWidth*0.8,
+    top: screenHeight*0.057,
+  },
   text: {
-    fontWeight: 'bold',
-    color: 'white',
-    fontSize: screenWidth*0.0487,
+    marginLeft: screenWidth*0.02,
+    marginRight: screenWidth*0.02,
+    fontFamily: 'Lato-Bold',
+    fontSize: screenWidth*0.049,
   },
   image: {
     height: screenHeight*0.267,
