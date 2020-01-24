@@ -131,7 +131,8 @@ export default class HomeScreen extends Component {
                 '$500 fine for false alarms',
                 [
                   {text: 'No', onPress: () => {}},
-                  {text: 'Yes', onPress: () => {              
+                  {text: 'Yes', onPress: () => {
+                    db.phoneCall(+13042827110)            
                     db.reportEmergency('description')
                   }},
                 ],

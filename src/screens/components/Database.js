@@ -1,6 +1,7 @@
 var firebase = require('firebase')
 import { AsyncStorage, Alert, Vibration } from 'react-native'
 import { showMessage } from 'react-native-flash-message'
+import base64 from 'react-native-base64'
 
 class Database {
 
