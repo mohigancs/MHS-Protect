@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, Alert, Modal, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native'
-import { IconButton } from 'react-native-paper'
+import { IconButton, Paragraph } from 'react-native-paper'
 import { Notifications } from 'expo'
 import AlertAsync from "react-native-alert-async"
 import * as Permissions from 'expo-permissions'
@@ -11,7 +11,6 @@ import Database from './components/Database'
 const db = new Database()
 const screenWidth = Math.round(Dimensions.get('window').width)
 const screenHeight = Math.round(Dimensions.get('window').height)
-
 export default class HomeScreen extends Component {
   details = ''
   user = this.props.navigation.getParam('user','error')
@@ -80,10 +79,11 @@ export default class HomeScreen extends Component {
       console.log(error)
     }
   }
-
+  
   async componentDidMount(){
     await Font.loadAsync({
       'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
+      'Lato-Regular' : require('../../assets/fonts/Lato-Regular.ttf'),
     })
     this.setState({ assetsLoaded: true })
 
@@ -134,9 +134,27 @@ export default class HomeScreen extends Component {
                     style={styles.image}
                     source={require('../images/logo.png')} 
                   />
-                  <Text style = {styles.text}>
+                  <Paragraph style = {styles.text}>
                     Welcome to MHS-Protect, an app dedicated to keeping our school safe.
-                  </Text>
+                  </Paragraph>
+                  <Paragraph>
+                    Created by:
+                  </Paragraph>
+                  <Paragraph>
+                    Craig Dombrowski
+                  </Paragraph>
+                  <Paragraph>
+                    Alice Guo
+                  </Paragraph>
+                  <Paragraph>
+                    Michael Hoefler
+                  </Paragraph>
+                  <Paragraph>
+                    Geoffrey Swisher
+                  </Paragraph>
+                  <Paragraph>
+                    Amanda Wang
+                  </Paragraph>
                 </View>
               </View>
           </Modal>
@@ -215,7 +233,7 @@ export default class HomeScreen extends Component {
                       this.alert()
                     }}
                     >
-                    <Text style = {styles.buttonText}>SUBMIT</Text>
+                    <Text style = {styles.modalButtonText}>SUBMIT</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -316,7 +334,8 @@ const styles = StyleSheet.create({
   text: {
     marginLeft: screenWidth*0.02,
     marginRight: screenWidth*0.02,
-    fontFamily: 'Lato-Bold',
+    fontFamily: 'Lato-Regular',
+    textAlign: 'center',
     fontSize: screenWidth*0.049,
   },
   image: {
@@ -354,8 +373,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#c80d00',
+    borderColor: '#c80d00',
     borderWidth: 1,
     borderRadius: 5,
+  },
+  modalButtonText: {
+    fontSize: screenWidth*0.0487,
+    fontFamily: 'Lato-Bold',
+    color: 'white',
   },
   emergency: {
     width: screenWidth*0.62,
