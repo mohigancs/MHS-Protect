@@ -1,6 +1,7 @@
 var firebase = require('firebase')
 import { AsyncStorage, Alert, Vibration } from 'react-native'
 import { showMessage } from 'react-native-flash-message'
+import base64 from 'react-native-base64'
 
 class Database {
 
@@ -76,6 +77,27 @@ class Database {
                 })
             })
         })
+    }
+    
+    phoneCall = (number) => {
+
+      let account_sid = "AC070ca362f6f7d966c4ebc54a7a882e3d";
+      let auth_token = "a07d94f880b828a131e169ca95f634de";
+
+      let url = "https://api.twilio.com/2010-04-01/Accounts/" + account_sid + "/Calls.json";
+
+      let authorizationBasic = base64.encode(account_sid + ':' + auth_token)
+
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", url, true);
+
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+      xhr.setRequestHeader('Authorization', 'Basic ' + authorizationBasic);
+      xhr.setRequestHeader('Accept', 'application/json');
+
+      let params = "Url=https://pastebin.com/raw/siUcqAJN&To=" + number + "&From=+13043011545";
+      xhr.send(params);
+
     }
 
     
