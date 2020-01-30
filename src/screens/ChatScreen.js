@@ -40,7 +40,7 @@ export default class ChatScreen extends Component {
                 <View style={{flex:1}}>
                     <Appbar.Header
                     dark = {true}
-                    style={{backgroundColor:'#bfbfbf'}}
+                    style={{backgroundColor:'#bdbdbd'}}
                     >
                         <Appbar.Action
                         icon = 'arrow-left'

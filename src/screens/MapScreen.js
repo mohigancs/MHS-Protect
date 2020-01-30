@@ -60,7 +60,7 @@ export default class MapScreen extends Component {
         </MapView>
         <Appbar.Header
           dark = {true}
-          style={{backgroundColor:'#bfbfbf'}}
+          style={{backgroundColor:'#bdbdbd'}}
         >
         <Appbar.Action 
           icon = 'arrow-left'

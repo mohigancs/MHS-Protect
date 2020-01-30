@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, Alert, Modal, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { Text, Alert, Modal, View, ScrollView, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native'
 import { IconButton, Paragraph } from 'react-native-paper'
 import { Notifications } from 'expo'
 import AlertAsync from "react-native-alert-async"
@@ -104,7 +104,7 @@ export default class HomeScreen extends Component {
       <View style={styles.contentContainer}>
 
         <View style = {styles.horizontalContainer}>
-          <IconButton style = {styles.helpIcon}
+          <IconButton style = {styles.topRightIcon}
             icon= 'help-circle-outline'
             size = {screenWidth*0.08}
             color = 'black'
@@ -115,45 +115,49 @@ export default class HomeScreen extends Component {
         </View>
         <Modal
               visible={this.state.helpModalVisible}
+              animationType= 'slide'
               onRequestClose={() => {
                 this.setHelpModalVisible(false)
                 }}>
               <View style = {styles.contentContainer}>
                 <View style = {styles.horizontalModalContainer}>
-                  <TouchableOpacity
-                    onPress = {() => {
+                <IconButton style = {styles.topRightIcon}
+                  icon = 'close-box-outline'
+                  color = 'black'
+                  size = {screenWidth*0.08}
+                  onPress={() => {
                       this.setHelpModalVisible(false)
-                      console.log('pressed')
-                    }}
-                  >
-                    <Text style = {styles.close}>Close</Text>
-                  </TouchableOpacity>
+                  }}
+                />
                 </View>
-                <View style = {styles.container}>
+                <View style = {styles.modalContainer}>
                   <Image
-                    style={styles.image}
+                    style={styles.modalImage}
                     source={require('../images/logo.png')} 
                   />
                   <Paragraph style = {styles.text}>
                     Welcome to MHS-Protect, an app dedicated to keeping our school safe.
                   </Paragraph>
                   <Paragraph>
-                    Created by:
                   </Paragraph>
-                  <Paragraph>
-                    Craig Dombrowski
+                  <Paragraph style = {styles.text}>
+                    Tutorial:
                   </Paragraph>
-                  <Paragraph>
-                    Alice Guo
+                  <Paragraph style = {styles.tutorialText}>
+                    The Messaging Icon shows a teacher groupchat.
                   </Paragraph>
-                  <Paragraph>
-                    Michael Hoefler
+                  <Paragraph style = {styles.tutorialText}>
+                    The 'REQUEST HELP' button is for classroom emergencies, such as medical complications or fights.
                   </Paragraph>
-                  <Paragraph>
-                    Geoffrey Swisher
+                  <Paragraph style = {styles.tutorialText}>
+                    The 'EMERGENCY ALERT' button is ONLY for active shooter situations. It will place an automated call to the police.
                   </Paragraph>
-                  <Paragraph>
-                    Amanda Wang
+                  <Paragraph style = {styles.tutorialText}>
+                    The Map Icon shows the user a map of MHS that has pins placed where active shooters have been reported.
+                  </Paragraph>
+                  <Paragraph></Paragraph>
+                  <Paragraph style = {{fontFamily: 'Lato-Regular', textAlign: 'center'}}>
+                    Created by: Michael Hoefler, Craig Dombrowski, Amanda Wang, Geoffrey Swisher, Alice Guo
                   </Paragraph>
                 </View>
               </View>
@@ -189,20 +193,22 @@ export default class HomeScreen extends Component {
 
           <Modal
               visible={this.state.modalVisible}
+              animationType="slide"
               onRequestClose={() => {
                 this.setModalVisible(false)
                 }}>
               <View style = {styles.contentContainer}>
                 <View style = {styles.horizontalModalContainer}>
-                  <TouchableOpacity
-                    onPress = {() => {
+                <IconButton style = {styles.topRightIcon}
+                  icon = 'close-box-outline'
+                  color = 'black'
+                  size = {screenWidth*0.08}
+                  onPress={() => {
                       this.setModalVisible(false)
-                    }}
-                  >
-                    <Text style = {styles.close}>Close</Text>
-                  </TouchableOpacity>
+                  }}
+                />
                 </View>
-                <View style = {styles.container}>
+                <View style = {styles.modalContainer}>
                   <Text style = {styles.modalTitle}>Please provide details</Text>
                   <TextInput 
                     style={styles.input}
@@ -286,18 +292,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  modalContainer: {
+    flex: 17,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
       flex: 10,
       justifyContent: 'center',
       alignItems: 'center',
   },
   input: {
-    width: screenWidth*0.7299,
-    height: screenHeight*0.0534,
+    width: screenWidth*0.73,
+    height: screenHeight*0.13,
     backgroundColor: '#d3d3d3',
     borderColor: 'black',
     borderWidth: 0.5,
     borderRadius: 5,
+    textAlignVertical: 'top',
     fontSize: screenWidth*0.0487,
     paddingHorizontal: screenWidth*0.0487,
     marginBottom: screenHeight*0.0344,
@@ -312,13 +324,7 @@ const styles = StyleSheet.create({
     fontSize: screenWidth*0.0633,
     marginBottom: screenHeight*0.05,
   },
-  close: {
-    fontFamily: 'Lato-Bold',
-    fontSize: screenWidth*0.0487,
-    marginLeft: screenWidth*0.7786,
-    top: screenHeight*0.066,
-  },
-  helpIcon: {
+  topRightIcon: {
     marginLeft: screenWidth*0.8,
     top: screenHeight*0.057,
   },
@@ -329,11 +335,25 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: screenWidth*0.049,
   },
+  tutorialText: {
+    marginLeft: screenWidth*0.02,
+    marginRight: screenWidth*0.02,
+    fontFamily: 'Lato-Regular',
+    textAlign: 'left',
+    fontSize: screenWidth*0.049,
+  },
   image: {
     height: screenHeight*0.267,
     width: screenWidth*0.487,
     bottom: screenHeight*0.035,
     marginBottom: screenHeight*0.05,
+    position: 'relative',
+    resizeMode: 'contain',
+  },
+  modalImage: {
+    height: screenHeight*0.267,
+    width: screenWidth*0.487,
+    marginBottom: screenHeight*0.02,
     position: 'relative',
     resizeMode: 'contain',
   },
