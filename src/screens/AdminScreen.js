@@ -118,7 +118,7 @@ export default class AdminScreen extends React.Component {
 
                 <TextInput
                     style={styles.input}
-                    placeholder="ID"
+                    placeholder="Room Number"
                     placeholderTextColor = 'black'
                     returnKeyType="go"
                     autoCapitalize="none"
