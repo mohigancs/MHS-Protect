@@ -6,9 +6,8 @@ import AlertAsync from "react-native-alert-async"
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
 import FlashMessage from 'react-native-flash-message'
-
+import SlideToConfirm from 'react-native-slide-to-confirm'
 import Database from './components/Database'
-
 const db = new Database()
 const screenWidth = Math.round(Dimensions.get('window').width)
 const screenHeight = Math.round(Dimensions.get('window').height)
@@ -170,22 +169,10 @@ export default class HomeScreen extends Component {
             source={require('../images/logo.png')} 
           />
           <Text style={styles.title}>MHS-Protect</Text>
-
           <TouchableOpacity 
             style={styles.emergency}
             onPress={() => {
-              Alert.alert(
-                'Are you sure you want to report an emergency?',
-                '$500 fine for false alarms',
-                [
-                  {text: 'No', onPress: () => {}},
-                  {text: 'Yes', onPress: () => {
-                    db.phoneCall(+13042827110)            
-                    db.reportEmergency('description')
-                  }},
-                ],
-                {cancelable: false}
-              )
+              this.props.navigation.navigate('Slider')
             }}
             >
             <Text style = {styles.buttonText}>EMERGENCY ALERT</Text>

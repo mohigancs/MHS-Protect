@@ -6,6 +6,7 @@ import HomeScreen from './src/screens/HomeScreen'
 import ConfirmScreen from './src/screens/ConfirmScreen'
 import ChatScreen from './src/screens/ChatScreen'
 import MapScreen from './src/screens/MapScreen'
+import SliderScreen from './src/screens/SliderScreen'
 
 import firebase from 'firebase'
 import { firebaseConfig } from './config'
@@ -24,6 +25,9 @@ const MainStack = createStackNavigator({
   },
   Admin: {
     screen: AdminScreen // Principal ONLY screen used to edit database
+  },
+  Slider: {
+    screen: SliderScreen
   },
 }, {
   initialRouteName: 'Home',
