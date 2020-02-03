@@ -42,12 +42,15 @@ export default class Slider extends Component {
           />
         </View>
         <View style = {styles.container}>
-        <SlideToConfirm style = {styles.slider}
+        <Paragraph style = {styles.text}>
+            Slide to the right to confirm an active shooter. This function will call the police.
+        </Paragraph>
+        <SlideToConfirm
           ref={ref => this.slideRef = ref}
           width={screenWidth*0.833}
           onConfirm={()=>{
-            //db.phoneCall(+13042827110)            
-            //db.reportEmergency('description')
+            db.phoneCall(+13042827110)            
+            db.reportEmergency('description')
             this.alert()
           }}
           textColor='white'
@@ -56,9 +59,6 @@ export default class Slider extends Component {
           sliderColor='white'
           text='Slide To Confirm'
         />
-          <Paragraph style = {styles.text}>
-            Slide to the right to confirm that there is an active shooter. This function will call the police.
-          </Paragraph>
 
         </View>
       </View>
@@ -83,11 +83,6 @@ const styles = StyleSheet.create({
   topRightIcon: {
     marginLeft: screenWidth*0.8,
     top: screenHeight*0.057,
-  },
-  slider: {
-    fontFamily: 'Lato-Regular',
-    textAlign: 'center',
-    fontSize: screenWidth*0.08,
   },
   text: {
     marginLeft: screenWidth*0.02,

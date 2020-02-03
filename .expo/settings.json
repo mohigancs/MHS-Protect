@@ -1,6 +1,6 @@
 {
-  "dev": true,
-  "minify": false,
+  "dev": false,
+  "minify": true,
   "hostType": "lan",
   "lanType": "ip",
   "urlRandomness": "t3-q6y",

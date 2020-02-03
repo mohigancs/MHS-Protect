@@ -7,7 +7,8 @@ import ConfirmScreen from './src/screens/ConfirmScreen'
 import ChatScreen from './src/screens/ChatScreen'
 import MapScreen from './src/screens/MapScreen'
 import SliderScreen from './src/screens/SliderScreen'
-
+import RequestScreen from './src/screens/RequestScreen'
+import TutorialScreen from './src/screens/TutorialScreen'
 import firebase from 'firebase'
 import { firebaseConfig } from './config'
 
@@ -29,6 +30,12 @@ const MainStack = createStackNavigator({
   Slider: {
     screen: SliderScreen
   },
+  Request: {
+    screen: RequestScreen
+  },
+  Tutorial: {
+    screen: TutorialScreen
+  }
 }, {
   initialRouteName: 'Home',
   headerMode: 'none',

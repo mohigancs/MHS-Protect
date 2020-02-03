@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Text, Alert, Modal, View, ScrollView, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native'
 import { IconButton, Paragraph } from 'react-native-paper'
 import { Notifications } from 'expo'
-import AlertAsync from "react-native-alert-async"
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
 import FlashMessage from 'react-native-flash-message'
@@ -16,37 +15,9 @@ export default class HomeScreen extends Component {
   user = this.props.navigation.getParam('user','error')
   state = {
       assetsLoaded: false,
-      modalVisible: false,
-      helpModalVisible: false,
-  }
-  
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible})
-  }
-  setHelpModalVisible(visible) {
-    this.setState({helpModalVisible: visible})
   }
 
-  alert = async () => {
-    const choice = await AlertAsync(
-      'Message Sent',
-      '',
-      [
-        {text: 'OK', onPress: () => 'yes'},
-      ],
-      {
-        cancelable: true,
-        onDismiss: () => 'yes',
-      },
-    )
-  
-    if (choice === 'yes') {
-      this.setModalVisible(false)
-    }
-    else {
-    }
-  }
-  
+
   registerForPushNotificationsAsync = async() => {
     const { status: existingStatus } = await Permissions.getAsync(
       Permissions.NOTIFICATIONS
@@ -108,60 +79,11 @@ export default class HomeScreen extends Component {
             size = {screenWidth*0.08}
             color = 'black'
             onPress={() => {
-              this.setHelpModalVisible(true)
+              this.props.navigation.navigate('Tutorial')
             }}
           />
         </View>
-        <Modal
-              visible={this.state.helpModalVisible}
-              animationType= 'slide'
-              onRequestClose={() => {
-                this.setHelpModalVisible(false)
-                }}>
-              <View style = {styles.contentContainer}>
-                <View style = {styles.horizontalModalContainer}>
-                <IconButton style = {styles.topRightIcon}
-                  icon = 'close-box-outline'
-                  color = 'black'
-                  size = {screenWidth*0.08}
-                  onPress={() => {
-                      this.setHelpModalVisible(false)
-                  }}
-                />
-                </View>
-                <View style = {styles.modalContainer}>
-                  <Image
-                    style={styles.modalImage}
-                    source={require('../images/logo.png')} 
-                  />
-                  <Paragraph style = {styles.text}>
-                    Welcome to MHS-Protect, an app dedicated to keeping our school safe.
-                  </Paragraph>
-                  <Paragraph>
-                  </Paragraph>
-                  <Paragraph style = {styles.text}>
-                    Tutorial:
-                  </Paragraph>
-                  <Paragraph style = {styles.tutorialText}>
-                    The Messaging Icon shows a teacher groupchat.
-                  </Paragraph>
-                  <Paragraph style = {styles.tutorialText}>
-                    The 'REQUEST HELP' button is for classroom emergencies, such as medical complications or fights.
-                  </Paragraph>
-                  <Paragraph style = {styles.tutorialText}>
-                    The 'EMERGENCY ALERT' button is ONLY for active shooter situations. It will place an automated call to the police.
-                  </Paragraph>
-                  <Paragraph style = {styles.tutorialText}>
-                    The Map Icon shows the user a map of MHS that has pins placed where active shooters have been reported.
-                  </Paragraph>
-                  <Paragraph></Paragraph>
-                  <Paragraph style = {{fontFamily: 'Lato-Regular', textAlign: 'center'}}>
-                    Created by: Michael Hoefler, Craig Dombrowski, Amanda Wang, Geoffrey Swisher, Alice Guo
-                  </Paragraph>
-                </View>
-              </View>
-          </Modal>
-
+              
 
         <View style = {styles.container}>
           <Image
@@ -172,61 +94,26 @@ export default class HomeScreen extends Component {
           <TouchableOpacity 
             style={styles.emergency}
             onPress={() => {
-              this.props.navigation.navigate('Slider')
+              Alert.alert(
+                'Are you sure you want to report an emergency?',
+                '$500 fine for false alarms',
+                [
+                  {text: 'No', onPress: () => {}},
+                  {text: 'Yes', onPress: () => {
+                    this.props.navigation.navigate('Slider')
+                  }},
+                ],
+                {cancelable: false}
+              )
             }}
             >
             <Text style = {styles.buttonText}>EMERGENCY ALERT</Text>
           </TouchableOpacity>
 
-          <Modal
-              visible={this.state.modalVisible}
-              animationType="slide"
-              onRequestClose={() => {
-                this.setModalVisible(false)
-                }}>
-              <View style = {styles.contentContainer}>
-                <View style = {styles.horizontalModalContainer}>
-                <IconButton style = {styles.topRightIcon}
-                  icon = 'close-box-outline'
-                  color = 'black'
-                  size = {screenWidth*0.08}
-                  onPress={() => {
-                      this.setModalVisible(false)
-                  }}
-                />
-                </View>
-                <View style = {styles.modalContainer}>
-                  <Text style = {styles.modalTitle}>Please provide details</Text>
-                  <TextInput 
-                    style={styles.input}
-                    placeholder="Details"
-                    placeholderTextColor = "black"
-                    returnKeyType="go"
-                    multiline = {true}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    onChange={(text) => this.details = text.nativeEvent.text}
-                
-                  />
-                  <TouchableOpacity 
-                    style = {styles.modalButton}
-                    onPress = {() => {
-                      db.requestHelp(this.details)
-                      //TODO: need to figure out how to text without bringing user out of app
-                      //Communications.textWithoutEncoding('3048255608', this.details)
-                      this.alert()
-                    }}
-                    >
-                    <Text style = {styles.modalButtonText}>SUBMIT</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-          </Modal>
-
           <TouchableOpacity 
             style={styles.help}
             onPress={() => {
-              this.setModalVisible(true)   
+              this.props.navigation.navigate('Request')   
             }}
           >
             <Text style = {styles.buttonText}>REQUEST HELP</Text>
@@ -270,17 +157,8 @@ const styles = StyleSheet.create({
     flex: 2,
     flexDirection: 'row',
   },
-  horizontalModalContainer: {
-    flex:1,
-    flexDirection: 'row',
-  },
   contentContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalContainer: {
-    flex: 17,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -334,13 +212,6 @@ const styles = StyleSheet.create({
     width: screenWidth*0.487,
     bottom: screenHeight*0.035,
     marginBottom: screenHeight*0.05,
-    position: 'relative',
-    resizeMode: 'contain',
-  },
-  modalImage: {
-    height: screenHeight*0.267,
-    width: screenWidth*0.487,
-    marginBottom: screenHeight*0.02,
     position: 'relative',
     resizeMode: 'contain',
   },
