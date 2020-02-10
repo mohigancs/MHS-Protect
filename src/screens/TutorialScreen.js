@@ -37,70 +37,65 @@ export default class AdminScreen extends React.Component {
       
     render() {
         return (
-          <Swiper style = {styles.wrapper} showsButtons={false}>
-          <View style={styles.slide1}>
-            <Image
-              style={styles.image}
-              source={require('../images/logo.png')} 
-            />
-            <Text style={styles.text}>Hello Swiper</Text>
-          </View>
+        <Swiper style = {styles.wrapper} showsButtons={false}>
+           <View style = {styles.contentContainer}>
+              <View style = {styles.horizontalContainer}>
+                <IconButton style = {styles.topRightIcon}
+                  icon = 'close-box-outline'
+                  color = 'black'
+                  size = {screenWidth*0.08}
+                  onPress={() => {
+                    this.props.navigation.navigate('Home')
+                  }}
+                />
+                </View>
+              <View style = {styles.slide1}>
+                <Image
+                  style={styles.image}
+                  source={require('../images/logo.png')} 
+                />
+                <Paragraph style = {styles.text}>
+                  Welcome to MHS-Protect, an app dedicated to keeping our school safe.
+                  Swipe for the tutorial.
+                </Paragraph>
+              </View>
+            </View>
+
+            <View style = {styles.contentContainer}>
+              <View style = {styles.horizontalContainer}>
+                <IconButton style = {styles.topRightIcon}
+                  icon = 'close-box-outline'
+                  color = 'black'
+                  size = {screenWidth*0.08}
+                  onPress={() => {
+                    this.props.navigation.navigate('Home')
+                  }}
+                />
+                </View>
+              <View style = {styles.slide2}>
+              <TouchableOpacity 
+                style={styles.help}
+                >
+              <Text style = {styles.buttonText}>REQUEST HELP</Text>
+              </TouchableOpacity>
+                <Paragraph style = {styles.text}>
+                  This is the REQUEST HELP button. Press this for medical emergencies, fights, etc.
+                  This will notify the nurse, administrators, and nearby teachers.
+                </Paragraph>
+              </View>
+            </View>
   
   
-          <View style={styles.slide2}>
-            <Text style={styles.text}>Beautiful</Text>
-          </View>
-  
-  
-          <View style={styles.slide3}>
-            <Text style={styles.text}>And simple</Text>
-          </View>
-  
+            <View style={styles.slide3}>
+              <Text style={styles.text}>emergency</Text>
+            </View>
+            <View style={styles.slide4}>
+              <Text style={styles.text}>map and chat</Text>
+            </View>
+            <View style={styles.slide5}>
+              <Text style={styles.text}>creds</Text>
+            </View>
         </Swiper>
-/* <View style = {styles.contentContainer}>
-    <View style = {styles.horizontalContainer}>
-        <IconButton style = {styles.topRightIcon}
-            icon = 'close-box-outline'
-            color = 'black'
-            size = {screenWidth*0.08}
-            onPress={() => {
-                this.props.navigation.navigate('Home')
-            }}
-        />
-    </View>
-    <View style = {styles.container}>
-          <Image
-            style={styles.image}
-            source={require('../images/logo.png')} 
-        />
-        <Paragraph style = {styles.text}>
-            Welcome to MHS-Protect, an app dedicated to keeping our school safe.
-        </Paragraph><Paragraph>
-        </Paragraph>
-        <Paragraph style = {styles.text}>
-            Tutorial:
-        </Paragraph>
-        <Paragraph style = {styles.tutorialText}>
-            The Messaging Icon shows a teacher groupchat.
-        </Paragraph>
-        <Paragraph style = {styles.tutorialText}>
-            The 'REQUEST HELP' button is for classroom emergencies, such as medical complications or fights.
-        </Paragraph>
-        <Paragraph style = {styles.tutorialText}>
-            The 'EMERGENCY ALERT' button is ONLY for active shooter situations. It will place an automated call to the police.
-        </Paragraph>
-        <Paragraph style = {styles.tutorialText}>
-            The Map Icon shows the user a map of MHS that has pins placed where active shooters have been reported.
-        </Paragraph>
-        <Paragraph></Paragraph>
-        <Paragraph style = {{fontFamily: 'Lato-Regular', textAlign: 'center'}}>
-            Created by: Michael Hoefler, Craig Dombrowski, Amanda Wang, Geoffrey Swisher, Alice Guo
-        </Paragraph>
-        </View> */
-
-
-//     </View>
-// </View>
         )
     }
 }
@@ -108,22 +103,32 @@ export default class AdminScreen extends React.Component {
 const styles = StyleSheet.create({
   wrapper: {},
   slide1: {
-    flex: 1,
+    flex: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#9DD6EB'
   },
   slide2: {
-    flex: 1,
-    justifyContent: 'center',
+    flex: 10,
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    backgroundColor: '#97CAE5'
   },
   slide3: {
-    flex: 1,
+    flex: 10,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#92BBD9'
+  },
+  slide4: {
+    flex: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'green',
+  },
+  slide5: {
+    flex:10, 
+    justifyContent: 'center',
+    alignContent: 'center',
+    backgroundColor: 'gray',
   },
   horizontalContainer: {
     flex: 2,
@@ -131,11 +136,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  container: {
-    flex: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -169,6 +169,15 @@ const styles = StyleSheet.create({
       marginBottom: screenHeight*0.05,
       position: 'relative',
       resizeMode: 'contain',
+    },
+    help: {
+      width: screenWidth*0.62,
+      height: screenHeight*0.0534,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderColor: 'orange',
+      borderWidth: 2.5,
+      borderRadius: 5,
     },
     buttonText: {
       fontSize: screenWidth*0.0487,
