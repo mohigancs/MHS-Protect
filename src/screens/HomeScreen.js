@@ -5,7 +5,6 @@ import { Notifications } from 'expo'
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
 import FlashMessage from 'react-native-flash-message'
-import SlideToConfirm from 'react-native-slide-to-confirm'
 import Database from './components/Database'
 const db = new Database()
 const screenWidth = Math.round(Dimensions.get('window').width)
@@ -167,27 +166,10 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
   },
-  input: {
-    width: screenWidth*0.73,
-    height: screenHeight*0.13,
-    backgroundColor: '#d3d3d3',
-    borderColor: 'black',
-    borderWidth: 0.5,
-    borderRadius: 5,
-    textAlignVertical: 'top',
-    fontSize: screenWidth*0.0487,
-    paddingHorizontal: screenWidth*0.0487,
-    marginBottom: screenHeight*0.0344,
-},
   title: {
       fontFamily: 'Lato-Bold',
       fontSize: screenWidth*0.0633,
       marginBottom: screenHeight*0.02,
-  },
-  modalTitle: {
-    fontFamily: 'Lato-Bold',
-    fontSize: screenWidth*0.0633,
-    marginBottom: screenHeight*0.05,
   },
   topRightIcon: {
     marginLeft: screenWidth*0.8,
@@ -198,13 +180,6 @@ const styles = StyleSheet.create({
     marginRight: screenWidth*0.02,
     fontFamily: 'Lato-Regular',
     textAlign: 'center',
-    fontSize: screenWidth*0.049,
-  },
-  tutorialText: {
-    marginLeft: screenWidth*0.02,
-    marginRight: screenWidth*0.02,
-    fontFamily: 'Lato-Regular',
-    textAlign: 'left',
     fontSize: screenWidth*0.049,
   },
   image: {
@@ -235,21 +210,6 @@ const styles = StyleSheet.create({
     fontSize: screenWidth*0.0487,
     fontFamily: 'Lato-Bold',
     color: 'black',
-  },
-  modalButton: {
-    width: screenWidth*0.7299,
-    height: screenHeight*0.0534,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#c80d00',
-    borderColor: '#c80d00',
-    borderWidth: 1,
-    borderRadius: 5,
-  },
-  modalButtonText: {
-    fontSize: screenWidth*0.0487,
-    fontFamily: 'Lato-Bold',
-    color: 'white',
   },
   emergency: {
     width: screenWidth*0.62,

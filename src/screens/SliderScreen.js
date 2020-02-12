@@ -33,7 +33,7 @@ export default class Slider extends Component {
       <View style = {styles.contentContainer}>
         <View style = {styles.horizontalContainer}>
           <IconButton style = {styles.topRightIcon}
-            icon = 'close-box-outline'
+            icon = 'close'
             color = 'black'
             size = {screenWidth*0.08}
             onPress={() => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, Alert, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView} from 'react-native'
+import { Text, Alert, View, ScrollView, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView } from 'react-native'
 import { IconButton, Paragraph } from 'react-native-paper'
 import { Notifications } from 'expo'
 import AlertAsync from "react-native-alert-async"
@@ -66,28 +66,31 @@ export default class AdminScreen extends React.Component {
                       this.props.navigation.navigate('Home')
                   }}
                 />
-                
                 </View>
                 <View style = {styles.container}>
-                  <View>
-                  <TouchableOpacity
-                   onPress= {() => {
-                    this.props.navigation.navigate('Medical')
-                  }}
-                  >
-                    <Image
-                      style={styles.image}
-                      source={require('../images/medical.png')} 
-                    />
-                    <Text>hola</Text>
+                  <Text style = {styles.title}>Please provide details</Text>
+                  <TextInput 
+                    style={styles.input}
+                    placeholder="Details"
+                    placeholderTextColor = "black"
+                    returnKeyType="go"
+                    multiline = {true}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    onChange={(text) => this.details = text.nativeEvent.text}
+                
+                  />
+                  <TouchableOpacity 
+                    style = {styles.modalButton}
+                    onPress = {() => {
+                      db.requestHelp(this.details)
+                      //TODO: need to figure out how to text without bringing user out of app
+                      //Communications.textWithoutEncoding('3048255608', this.details)
+                      this.alert()
+                    }}
+                    >
+                    <Text style = {styles.modalButtonText}>SUBMIT</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity
-                   onPress= {() => {
-                    this.props.navigation.navigate('Fight')
-                  }}
-                  >
-                  </TouchableOpacity>
-                  </View>
                 </View>
             </KeyboardAvoidingView>
         )
@@ -106,13 +109,30 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 10,
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
     },
+    input: {
+      width: screenWidth*0.73,
+      height: screenHeight*0.13,
+      backgroundColor: '#d3d3d3',
+      borderColor: 'black',
+      borderWidth: 0.5,
+      borderRadius: 5,
+      textAlignVertical: 'top',
+      fontSize: screenWidth*0.0487,
+      paddingHorizontal: screenWidth*0.0487,
+      marginBottom: screenHeight*0.0344,
+  },
     title: {
         fontFamily: 'Lato-Bold',
         fontSize: screenWidth*0.0633,
         marginBottom: screenHeight*0.02,
+    },
+    modalTitle: {
+      fontFamily: 'Lato-Bold',
+      fontSize: screenWidth*0.0633,
+      marginBottom: screenHeight*0.05,
     },
     topRightIcon: {
       marginLeft: screenWidth*0.8,
@@ -125,11 +145,34 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontSize: screenWidth*0.049,
     },
-    image: {
-      height: screenHeight*0.2,
-      width: screenWidth*0.2,
-      bottom: screenHeight*0.035,
-      position: 'relative',
-      resizeMode: 'contain',
+    buttonText: {
+      fontSize: screenWidth*0.0487,
+      fontFamily: 'Lato-Bold',
+      color: 'black',
+    },
+    modalButton: {
+      width: screenWidth*0.7299,
+      height: screenHeight*0.0534,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#c80d00',
+      borderColor: '#c80d00',
+      borderWidth: 1,
+      borderRadius: 5,
+    },
+    modalButtonText: {
+      fontSize: screenWidth*0.0487,
+      fontFamily: 'Lato-Bold',
+      color: 'white',
+    },
+    emergency: {
+      width: screenWidth*0.62,
+      height: screenHeight*0.0534,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderColor: '#c80d00',
+      borderWidth: 2.5,
+      borderRadius: 5,
+      marginBottom: screenHeight*0.0344,
     },
   })

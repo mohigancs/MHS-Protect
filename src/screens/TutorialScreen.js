@@ -41,7 +41,7 @@ export default class AdminScreen extends React.Component {
            <View style = {styles.contentContainer}>
               <View style = {styles.horizontalContainer}>
                 <IconButton style = {styles.topRightIcon}
-                  icon = 'close-box-outline'
+                  icon = 'close'
                   color = 'black'
                   size = {screenWidth*0.08}
                   onPress={() => {
@@ -49,7 +49,7 @@ export default class AdminScreen extends React.Component {
                   }}
                 />
                 </View>
-              <View style = {styles.slide1}>
+              <View style = {styles.slide}>
                 <Image
                   style={styles.image}
                   source={require('../images/logo.png')} 
@@ -64,7 +64,7 @@ export default class AdminScreen extends React.Component {
             <View style = {styles.contentContainer}>
               <View style = {styles.horizontalContainer}>
                 <IconButton style = {styles.topRightIcon}
-                  icon = 'close-box-outline'
+                  icon = 'close'
                   color = 'black'
                   size = {screenWidth*0.08}
                   onPress={() => {
@@ -72,7 +72,7 @@ export default class AdminScreen extends React.Component {
                   }}
                 />
                 </View>
-              <View style = {styles.slide2}>
+              <View style = {styles.slide}>
               <TouchableOpacity 
                 style={styles.help}
                 >
@@ -86,13 +86,13 @@ export default class AdminScreen extends React.Component {
             </View>
   
   
-            <View style={styles.slide3}>
+            <View style={styles.slide}>
               <Text style={styles.text}>emergency</Text>
             </View>
-            <View style={styles.slide4}>
+            <View style={styles.slide}>
               <Text style={styles.text}>map and chat</Text>
             </View>
-            <View style={styles.slide5}>
+            <View style={styles.slide}>
               <Text style={styles.text}>creds</Text>
             </View>
         </Swiper>
@@ -102,33 +102,10 @@ export default class AdminScreen extends React.Component {
 
 const styles = StyleSheet.create({
   wrapper: {},
-  slide1: {
+  slide: {
     flex: 10,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  slide2: {
-    flex: 10,
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-  },
-  slide3: {
-    flex: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9'
-  },
-  slide4: {
-    flex: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'green',
-  },
-  slide5: {
-    flex:10, 
-    justifyContent: 'center',
-    alignContent: 'center',
-    backgroundColor: 'gray',
   },
   horizontalContainer: {
     flex: 2,
