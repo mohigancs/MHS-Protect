@@ -58,6 +58,15 @@ export default class AdminScreen extends React.Component {
         return (
             <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" enabled>
                 <View style = {styles.horizontalContainer}>
+                <IconButton style = {styles.topLeftIcon}
+                  icon = 'arrow-left'
+                  color = 'black'
+                  size = {screenWidth*0.08}
+                  onPress={() => {
+                    this.props.navigation.navigate('Request')
+                  }}
+                >
+                </IconButton>
                 <IconButton style = {styles.topRightIcon}
                   icon = 'close'
                   color = 'black'
@@ -135,7 +144,11 @@ const styles = StyleSheet.create({
       marginBottom: screenHeight*0.05,
     },
     topRightIcon: {
-      marginLeft: screenWidth*0.8,
+      marginLeft: screenWidth*0.285,
+      top: screenHeight*0.057,
+    },
+    topLeftIcon: {
+      marginRight: screenWidth*0.285,
       top: screenHeight*0.057,
     },
     text: {

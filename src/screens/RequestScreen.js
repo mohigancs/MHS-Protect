@@ -69,25 +69,39 @@ export default class AdminScreen extends React.Component {
                 
                 </View>
                 <View style = {styles.container}>
-                  <View>
-                  <TouchableOpacity
+                  <TouchableOpacity style = {styles.button}
                    onPress= {() => {
                     this.props.navigation.navigate('Medical')
                   }}
                   >
                     <Image
                       style={styles.image}
-                      source={require('../images/medical.png')} 
+                      source={require('../images/medkit.png')} 
                     />
-                    <Text>hola</Text>
+                    <Text style = {styles.medText}>Medical Emergency</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity
+                  <TouchableOpacity style = {styles.button}
                    onPress= {() => {
                     this.props.navigation.navigate('Fight')
                   }}
                   >
+
+                    <Image
+                      style={styles.image}
+                      source={require('../images/fight.png')} 
+                    />
+                    <Text style = {styles.medText}>Fight</Text>
+                    
                   </TouchableOpacity>
-                  </View>
+
+                  <TouchableOpacity style = {styles.container}
+                    onPress= {() => {
+                      this.props.navigation.navigate('Other')
+                    }}
+                  >
+                    <Text style = {styles.otherText}>REPORT OTHER</Text>
+                    
+                  </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
         )
@@ -106,7 +120,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 10,
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignItems: 'center',
     },
     title: {
@@ -118,17 +132,32 @@ const styles = StyleSheet.create({
       marginLeft: screenWidth*0.8,
       top: screenHeight*0.057,
     },
+    button: {
+      marginBottom: screenHeight*0.08,
+    },
     text: {
-      marginLeft: screenWidth*0.02,
-      marginRight: screenWidth*0.02,
       fontFamily: 'Lato-Regular',
       textAlign: 'center',
       fontSize: screenWidth*0.049,
+    },
+    otherText: {
+      fontFamily: 'Lato-Bold',
+      textAlign: 'center',
+      fontSize: screenWidth*0.049,
+      top: screenWidth*0.2,
+      position: 'relative',
+    },
+    medText: {
+      fontFamily: 'Lato-Regular',
+      textAlign: 'center',
+      fontSize: screenWidth*0.049,
+      position: 'relative',
     },
     image: {
       height: screenHeight*0.2,
       width: screenWidth*0.2,
       bottom: screenHeight*0.035,
+      alignSelf: 'center',
       position: 'relative',
       resizeMode: 'contain',
     },

@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   title: {
       fontFamily: 'Lato-Bold',
       fontSize: screenWidth*0.0633,
-      marginBottom: screenHeight*0.02,
+      marginBottom: screenHeight*0.04,
   },
   topRightIcon: {
     marginLeft: screenWidth*0.8,

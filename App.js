@@ -10,6 +10,8 @@ import SliderScreen from './src/screens/SliderScreen'
 import RequestScreen from './src/screens/RequestScreen'
 import TutorialScreen from './src/screens/TutorialScreen'
 import MedicalScreen from './src/screens/Medical'
+import FightScreen from './src/screens/Fight'
+import OtherScreen from './src/screens/Other'
 import firebase from 'firebase'
 import { firebaseConfig } from './config'
 
@@ -40,6 +42,13 @@ const MainStack = createStackNavigator({
   Medical: {
     screen: MedicalScreen
   },
+  Fight: {
+    screen: FightScreen
+  },
+  Other: {
+    screen: OtherScreen
+  },
+
 }, {
   initialRouteName: 'Home',
   headerMode: 'none',
