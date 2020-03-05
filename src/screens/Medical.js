@@ -1,12 +1,9 @@
-import React, { Component } from 'react'
-import { Text, Alert, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView } from 'react-native'
-import { IconButton, Paragraph } from 'react-native-paper'
-import { Notifications } from 'expo'
+import React, { Component } from 'react';
+import { Dropdown } from 'react-native-material-dropdown';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView } from 'react-native'
+import { IconButton } from 'react-native-paper'
 import AlertAsync from "react-native-alert-async"
-import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
-import FlashMessage from 'react-native-flash-message'
-import SlideToConfirm from 'react-native-slide-to-confirm'
 import Database from './components/Database'
 const db = new Database()
 const screenWidth = Math.round(Dimensions.get('window').width)
@@ -55,53 +52,32 @@ export default class AdminScreen extends React.Component {
       }
       
     render() {
-        return (
-            <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" enabled>
-                <View style = {styles.horizontalContainer}>
-                <IconButton style = {styles.topLeftIcon}
-                  icon = 'arrow-left'
-                  color = 'black'
-                  size = {screenWidth*0.08}
-                  onPress={() => {
-                    this.props.navigation.navigate('Request')
-                  }}
-                >
-                </IconButton>
-                <IconButton style = {styles.topRightIcon}
-                  icon = 'close'
-                  color = 'black'
-                  size = {screenWidth*0.08}
-                  onPress={() => {
-                      this.props.navigation.navigate('Home')
-                  }}
-                />
-                </View>
+      let data = [{
+        value: 'Seizure',
+      }, {
+        value: 'Allergic Reaction',
+      }, {
+        value: 'Overdose',
+      }, {
+        value: 'Other'
+      }];
+        return ( 
                 <View style = {styles.container}>
-                  <Text style = {styles.title}>Please provide details</Text>
-                  <TextInput 
-                    style={styles.input}
-                    placeholder="Details"
-                    placeholderTextColor = "black"
-                    returnKeyType="go"
-                    multiline = {true}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    onChange={(text) => this.details = text.nativeEvent.text}
-                
+                  <Dropdown
+                  pickerStyle={{borderBottomColor:'transparent',borderWidth: 0}}
+                  dropdownOffset={{ 'top': 0 }}
+                  containerStyle = {styles.dropdown}
+                  label='Type of Emergency'
+                  data={data}
                   />
-                  <TouchableOpacity 
-                    style = {styles.modalButton}
-                    onPress = {() => {
-                      db.requestHelp(this.details)
-                      //TODO: need to figure out how to text without bringing user out of app
-                      //Communications.textWithoutEncoding('3048255608', this.details)
-                      this.alert()
-                    }}
-                    >
-                    <Text style = {styles.modalButtonText}>SUBMIT</Text>
-                  </TouchableOpacity>
+                  <Dropdown
+                  pickerStyle={{borderBottomColor:'transparent',borderWidth: 0}}
+                  dropdownOffset={{ 'top': 0 }}
+                  containerStyle = {styles.dropdown}
+                  label='Type of Emergency'
+                  data={data}
+                  /> 
                 </View>
-            </KeyboardAvoidingView>
         )
     }
 }
@@ -117,9 +93,13 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     container: {
-        flex: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white',
+    },
+    dropdown: {
+      width: '80%',
     },
     input: {
       width: screenWidth*0.73,

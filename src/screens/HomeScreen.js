@@ -110,6 +110,15 @@ export default class HomeScreen extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity 
+            style={styles.medical}
+            onPress={() => {
+              this.props.navigation.navigate('Medical')   
+            }}
+          >
+            <Text style = {styles.buttonText}>MEDICAL EMERGENCY</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
             style={styles.help}
             onPress={() => {
               this.props.navigation.navigate('Request')   
@@ -195,7 +204,17 @@ const styles = StyleSheet.create({
     height: screenHeight*0.0534,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: 'orange',
+    borderColor: '#FA7921',
+    borderWidth: 2.5,
+    borderRadius: 5,
+    marginBottom: screenHeight*0.0333,
+  },
+  medical: {
+    width: screenWidth*0.62,
+    height: screenHeight*0.0534,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: '#0EAFFA',
     borderWidth: 2.5,
     borderRadius: 5,
     marginBottom: screenHeight*0.0333,
@@ -216,7 +235,7 @@ const styles = StyleSheet.create({
     height: screenHeight*0.0534,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: '#c80d00',
+    borderColor: '#FF0000',
     borderWidth: 2.5,
     borderRadius: 5,
     marginBottom: screenHeight*0.0344,
