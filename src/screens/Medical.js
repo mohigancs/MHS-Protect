@@ -63,6 +63,8 @@ export default class AdminScreen extends React.Component {
       }];
         return ( 
                 <View style = {styles.container}>
+
+                  <Text style = {styles.title}>Medical Emergency</Text>
                   <Dropdown
                   pickerStyle={{borderBottomColor:'transparent',borderWidth: 0}}
                   dropdownOffset={{ 'top': 0 }}
@@ -70,13 +72,7 @@ export default class AdminScreen extends React.Component {
                   label='Type of Emergency'
                   data={data}
                   />
-                  <Dropdown
-                  pickerStyle={{borderBottomColor:'transparent',borderWidth: 0}}
-                  dropdownOffset={{ 'top': 0 }}
-                  containerStyle = {styles.dropdown}
-                  label='Type of Emergency'
-                  data={data}
-                  /> 
+                  
                 </View>
         )
     }
