@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dropdown } from 'react-native-material-dropdown';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView } from 'react-native'
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView, Picker } from 'react-native'
 import { IconButton } from 'react-native-paper'
 import AlertAsync from "react-native-alert-async"
 import * as Font from 'expo-font'
@@ -52,35 +52,87 @@ export default class AdminScreen extends React.Component {
       }
       
     render() {
-      let data = [{
-        value: 'Seizure',
-      }, {
-        value: 'Allergic Reaction',
-      }, {
-        value: 'Overdose',
-      }, {
-        value: 'Other'
-      }];
+        let threat = ['Gun', 'Bomb', 'Knife'];
+        let location = ['Main Building', 'Science Wing', 'Cafeteria', 'Gym', 'Far Side'];
+        let race = ['White', 'Black', 'Asian', 'Latino', 'Pacific Islander'];
+        let gender = ['Male', 'Female'];
+        let injured = ['1', '2', '3', '4', '5 or more'];
+
         return ( 
                 <View style = {styles.container}>
-                  <Text style = {styles.title}>Medical Emergency</Text>
+                  <Text style = {styles.title}>Intruder Alert</Text>
+                    <Text>Type of Threat</Text>
+                    <Picker
+                        style={styles.dropdown}
+                        mode="dropdown"
+                        selectedValue={this.state.selected}
+                        onValueChange={()=>{}}> 
+                        {threat.map((item, index) => {
+                            return (<Picker.Item label={item} value={index} key={index}/>) 
+                        })}
+                    </Picker>
+
+                    <Text>Location</Text>
+                    <Picker
+                        style={styles.dropdown}
+                        mode="dropdown"
+                        selectedValue={this.state.selected}
+                        onValueChange={()=>{}}> 
+                        {location.map((item, index) => {
+                            return (<Picker.Item label={item} value={index} key={index}/>) 
+                        })}
+                    </Picker>
+
+                    <Text>Race</Text>
+                    <Picker
+                        style={styles.dropdown}
+                        mode="dropdown"
+                        selectedValue={this.state.selected}
+                        onValueChange={()=>{}}> 
+                        {race.map((item, index) => {
+                            return (<Picker.Item label={item} value={index} key={index}/>) 
+                        })}
+                    </Picker>
+
+                    <Text>Gender</Text>
+                    <Picker
+                        style={styles.dropdown}
+                        mode="dropdown"
+                        selectedValue={this.state.selected}
+                        onValueChange={()=>{}}> 
+                        {gender.map((item, index) => {
+                            return (<Picker.Item label={item} value={index} key={index}/>) 
+                        })}
+                    </Picker>
+
+                    <Text>Number Injured</Text>
+                    <Picker
+                        style={styles.dropdown}
+                        mode="dropdown"
+                        selectedValue={this.state.selected}
+                        onValueChange={()=>{}}> 
+                        {injured.map((item, index) => {
+                            return (<Picker.Item label={item} value={index} key={index}/>) 
+                        })}
+                    </Picker>
+
                   <TextInput
                     style={styles.input}
-                    placeholder="Initials of Student"
+                    placeholder="Clothing Description"
                     placeholderTextColor = "black"
                     returnKeyType="default"
                     autoCapitalize="characters"
                     autoCorrect={false}
                     onChange={(text) => this.initials = text.nativeEvent.text}
                   />
-                  <Dropdown
-                    pickerStyle={{borderBottomColor:'transparent',borderWidth: 0}}
-                    dropdownOffset={{ 'top': 0 }}
-                    containerStyle = {styles.dropdown}
-                    label='Type of Emergency'
-                    data={data}
-                  />
-                  
+                  <TouchableOpacity 
+                        style={styles.button}
+                        onPress={() => {
+                            console.log("Submitted Emergency Information")
+                        }}
+                        >
+                            <Text style = {styles.text}>SUBMIT</Text>
+                    </TouchableOpacity>
                 </View>
         )
     }
@@ -103,8 +155,14 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
     },
     dropdown: {
-      width: screenWidth*0.7299,
-      height: screenHeight*0.0534,
+        width: screenWidth*0.7299,
+        height: screenHeight*0.0534,
+        backgroundColor: '#d3d3d3',
+        shadowRadius: 2,
+        shadowColor: 'rgba(0, 0, 0, 1.0)',
+        shadowOpacity: 0.54,
+        shadowOffset: { width: 0, height: 2 },
+        overflow: 'hidden',
     },
     input: {
       width: screenWidth*0.7299,
