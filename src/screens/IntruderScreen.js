@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import { Dropdown } from 'react-native-material-dropdown';
+import React from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView, Picker } from 'react-native'
-import { IconButton } from 'react-native-paper'
 import AlertAsync from "react-native-alert-async"
 import * as Font from 'expo-font'
 import Database from './components/Database'
@@ -52,10 +50,10 @@ export default class AdminScreen extends React.Component {
       }
       
     render() {
-        let threat = ['Gun', 'Bomb', 'Knife'];
-        let location = ['Main Building', 'Science Wing', 'Cafeteria', 'Gym', 'Far Side'];
-        let race = ['White', 'Black', 'Asian', 'Latino', 'Pacific Islander'];
-        let gender = ['Male', 'Female'];
+        let threat = ['Select Item', 'Gun', 'Bomb', 'Knife'];
+        let location = ['Select Item', 'Main Building', 'Science Wing', 'Cafeteria', 'Gym', 'Far Side'];
+        let race = ['Select Item', 'White', 'Black', 'Asian', 'Latino', 'Pacific Islander'];
+        let gender = ['Select Item', 'Male', 'Female'];
         let injured = ['1', '2', '3', '4', '5 or more'];
 
         return ( 
@@ -155,14 +153,17 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
     },
     dropdown: {
-        width: screenWidth*0.7299,
-        height: screenHeight*0.0534,
-        backgroundColor: '#d3d3d3',
-        shadowRadius: 2,
-        shadowColor: 'rgba(0, 0, 0, 1.0)',
-        shadowOpacity: 0.54,
-        shadowOffset: { width: 0, height: 2 },
-        overflow: 'hidden',
+      width: screenWidth*0.7299,
+      height: screenHeight*0.0534,
+      backgroundColor: '#d3d3d3',
+      marginBottom: screenHeight*0.027,
+      marginTop: screenHeight*0.027,
+      borderColor: 'black',
+      borderWidth: 0.5,
+      borderRadius: 5,
+      fontFamily: 'Lato-Bold',
+      fontSize: screenWidth*0.0487,
+      paddingHorizontal: screenWidth*0.0487,
     },
     input: {
       width: screenWidth*0.7299,
