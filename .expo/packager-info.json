@@ -1,9 +1,9 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 12692,
-  "expoServerNgrokUrl": "https://iw-83k.anonymous.mhs-protect.exp.direct",
-  "packagerNgrokUrl": "https://packager.iw-83k.anonymous.mhs-protect.exp.direct",
-  "ngrokPid": 15400,
+  "packagerPid": 7876,
+  "expoServerNgrokUrl": "https://ae-vct.anonymous.mhs-protect.exp.direct",
+  "packagerNgrokUrl": "https://packager.ae-vct.anonymous.mhs-protect.exp.direct",
+  "ngrokPid": 15444,
   "devToolsPort": 19002
 }

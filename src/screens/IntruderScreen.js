@@ -14,6 +14,18 @@ export default class AdminScreen extends React.Component {
         assetsLoaded: false,
     }
     
+    onPickerValueChange = (value, index) => {
+      this.setState(
+        {
+          pickerSelected: value
+        },
+        () => {
+  
+          console.log(value, index);
+  
+        }
+      );
+    }
 
     async componentDidMount(){
         await Font.loadAsync({
@@ -63,8 +75,8 @@ export default class AdminScreen extends React.Component {
                     <Picker
                         style={styles.dropdown}
                         mode="dropdown"
-                        selectedValue={this.state.selected}
-                        onValueChange={()=>{}}> 
+                        selectedValue={this.state.pickerSelected}
+                        onValueChange={(value, index) => {this.setState({pickerSelected: value})}}> 
                         {threat.map((item, index) => {
                             return (<Picker.Item label={item} value={index} key={index}/>) 
                         })}
@@ -74,8 +86,8 @@ export default class AdminScreen extends React.Component {
                     <Picker
                         style={styles.dropdown}
                         mode="dropdown"
-                        selectedValue={this.state.selected}
-                        onValueChange={()=>{}}> 
+                        selectedValue={this.state.pickerSelected}
+                        onValueChange={(value, index) => this.onPickerValueChange(value, index)}> 
                         {location.map((item, index) => {
                             return (<Picker.Item label={item} value={index} key={index}/>) 
                         })}
@@ -85,8 +97,8 @@ export default class AdminScreen extends React.Component {
                     <Picker
                         style={styles.dropdown}
                         mode="dropdown"
-                        selectedValue={this.state.selected}
-                        onValueChange={()=>{}}> 
+                        selectedValue={this.state.pickerSelected}
+                        onValueChange={(value, index) => this.onPickerValueChange(value, index)}> 
                         {race.map((item, index) => {
                             return (<Picker.Item label={item} value={index} key={index}/>) 
                         })}
@@ -96,8 +108,8 @@ export default class AdminScreen extends React.Component {
                     <Picker
                         style={styles.dropdown}
                         mode="dropdown"
-                        selectedValue={this.state.selected}
-                        onValueChange={()=>{}}> 
+                        selectedValue={this.state.pickerSelected}
+                        onValueChange={(value, index) => this.onPickerValueChange(value, index)}> 
                         {gender.map((item, index) => {
                             return (<Picker.Item label={item} value={index} key={index}/>) 
                         })}
@@ -107,8 +119,8 @@ export default class AdminScreen extends React.Component {
                     <Picker
                         style={styles.dropdown}
                         mode="dropdown"
-                        selectedValue={this.state.selected}
-                        onValueChange={()=>{}}> 
+                        selectedValue={this.state.pickerSelected}
+                        onValueChange={(value, index) => this.onPickerValueChange(value, index)}> 
                         {injured.map((item, index) => {
                             return (<Picker.Item label={item} value={index} key={index}/>) 
                         })}
@@ -153,17 +165,14 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
     },
     dropdown: {
-      width: screenWidth*0.7299,
-      height: screenHeight*0.0534,
-      backgroundColor: '#d3d3d3',
-      marginBottom: screenHeight*0.027,
-      marginTop: screenHeight*0.027,
-      borderColor: 'black',
-      borderWidth: 0.5,
-      borderRadius: 5,
-      fontFamily: 'Lato-Bold',
-      fontSize: screenWidth*0.0487,
-      paddingHorizontal: screenWidth*0.0487,
+        width: screenWidth*0.7299,
+        height: screenHeight*0.0534,
+        backgroundColor: '#d3d3d3',
+        shadowRadius: 2,
+        shadowColor: 'rgba(0, 0, 0, 1.0)',
+        shadowOpacity: 0.54,
+        shadowOffset: { width: 0, height: 2 },
+        overflow: 'hidden',
     },
     input: {
       width: screenWidth*0.7299,
