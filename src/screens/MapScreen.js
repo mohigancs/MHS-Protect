@@ -7,6 +7,8 @@ import FlashMessage from 'react-native-flash-message'
 import Database from './components/Database'
 const db = new Database()
 
+import styles from './components/allStyles'
+
 export default class MapScreen extends Component {
 
   state = {
@@ -79,13 +81,3 @@ export default class MapScreen extends Component {
     db.mapOff()
   }
 }
-
-const styles = StyleSheet.create({
-  absoluteFillView: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  }
-})

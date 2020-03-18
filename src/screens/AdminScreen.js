@@ -5,9 +5,7 @@ import * as Font from 'expo-font'
 
 import Database from './components/Database'
 const db = new Database()
-
-const screenWidth = Dimensions.get('window').width
-const screenHeight = Dimensions.get('window').height
+import styles from './components/allStyles'
 
 export default class AdminScreen extends React.Component {
 
@@ -25,11 +23,11 @@ export default class AdminScreen extends React.Component {
 
     render() {
         return (
-            <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+            <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" enabled>
                 <Text style={styles.title}>Admin Page</Text>
-                <Text style={styles.option}>Add Key for User With ID</Text>
+                <Text style={styles.text}>Add Key for User With ID</Text>
                 <TextInput
-                    style={styles.input}
+                    style={styles.smallInput}
                     placeholder="ID"
                     placeholderTextColor = 'black'
                     returnKeyType="go"
@@ -69,12 +67,12 @@ export default class AdminScreen extends React.Component {
                         //this.iskey(this.id).then((res) => console.log(res))
                     }}
                 >
-                    <Text style = {styles.text}>SUBMIT</Text>
+                    <Text style = {styles.buttonText}>SUBMIT</Text>
                 </TouchableOpacity>
 
                 <Text style={styles.option}>Delete Key for User With ID</Text>
                 <TextInput
-                    style={styles.input}
+                    style={styles.smallInput}
                     placeholder="ID"
                     placeholderTextColor = 'black'
                     returnKeyType="go"
@@ -109,58 +107,9 @@ export default class AdminScreen extends React.Component {
                         )
                     }}
                 >
-                    <Text style = {styles.text}>SUBMIT</Text>
+                    <Text style = {styles.buttonText}>SUBMIT</Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    text: {
-        fontSize: screenWidth*0.0438,
-        fontWeight: 'bold',
-        fontFamily: 'Lato-Bold',
-        color: 'white',
-    },
-    title: {
-        fontSize: screenWidth*0.073,
-        fontFamily: 'Lato-Bold',
-        fontWeight: 'bold',
-        color: '#0a007e',
-        marginBottom: screenHeight*0.0534,
-        marginTop: screenHeight*0.0534,
-    },
-    option: {
-        fontSize: screenWidth*0.0438,
-        fontWeight: 'bold',
-        fontFamily: 'Lato-Bold',
-    },
-    input: {
-        width: '72.99%',
-        height: '5.34%',
-        backgroundColor: '#d9d9d9',
-        marginTop: screenHeight*0.04,
-        borderColor: 'black',
-        borderWidth: 0.5,
-        borderRadius: 5,
-        paddingHorizontal: screenWidth*0.0487,
-    },
-    button: {
-        width: '72.99%',
-        height: '5.34%',
-        marginTop: screenHeight*0.04,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#c80d00',
-        borderColor: '#c80d00',
-        borderWidth: 0.5,
-        borderRadius: 5,
-        marginBottom: screenHeight*0.0668,
-    },
-})

@@ -8,6 +8,8 @@ const screenHeight = Dimensions.get('window').height
 import Database from './components/Database'
 const db = new Database()
 
+import styles from './components/allStyles'
+
 export default class KeyScreen extends React.Component {
     state = {
         assetsLoaded: false,
@@ -32,15 +34,15 @@ export default class KeyScreen extends React.Component {
         const {assetsLoaded} = this.state
         if( assetsLoaded ) {
             return (
-                <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-                    <View style={styles.container}>
+                <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" enabled>
+                    <View style={styles.contentContainer}>
                         <Image
-                            style={styles.image}
+                            style={styles.logoImage}
                             source={require('../images/logo.png')} 
                         />
-                        <Text style={styles.title}>Enter Your Key Below</Text>
+                        <Text style={styles.keyTitle}>Enter Your Key Below</Text>
                         <TextInput
-                            style={styles.input}
+                            style={styles.smallInput}
                             placeholder="Access Code"
                             placeholderTextColor = "black"
                             returnKeyType="go"
@@ -49,8 +51,6 @@ export default class KeyScreen extends React.Component {
                             onChange={(text) => this.key = text.nativeEvent.text}
                             
                             onSubmitEditing={() => {
-                                console.log(screenWidth)
-                                console.log(screenHeight)
                                 db.isValidKey(this.key).then(result => {
                                     if (result[0]) {
                                         //Alert.alert('Success!', 'Your key was found in the database.')
@@ -80,7 +80,7 @@ export default class KeyScreen extends React.Component {
                             })
                         }}
                         >
-                            <Text style = {styles.text}>SUBMIT</Text>
+                            <Text style = {styles.buttonText}>SUBMIT</Text>
                         </TouchableOpacity>
                     </View>
                 </KeyboardAvoidingView>
@@ -93,50 +93,3 @@ export default class KeyScreen extends React.Component {
         }
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    image: {
-        height: screenHeight*0.267,
-        width: screenWidth*0.487,
-        resizeMode: 'contain',
-        marginBottom: screenHeight*0.05
-    },
-    title: {
-        fontFamily: 'Lato-Bold',
-        fontSize: screenWidth*0.0833,
-    },
-    text: {
-        fontSize: screenWidth*0.06,
-        fontFamily: 'Lato-Bold',
-        color: 'white',
-    },
-    input: {
-        width: screenWidth*0.7299,
-        height: screenHeight*0.0534,
-        backgroundColor: '#d3d3d3',
-        marginBottom: screenHeight*0.027,
-        marginTop: screenHeight*0.027,
-        borderColor: 'black',
-        borderWidth: 0.5,
-        borderRadius: 5,
-        fontFamily: 'Lato-Bold',
-        fontSize: screenWidth*0.0487,
-        paddingHorizontal: screenWidth*0.0487,
-    },
-    button: {
-        width: screenWidth*0.7299,
-        height: screenHeight*0.0534,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#c80d00',
-        borderColor: '#c80d00',
-        borderWidth: 0.5,
-        borderRadius: 5,
-        resizeMode: 'cover',
-    },
-})

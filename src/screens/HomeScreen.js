@@ -7,8 +7,8 @@ import * as Font from 'expo-font'
 import FlashMessage from 'react-native-flash-message'
 import Database from './components/Database'
 const db = new Database()
-const screenWidth = Math.round(Dimensions.get('window').width)
-const screenHeight = Math.round(Dimensions.get('window').height)
+const screenWidth = Dimensions.get('window').width
+import styles from './components/allStyles'
 export default class HomeScreen extends Component {
   details = ''
   user = this.props.navigation.getParam('user','error')
@@ -73,7 +73,7 @@ export default class HomeScreen extends Component {
       <View style={styles.contentContainer}>
 
         <View style = {styles.horizontalContainer}>
-          <IconButton style = {styles.topRightIcon}
+          <IconButton style = {styles.mainTopRightIcon}
             icon= 'help-circle-outline'
             size = {screenWidth*0.08}
             color = 'black'
@@ -86,10 +86,10 @@ export default class HomeScreen extends Component {
 
         <View style = {styles.container}>
           <Image
-            style={styles.image}
+            style={styles.logoImage}
             source={require('../images/logo.png')} 
           />
-          <Text style={styles.title}>MHS-Protect</Text>
+          <Text style={styles.homeTitle}>MHS-Protect</Text>
           <TouchableOpacity 
             style={styles.emergency}
             onPress={() => {
@@ -106,7 +106,7 @@ export default class HomeScreen extends Component {
               )
             }}
             >
-            <Text style = {styles.buttonText}>EMERGENCY ALERT</Text>
+            <Text style = {styles.homeButtonText}>EMERGENCY ALERT</Text>
           </TouchableOpacity>
 
           <TouchableOpacity 
@@ -115,7 +115,7 @@ export default class HomeScreen extends Component {
               this.props.navigation.navigate('Request')   
             }}
           >
-            <Text style = {styles.buttonText}>REQUEST HELP</Text>
+            <Text style = {styles.homeButtonText}>REQUEST HELP</Text>
           </TouchableOpacity>
         </View>
 
@@ -150,75 +150,3 @@ export default class HomeScreen extends Component {
     db.cNotifOff();
   }
 }
-
-const styles = StyleSheet.create({
-  horizontalContainer: {
-    flex: 2,
-    flexDirection: 'row',
-  },
-  contentContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  container: {
-      flex: 10,
-      justifyContent: 'center',
-      alignItems: 'center',
-  },
-  title: {
-      fontFamily: 'Lato-Bold',
-      fontSize: screenWidth*0.0633,
-      marginBottom: screenHeight*0.04,
-  },
-  topRightIcon: {
-    marginLeft: screenWidth*0.8,
-    top: screenHeight*0.057,
-  },
-  text: {
-    marginLeft: screenWidth*0.02,
-    marginRight: screenWidth*0.02,
-    fontFamily: 'Lato-Regular',
-    textAlign: 'center',
-    fontSize: screenWidth*0.049,
-  },
-  image: {
-    height: screenHeight*0.267,
-    width: screenWidth*0.487,
-    bottom: screenHeight*0.035,
-    marginBottom: screenHeight*0.05,
-    position: 'relative',
-    resizeMode: 'contain',
-  },
-  help: {
-    width: screenWidth*0.62,
-    height: screenHeight*0.0534,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: 'orange',
-    borderWidth: 2.5,
-    borderRadius: 5,
-    marginBottom: screenHeight*0.0333,
-  },
-  messageIcon: {
-    marginLeft: screenWidth*0.15,
-  },
-  mapIcon: {
-    marginRight: screenWidth*0.15,
-  },
-  buttonText: {
-    fontSize: screenWidth*0.0487,
-    fontFamily: 'Lato-Bold',
-    color: 'black',
-  },
-  emergency: {
-    width: screenWidth*0.62,
-    height: screenHeight*0.0534,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: '#c80d00',
-    borderWidth: 2.5,
-    borderRadius: 5,
-    marginBottom: screenHeight*0.0344,
-  },
-})

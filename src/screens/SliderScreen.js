@@ -5,9 +5,8 @@ import AlertAsync from "react-native-alert-async"
 import SlideToConfirm from 'react-native-slide-to-confirm';
 import Database from './components/Database'
 const db = new Database()
-const screenWidth = Math.round(Dimensions.get('window').width)
-const screenHeight = Math.round(Dimensions.get('window').height)
-
+import styles from './components/allStyles'
+const screenWidth = Dimensions.get('window').width
 export default class Slider extends Component {
   alert = async () => {
     const choice = await AlertAsync(
@@ -32,7 +31,7 @@ export default class Slider extends Component {
     return (
       <View style = {styles.contentContainer}>
         <View style = {styles.horizontalContainer}>
-          <IconButton style = {styles.topRightIcon}
+          <IconButton style = {styles.mainTopRightIcon}
             icon = 'close'
             color = 'black'
             size = {screenWidth*0.08}
@@ -49,7 +48,7 @@ export default class Slider extends Component {
           ref={ref => this.slideRef = ref}
           width={screenWidth*0.833}
           onConfirm={()=>{
-            db.phoneCall(+13042827110)            
+            //db.phoneCall(+13042827110)            
             db.reportEmergency('description')
             this.alert()
           }}
@@ -65,36 +64,3 @@ export default class Slider extends Component {
     );
   }
 }
-const styles = StyleSheet.create({
-  horizontalContainer: {
-    flex: 2,
-    flexDirection: 'row',
-  },
-  contentContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  container: {
-      flex: 10,
-      justifyContent: 'center',
-      alignItems: 'center',
-  },
-  topRightIcon: {
-    marginLeft: screenWidth*0.8,
-    top: screenHeight*0.057,
-  },
-  text: {
-    marginLeft: screenWidth*0.02,
-    marginRight: screenWidth*0.02,
-    marginBottom: screenHeight*0.01,
-    fontFamily: 'Lato-Regular',
-    textAlign: 'center',
-    fontSize: screenWidth*0.049,
-  },
-  buttonText: {
-    fontSize: screenWidth*0.0487,
-    fontFamily: 'Lato-Bold',
-    color: 'black',
-  },
-})

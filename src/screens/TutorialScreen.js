@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
-import { Text, Alert, View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { IconButton, Paragraph } from 'react-native-paper'
 import { Notifications } from 'expo'
-import AlertAsync from "react-native-alert-async"
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
 import FlashMessage from 'react-native-flash-message'
-import Database from './components/Database'
-const db = new Database()
-const screenWidth = Math.round(Dimensions.get('window').width)
-const screenHeight = Math.round(Dimensions.get('window').height)
-
+import styles from './components/allStyles'
+const screenWidth = Dimensions.get('window').width
 export default class AdminScreen extends React.Component {
 
     entered_id = -1
@@ -40,7 +36,7 @@ export default class AdminScreen extends React.Component {
         <Swiper style = {styles.wrapper} showsButtons={false}>
            <View style = {styles.contentContainer}>
               <View style = {styles.horizontalContainer}>
-                <IconButton style = {styles.topRightIcon}
+                <IconButton style = {styles.mainTopRightIcon}
                   icon = 'close'
                   color = 'black'
                   size = {screenWidth*0.08}
@@ -49,9 +45,9 @@ export default class AdminScreen extends React.Component {
                   }}
                 />
                 </View>
-              <View style = {styles.slide}>
+              <View style = {styles.container}>
                 <Image
-                  style={styles.image}
+                  style={styles.logoImage}
                   source={require('../images/logo.png')} 
                 />
                 <Paragraph style = {styles.text}>
@@ -72,7 +68,7 @@ export default class AdminScreen extends React.Component {
                   }}
                 />
                 </View>
-              <View style = {styles.slide}>
+              <View style = {styles.container}>
               <TouchableOpacity 
                 style={styles.help}
                 >
@@ -84,81 +80,8 @@ export default class AdminScreen extends React.Component {
                 </Paragraph>
               </View>
             </View>
-  
-  
-            <View style={styles.slide}>
-              <Text style={styles.text}>emergency</Text>
-            </View>
-            <View style={styles.slide}>
-              <Text style={styles.text}>map and chat</Text>
-            </View>
-            <View style={styles.slide}>
-              <Text style={styles.text}>creds</Text>
-            </View>
         </Swiper>
         )
     }
 }
 
-const styles = StyleSheet.create({
-  wrapper: {},
-  slide: {
-    flex: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  horizontalContainer: {
-    flex: 2,
-    flexDirection: 'row',
-  },
-  contentContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontFamily: 'Lato-Bold',
-    fontSize: screenWidth*0.0633,
-    marginBottom: screenHeight*0.02,
-  },
-  topRightIcon: {
-    marginLeft: screenWidth*0.8,
-    top: screenHeight*0.057,
-  },
-  text: {
-    marginLeft: screenWidth*0.02,
-    marginRight: screenWidth*0.02,
-    fontFamily: 'Lato-Regular',
-    textAlign: 'center',
-    fontSize: screenWidth*0.049,
-    },
-    tutorialText: {
-      marginLeft: screenWidth*0.02,
-      marginRight: screenWidth*0.02,
-      fontFamily: 'Lato-Regular',
-      textAlign: 'left',
-      fontSize: screenWidth*0.049,
-    },
-    image: {
-      height: screenHeight*0.267,
-      width: screenWidth*0.487,
-      bottom: screenHeight*0.035,
-      marginBottom: screenHeight*0.05,
-      position: 'relative',
-      resizeMode: 'contain',
-    },
-    help: {
-      width: screenWidth*0.62,
-      height: screenHeight*0.0534,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderColor: 'orange',
-      borderWidth: 2.5,
-      borderRadius: 5,
-    },
-    buttonText: {
-      fontSize: screenWidth*0.0487,
-      fontFamily: 'Lato-Bold',
-      color: 'black',
-    },
-  })

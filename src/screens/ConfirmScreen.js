@@ -4,9 +4,7 @@ import * as Font from 'expo-font'
 
 import Database from './components/Database'
 const db = new Database()
-
-const screenWidth = Dimensions.get('window').width
-const screenHeight = Dimensions.get('window').height
+import styles from './components/allStyles'
 
 export default class ConfirmScreen extends React.Component {
 
@@ -27,13 +25,13 @@ export default class ConfirmScreen extends React.Component {
     render() {
 
         return (
-            <View style={styles.container}>
+            <View style={styles.confirmContainer}>
                 <View style = {styles.textContainer}>
-                    <Text style={styles.title}>
+                    <Text style={styles.confirmTitle}>
                         Is This Correct?
                     </Text>
                     <Image
-                    style={styles.image}
+                    style={styles.confirmImage}
                     source={require('../images/logo.png')} 
                     />
                     <Text style={styles.option}>
@@ -47,18 +45,18 @@ export default class ConfirmScreen extends React.Component {
                     </Text>
                 </View>
                 <View style = {styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button}
+                    <TouchableOpacity style={styles.confirmButton}
                     onPress={() => {
                         Alert.alert("We're sorry...", 'Ask Mr. Gibson for help.')
                         this.props.navigation.navigate('Key')
                     }}
                     >
-                        <Text style = {styles.buttonText}>NO</Text>
+                        <Text style = {styles.confirmButtonText}>NO</Text>
                     </TouchableOpacity>
                     <Text>
 
                     </Text>
-                    <TouchableOpacity style={styles.button}
+                    <TouchableOpacity style={styles.confirmButton}
                     onPress={() => {
                         db.logInUser(this.user[1]).then(() => {
                             //this.removekey(this.user[1])
@@ -66,7 +64,7 @@ export default class ConfirmScreen extends React.Component {
                         })
                     }}
                     >
-                        <Text style = {styles.buttonText}>YES</Text>
+                        <Text style = {styles.confirmButtonText}>YES</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -74,62 +72,3 @@ export default class ConfirmScreen extends React.Component {
         )
     }
 }
-
-
-const styles = StyleSheet.create({
-    image: {
-        marginTop: screenHeight*0.0133,
-        top: screenHeight*0.01,
-        height: screenHeight*0.267,
-        width: screenWidth*0.487,
-        alignItems: 'center',
-        resizeMode: 'contain',
-    },
-    textContainer: {
-        flex: 6,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        position: 'relative',
-        alignItems: 'center',
-    },
-    buttonContainer: {
-        flex: 2,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-    },
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: screenWidth*0.0666,
-        marginTop: screenHeight*0.027,
-        fontFamily: 'Lato-Bold',
-    },
-    option: {
-        fontSize: screenWidth*0.0584,
-        fontFamily: 'Lato-Bold',
-        top: screenHeight*0.06,
-        marginTop: screenHeight*0.0267,
-    },
-    button: {
-        width: screenWidth*0.45,
-        height: screenHeight*0.05,
-        top: screenHeight*0.08,
-        marginLeft: screenWidth*0.0122,
-        marginRight: screenWidth*0.0122,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 0.5,
-        borderRadius: 5,
-        backgroundColor: '#0a007e',
-        borderColor: '#0a007e',
-    },
-    buttonText: {
-        fontSize: screenWidth*0.0438,
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-    }
-})

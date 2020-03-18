@@ -9,9 +9,8 @@ import FlashMessage from 'react-native-flash-message'
 import SlideToConfirm from 'react-native-slide-to-confirm'
 import Database from './components/Database'
 const db = new Database()
-const screenWidth = Math.round(Dimensions.get('window').width)
-const screenHeight = Math.round(Dimensions.get('window').height)
-
+const screenWidth = Dimensions.get('window').width
+import styles from './components/allStyles'
 export default class AdminScreen extends React.Component {
 
     entered_id = -1
@@ -90,7 +89,7 @@ export default class AdminScreen extends React.Component {
                 
                   />
                   <TouchableOpacity 
-                    style = {styles.modalButton}
+                    style = {styles.button}
                     onPress = {() => {
                       db.requestHelp(this.details)
                       //TODO: need to figure out how to text without bringing user out of app
@@ -98,125 +97,10 @@ export default class AdminScreen extends React.Component {
                       this.alert()
                     }}
                     >
-                    <Text style = {styles.modalButtonText}>SUBMIT</Text>
+                    <Text style = {styles.buttonText}>SUBMIT</Text>
                   </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    horizontalContainer: {
-      flex: 2,
-      flexDirection: 'row',
-    },
-    contentContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    container: {
-        flex: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    input: {
-      width: screenWidth*0.73,
-      height: screenHeight*0.13,
-      backgroundColor: '#d3d3d3',
-      borderColor: 'black',
-      borderWidth: 0.5,
-      borderRadius: 5,
-      textAlignVertical: 'top',
-      fontSize: screenWidth*0.0487,
-      paddingHorizontal: screenWidth*0.0487,
-      marginBottom: screenHeight*0.0344,
-  },
-    title: {
-        fontFamily: 'Lato-Bold',
-        fontSize: screenWidth*0.0633,
-        marginBottom: screenHeight*0.02,
-    },
-    modalTitle: {
-      fontFamily: 'Lato-Bold',
-      fontSize: screenWidth*0.0633,
-      marginBottom: screenHeight*0.05,
-    },
-    topRightIcon: {
-      marginLeft: screenWidth*0.285,
-      top: screenHeight*0.057,
-    },
-    topLeftIcon: {
-      marginRight: screenWidth*0.285,
-      top: screenHeight*0.057,
-    },
-    text: {
-      marginLeft: screenWidth*0.02,
-      marginRight: screenWidth*0.02,
-      fontFamily: 'Lato-Regular',
-      textAlign: 'center',
-      fontSize: screenWidth*0.049,
-    },
-    tutorialText: {
-      marginLeft: screenWidth*0.02,
-      marginRight: screenWidth*0.02,
-      fontFamily: 'Lato-Regular',
-      textAlign: 'left',
-      fontSize: screenWidth*0.049,
-    },
-    image: {
-      height: screenHeight*0.267,
-      width: screenWidth*0.487,
-      bottom: screenHeight*0.035,
-      marginBottom: screenHeight*0.05,
-      position: 'relative',
-      resizeMode: 'contain',
-    },
-    help: {
-      width: screenWidth*0.62,
-      height: screenHeight*0.0534,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderColor: 'orange',
-      borderWidth: 2.5,
-      borderRadius: 5,
-      marginBottom: screenHeight*0.0333,
-    },
-    messageIcon: {
-      marginLeft: screenWidth*0.15,
-    },
-    mapIcon: {
-      marginRight: screenWidth*0.15,
-    },
-    buttonText: {
-      fontSize: screenWidth*0.0487,
-      fontFamily: 'Lato-Bold',
-      color: 'black',
-    },
-    modalButton: {
-      width: screenWidth*0.7299,
-      height: screenHeight*0.0534,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#c80d00',
-      borderColor: '#c80d00',
-      borderWidth: 1,
-      borderRadius: 5,
-    },
-    modalButtonText: {
-      fontSize: screenWidth*0.0487,
-      fontFamily: 'Lato-Bold',
-      color: 'white',
-    },
-    emergency: {
-      width: screenWidth*0.62,
-      height: screenHeight*0.0534,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderColor: '#c80d00',
-      borderWidth: 2.5,
-      borderRadius: 5,
-      marginBottom: screenHeight*0.0344,
-    },
-  })

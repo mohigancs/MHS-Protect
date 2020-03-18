@@ -9,9 +9,8 @@ import FlashMessage from 'react-native-flash-message'
 import SlideToConfirm from 'react-native-slide-to-confirm'
 import Database from './components/Database'
 const db = new Database()
-const screenWidth = Math.round(Dimensions.get('window').width)
-const screenHeight = Math.round(Dimensions.get('window').height)
-
+import styles from './components/allStyles'
+const screenWidth = Dimensions.get('window').width
 export default class AdminScreen extends React.Component {
 
     entered_id = -1
@@ -58,7 +57,7 @@ export default class AdminScreen extends React.Component {
         return (
             <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" enabled>
                 <View style = {styles.horizontalContainer}>
-                <IconButton style = {styles.topRightIcon}
+                <IconButton style = {styles.mainTopRightIcon}
                   icon = 'close'
                   color = 'black'
                   size = {screenWidth*0.08}
@@ -68,33 +67,33 @@ export default class AdminScreen extends React.Component {
                 />
                 
                 </View>
-                <View style = {styles.container}>
-                  <TouchableOpacity style = {styles.button}
+                <View style = {styles.requestContainer}>
+                  <TouchableOpacity style = {styles.requestButton}
                    onPress= {() => {
                     this.props.navigation.navigate('Medical')
                   }}
                   >
                     <Image
-                      style={styles.image}
+                      style={styles.typeImage}
                       source={require('../images/medkit.png')} 
                     />
-                    <Text style = {styles.medText}>Medical Emergency</Text>
+                    <Text style = {styles.labelText}>Medical Emergency</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style = {styles.button}
+                  <TouchableOpacity style = {styles.requestButton}
                    onPress= {() => {
                     this.props.navigation.navigate('Fight')
                   }}
                   >
 
                     <Image
-                      style={styles.image}
+                      style={styles.typeImage}
                       source={require('../images/fight.png')} 
                     />
-                    <Text style = {styles.medText}>Fight</Text>
+                    <Text style = {styles.labelText}>Fight</Text>
                     
                   </TouchableOpacity>
 
-                  <TouchableOpacity style = {styles.container}
+                  <TouchableOpacity style = {styles.other}
                     onPress= {() => {
                       this.props.navigation.navigate('Other')
                     }}
@@ -107,58 +106,3 @@ export default class AdminScreen extends React.Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    horizontalContainer: {
-      flex: 2,
-      flexDirection: 'row',
-    },
-    contentContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    container: {
-        flex: 10,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    title: {
-        fontFamily: 'Lato-Bold',
-        fontSize: screenWidth*0.0633,
-        marginBottom: screenHeight*0.02,
-    },
-    topRightIcon: {
-      marginLeft: screenWidth*0.8,
-      top: screenHeight*0.057,
-    },
-    button: {
-      marginBottom: screenHeight*0.08,
-    },
-    text: {
-      fontFamily: 'Lato-Regular',
-      textAlign: 'center',
-      fontSize: screenWidth*0.049,
-    },
-    otherText: {
-      fontFamily: 'Lato-Bold',
-      textAlign: 'center',
-      fontSize: screenWidth*0.049,
-      top: screenWidth*0.2,
-      position: 'relative',
-    },
-    medText: {
-      fontFamily: 'Lato-Regular',
-      textAlign: 'center',
-      fontSize: screenWidth*0.049,
-      position: 'relative',
-    },
-    image: {
-      height: screenHeight*0.2,
-      width: screenWidth*0.2,
-      bottom: screenHeight*0.035,
-      alignSelf: 'center',
-      position: 'relative',
-      resizeMode: 'contain',
-    },
-  })
