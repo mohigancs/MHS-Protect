@@ -99,14 +99,23 @@ export default class HomeScreen extends Component {
                 [
                   {text: 'No', onPress: () => {}},
                   {text: 'Yes', onPress: () => {
-                    this.props.navigation.navigate('Slider')
+                    this.props.navigation.navigate('Intruder')
                   }},
                 ],
                 {cancelable: false}
               )
             }}
             >
-            <Text style = {styles.homeButtonText}>EMERGENCY ALERT</Text>
+            <Text style = {styles.homeButtonText}>INTRUDER ALERT</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={styles.medical}
+            onPress={() => {
+              this.props.navigation.navigate('Medical')   
+            }}
+          >
+            <Text style = {styles.homeButtonText}>MEDICAL EMERGENCY</Text>
           </TouchableOpacity>
 
           <TouchableOpacity 

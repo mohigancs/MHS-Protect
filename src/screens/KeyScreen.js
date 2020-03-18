@@ -2,9 +2,6 @@ import React from 'react'
 import { Dimensions, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native'
 import * as Font from 'expo-font'
 
-const screenWidth = Dimensions.get('window').width
-const screenHeight = Dimensions.get('window').height
-
 import Database from './components/Database'
 const db = new Database()
 

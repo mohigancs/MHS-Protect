@@ -1,15 +1,9 @@
-import React, { Component } from 'react'
-import { Text, Alert, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView } from 'react-native'
-import { IconButton, Paragraph } from 'react-native-paper'
-import { Notifications } from 'expo'
+import React from 'react';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView, Picker } from 'react-native'
 import AlertAsync from "react-native-alert-async"
-import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
-import FlashMessage from 'react-native-flash-message'
-import SlideToConfirm from 'react-native-slide-to-confirm'
 import Database from './components/Database'
 const db = new Database()
-const screenWidth = Dimensions.get('window').width
 import styles from './components/allStyles'
 export default class AdminScreen extends React.Component {
 
@@ -18,6 +12,18 @@ export default class AdminScreen extends React.Component {
         assetsLoaded: false,
     }
     
+    onPickerValueChange = (value, index) => {
+      this.setState(
+        {
+          pickerSelected: value
+        },
+        () => {
+  
+          console.log(value, index);
+  
+        }
+      );
+    }
 
     async componentDidMount(){
         await Font.loadAsync({
@@ -54,39 +60,30 @@ export default class AdminScreen extends React.Component {
       }
       
     render() {
-        return (
-            <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" enabled>
-                <View style = {styles.horizontalContainer}>
-                <IconButton style = {styles.topLeftIcon}
-                  icon = 'arrow-left'
-                  color = 'black'
-                  size = {screenWidth*0.08}
-                  onPress={() => {
-                    this.props.navigation.navigate('Request')
-                  }}
-                >
-                </IconButton>
-                <IconButton style = {styles.topRightIcon}
-                  icon = 'close'
-                  color = 'black'
-                  size = {screenWidth*0.08}
-                  onPress={() => {
-                      this.props.navigation.navigate('Home')
-                  }}
-                />
-                </View>
+        let emergency = ['Select Item', 'Seizure', 'Overdose', 'Broken Bone', 'Difficulty Breathing', 'Bleeding'];
+
+        return ( 
                 <View style = {styles.container}>
-                  <Text style = {styles.title}>Please provide details</Text>
-                  <TextInput 
-                    style={styles.input}
-                    placeholder="Details"
+                  <Text style = {styles.title}>Medical Emergency</Text>
+                    <Text>Type of Threat</Text>
+                    <Picker
+                        style={styles.dropdown}
+                        mode="dropdown"
+                        selectedValue={this.state.pickerSelected}
+                        onValueChange={(value, index) => this.onPickerValueChange(value, index)}> 
+                        {emergency.map((item, index) => {
+                            return (<Picker.Item label={item} value={index} key={index}/>) 
+                        })}
+                    </Picker>
+
+                  <TextInput
+                    style={styles.smallInput}
+                    placeholder="Students Initials"
                     placeholderTextColor = "black"
-                    returnKeyType="go"
-                    multiline = {true}
-                    autoCapitalize="none"
+                    returnKeyType="default"
+                    autoCapitalize="characters"
                     autoCorrect={false}
-                    onChange={(text) => this.details = text.nativeEvent.text}
-                
+                    onChange={(text) => this.initials = text.nativeEvent.text}
                   />
                   <TouchableOpacity 
                     style = {styles.button}
@@ -100,7 +97,6 @@ export default class AdminScreen extends React.Component {
                     <Text style = {styles.buttonText}>SUBMIT</Text>
                   </TouchableOpacity>
                 </View>
-            </KeyboardAvoidingView>
         )
     }
 }

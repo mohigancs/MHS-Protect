@@ -9,6 +9,7 @@ import MapScreen from './src/screens/MapScreen'
 import SliderScreen from './src/screens/SliderScreen'
 import RequestScreen from './src/screens/RequestScreen'
 import TutorialScreen from './src/screens/TutorialScreen'
+import IntruderScreen from './src/screens/IntruderScreen'
 import MedicalScreen from './src/screens/Medical'
 import FightScreen from './src/screens/Fight'
 import OtherScreen from './src/screens/Other'
@@ -38,6 +39,9 @@ const MainStack = createStackNavigator({
   },
   Tutorial: {
     screen: TutorialScreen
+  },
+  Intruder: {
+    screen: IntruderScreen
   },
   Medical: {
     screen: MedicalScreen

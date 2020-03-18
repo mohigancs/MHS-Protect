@@ -34,6 +34,7 @@ export default StyleSheet.create({
         textAlignVertical: 'top',
         fontSize: screenWidth*0.0487,
         paddingHorizontal: screenWidth*0.0487,
+        marginTop: screenHeight*0.0344,
         marginBottom: screenHeight*0.0344,
     },
     title: {
@@ -232,6 +233,25 @@ export default StyleSheet.create({
         fontSize: screenWidth*0.0487,
         paddingHorizontal: screenWidth*0.0487,
     },
-
+    dropdown: {
+        width: screenWidth*0.7299,
+        height: screenHeight*0.0534,
+        backgroundColor: '#d3d3d3',
+        shadowRadius: 2,
+        shadowColor: 'rgba(0, 0, 0, 1.0)',
+        shadowOpacity: 0.54,
+        shadowOffset: { width: 0, height: 2 },
+        overflow: 'hidden',
+    },
+    medical: {
+        width: screenWidth*0.62,
+        height: screenHeight*0.0534,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: '#0EAFFA',
+        borderWidth: 2.5,
+        borderRadius: 5,
+        marginBottom: screenHeight*0.0333,
+      },
 
 })
