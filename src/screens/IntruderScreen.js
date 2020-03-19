@@ -65,7 +65,8 @@ export default class AdminScreen extends React.Component {
         let location = ['Select Item', 'Main Building', 'Science Wing', 'Cafeteria', 'Gym', 'Far Side'];
         let race = ['Select Item', 'White', 'Black', 'Asian', 'Latino', 'Pacific Islander'];
         let gender = ['Select Item', 'Male', 'Female'];
-        let injured = ['1', '2', '3', '4', '5 or more'];
+        let injured = ['Select Item', 'none', '1', '2', '3', '4', '5 or more'];
+        let gunmen = ['1', '2', '3', '4', '5 or more'];
 
         return ( 
                 <View style = {styles.container}>
@@ -74,8 +75,10 @@ export default class AdminScreen extends React.Component {
                     <Picker
                         style={styles.dropdown}
                         mode="dropdown"
-                        selectedValue={this.state.pickerSelected}
-                        onValueChange={(value, index) => {this.setState({pickerSelected: value})}}> 
+                        selectedValue={this.state.threat}
+                        onValueChange={(itemValue, itemIndex) =>
+                          this.setState({threat: itemValue})
+                        }>
                         {threat.map((item, index) => {
                             return (<Picker.Item label={item} value={index} key={index}/>) 
                         })}
@@ -85,8 +88,10 @@ export default class AdminScreen extends React.Component {
                     <Picker
                         style={styles.dropdown}
                         mode="dropdown"
-                        selectedValue={this.state.pickerSelected}
-                        onValueChange={(value, index) => this.onPickerValueChange(value, index)}> 
+                        selectedValue={this.state.location}
+                        onValueChange={(itemValue, itemIndex) =>
+                          this.setState({location: itemValue})
+                        }>
                         {location.map((item, index) => {
                             return (<Picker.Item label={item} value={index} key={index}/>) 
                         })}
@@ -96,8 +101,10 @@ export default class AdminScreen extends React.Component {
                     <Picker
                         style={styles.dropdown}
                         mode="dropdown"
-                        selectedValue={this.state.pickerSelected}
-                        onValueChange={(value, index) => this.onPickerValueChange(value, index)}> 
+                        selectedValue={this.state.race}
+                        onValueChange={(itemValue, itemIndex) =>
+                          this.setState({race: itemValue})
+                        }>
                         {race.map((item, index) => {
                             return (<Picker.Item label={item} value={index} key={index}/>) 
                         })}
@@ -107,8 +114,10 @@ export default class AdminScreen extends React.Component {
                     <Picker
                         style={styles.dropdown}
                         mode="dropdown"
-                        selectedValue={this.state.pickerSelected}
-                        onValueChange={(value, index) => this.onPickerValueChange(value, index)}> 
+                        selectedValue={this.state.gender}
+                        onValueChange={(itemValue, itemIndex) =>
+                          this.setState({gender: itemValue})
+                        }> 
                         {gender.map((item, index) => {
                             return (<Picker.Item label={item} value={index} key={index}/>) 
                         })}
@@ -118,9 +127,24 @@ export default class AdminScreen extends React.Component {
                     <Picker
                         style={styles.dropdown}
                         mode="dropdown"
-                        selectedValue={this.state.pickerSelected}
-                        onValueChange={(value, index) => this.onPickerValueChange(value, index)}> 
+                        selectedValue={this.state.numberInjured}
+                        onValueChange={(itemValue, itemIndex) =>
+                          this.setState({numberInjured: itemValue})
+                        }>
                         {injured.map((item, index) => {
+                            return (<Picker.Item label={item} value={index} key={index}/>) 
+                        })}
+                    </Picker>
+
+                    <Text>Number of Intruders</Text>
+                    <Picker
+                        style={styles.dropdown}
+                        mode="dropdown"
+                        selectedValue={this.state.numberOfIntruders}
+                        onValueChange={(itemValue, itemIndex) =>
+                          this.setState({numberOfIntruders: itemValue})
+                        }>
+                        {gunmen.map((item, index) => {
                             return (<Picker.Item label={item} value={index} key={index}/>) 
                         })}
                     </Picker>

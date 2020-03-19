@@ -65,12 +65,14 @@ export default class AdminScreen extends React.Component {
         return ( 
                 <View style = {styles.container}>
                   <Text style = {styles.title}>Medical Emergency</Text>
-                    <Text>Type of Threat</Text>
+                    <Text>Type of Emergency</Text>
                     <Picker
                         style={styles.dropdown}
                         mode="dropdown"
-                        selectedValue={this.state.pickerSelected}
-                        onValueChange={(value, index) => this.onPickerValueChange(value, index)}> 
+                        selectedValue={this.state.emergency}
+                        onValueChange={(itemValue, itemIndex) =>
+                          this.setState({emergency: itemValue})
+                        }>
                         {emergency.map((item, index) => {
                             return (<Picker.Item label={item} value={index} key={index}/>) 
                         })}
