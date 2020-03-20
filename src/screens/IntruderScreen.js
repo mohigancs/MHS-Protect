@@ -61,19 +61,19 @@ export default class AdminScreen extends React.Component {
       }
       
     render() {
-        let threat = ['Unsure', 'Gun', 'Bomb', 'Knife'];
-        let location = ['Unsure', 'Main Building', 'Science Wing', 'Cafeteria', 'Gym', 'Far Side'];
-        let race = ['Unsure', 'White', 'Black', 'Asian', 'Latino', 'Pacific Islander'];
-        let gender = ['Unsure', 'Male', 'Female'];
-        let injured = ['Unsure', '0', '1', '2', '3', '4', '5+'];
+        let threat = ['Unknown', 'Gun', 'Bomb', 'Knife'];
+        let location = ['Unknown', 'Main Building', 'Science Wing', 'Cafeteria', 'Gym', 'Far Side'];
+        let race = ['Unknown', 'White', 'Black', 'Asian', 'Latino', 'Pacific Islander'];
+        let gender = ['Unknown', 'Male', 'Female'];
+        let injured = ['Unknown', '0', '1', '2', '3', '4', '5+'];
         let gunmen = ['1', '2', '3', '4', '5+'];
-        this.threat = threat[0]
-        this.location = location[0]
-        this.race = race[0]
-        this.gender = gender[0]
-        this.injured = injured[0]
+        // this.threat = threat[0]
+        // this.location = location[0]
+        // this.race = race[0]
+        // this.gender = gender[0]
+        // this.injured = injured[0]
         this.gunmen = gunmen[0]
-        this.clothing = ''
+        this.clothing = 'unknown'
         return ( 
                 <View style = {styles.container}>
                   <Text style = {styles.title}>Intruder Alert</Text>
@@ -177,7 +177,8 @@ export default class AdminScreen extends React.Component {
                           console.log("Submitted Emergency Information")
                           db.getUserState().then(uid => {
                             db.fetchUser(uid).then(user => {
-                              console.log([{_id:user.uid, createdAt:0, text:"hello", user:{_id:uid, email:user.email, name:user.name}}])
+                              this.message = user.name + ' has detected a ' + this.threat + ' threat. The ' + this.gunmen + ' intruder(s) were spotted near the ' + this.location + '. The intruder is a ' + this.race + ' ' + this.gender + '. Their clothing is ' + this.clothing + '.' 
+                              db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
                               this.props.navigation.navigate('Chat', {user: [user, uid]})
                             })
                           })
