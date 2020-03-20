@@ -70,9 +70,10 @@ export default class AdminScreen extends React.Component {
                         style={styles.dropdown}
                         mode="dropdown"
                         selectedValue={this.state.emergency}
-                        onValueChange={(itemValue, itemIndex) =>
+                        onValueChange={(itemValue, itemIndex) => {
+                          this.issue = emergency[itemValue]
                           this.setState({emergency: itemValue})
-                        }>
+                        }}>
                         {emergency.map((item, index) => {
                             return (<Picker.Item label={item} value={index} key={index}/>) 
                         })}
@@ -90,7 +91,7 @@ export default class AdminScreen extends React.Component {
                   <TouchableOpacity 
                     style = {styles.button}
                     onPress = {() => {
-                      db.requestHelp(this.details)
+                      console.log(this.issue)
                       //TODO: need to figure out how to text without bringing user out of app
                       //Communications.textWithoutEncoding('3048255608', this.details)
                       this.alert()

@@ -32,9 +32,10 @@ export default class ChatScreen extends Component {
             email: this.usr[0].email,
             _id: this.usr[1],
         }
-    }    
+    }
 
     render() {
+        console.log(this.user._id)
         if (Platform.OS === 'ios') {
             return (     
                 <View style={{flex:1}}>

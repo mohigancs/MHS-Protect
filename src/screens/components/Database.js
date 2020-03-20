@@ -247,23 +247,18 @@ class Database {
     }
 
     send = (messages) => { // sends a message (handles giftedchat and firebase)
+        console.log(messages)
+        const { text, user } = messages[0]
+        const createdAt = this.timestamp()
+        const message = { text, user, createdAt }
 
-        for (let i = 0; i < messages.length; i++) {
-
-            const { text, user } = messages[i]
-            const createdAt = this.timestamp()
-            const message = { text, user, createdAt }
-
-            firebase.database().ref('alerts/messages').push(message) // add the message to the firebase
-
-            this.getUserTokens(user._id).then((tokens) => { // sends push notifications to all users
-                for (i = 0; i < tokens.length; i ++){
-                    this.sendPushNotification(tokens[i], user.name, text)
-                }
-            })
-
-        }
-
+        firebase.database().ref('alerts/messages').push(message) // add the message to the firebase
+            
+        this.getUserTokens(user._id).then((tokens) => { // sends push notifications to all users
+            for (i = 0; i < tokens.length; i ++){
+                this.sendPushNotification(tokens[i], user.name, text)
+            }
+        })
     }
 
     chatOn = (callback) => { // ???
