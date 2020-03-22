@@ -19,7 +19,7 @@ export default StyleSheet.create({
     text: {
         marginLeft: screenWidth*0.02,
         marginRight: screenWidth*0.02,
-        marginBottom: screenHeight*0.01,
+        marginTop: screenHeight*0.02,
         fontFamily: 'Lato-Regular',
         textAlign: 'center',
         fontSize: screenWidth*0.049,
@@ -54,13 +54,6 @@ export default StyleSheet.create({
         marginRight: screenWidth*0.285,
         top: screenHeight*0.057,
     },
-    text: {
-        marginLeft: screenWidth*0.02,
-        marginRight: screenWidth*0.02,
-        fontFamily: 'Lato-Regular',
-        textAlign: 'center',
-        fontSize: screenWidth*0.049,
-    },
     button: {
         width: screenWidth*0.7299,
         height: screenHeight*0.0534,
@@ -71,6 +64,7 @@ export default StyleSheet.create({
         borderWidth: 0.5,
         borderRadius: 5,
         resizeMode: 'contain',
+        marginBottom: screenHeight*0.02,
     },
     buttonText: {
         fontSize: screenWidth*0.0487,
@@ -253,5 +247,10 @@ export default StyleSheet.create({
         borderRadius: 5,
         marginBottom: screenHeight*0.0333,
       },
+    intruderContainer: {
+        flex: 12,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 
 })

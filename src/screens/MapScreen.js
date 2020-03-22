@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import MapView from 'react-native-maps'
 import { Appbar } from 'react-native-paper'
 import FlashMessage from 'react-native-flash-message'

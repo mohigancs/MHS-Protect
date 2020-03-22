@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { StyleSheet, Text, Dimensions, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native'
+import { View, Text, Dimensions, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native'
 import * as Font from 'expo-font'
 
 import Database from './components/Database'
@@ -17,11 +17,14 @@ export default class AdminScreen extends React.Component {
     async componentDidMount() {
         await Font.loadAsync({
             'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
+            'Lato-Regular': require('../../assets/fonts/Lato-Regular.ttf')
         })
     this.setState({ assetsLoaded: true })
     }
 
     render() {
+        const {assetsLoaded} = this.state
+        if( assetsLoaded ) {
         return (
             <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" enabled>
                 <Text style={styles.title}>Admin Page</Text>
@@ -70,7 +73,7 @@ export default class AdminScreen extends React.Component {
                     <Text style = {styles.buttonText}>SUBMIT</Text>
                 </TouchableOpacity>
 
-                <Text style={styles.option}>Delete Key for User With ID</Text>
+                <Text style={styles.text}>Delete Key for User With ID</Text>
                 <TextInput
                     style={styles.smallInput}
                     placeholder="ID"
@@ -111,5 +114,10 @@ export default class AdminScreen extends React.Component {
                 </TouchableOpacity>
             </KeyboardAvoidingView>
         )
+    }else{
+        return (
+            <View style={styles.container}>
+            </View>
+        )
     }
-}
+}}

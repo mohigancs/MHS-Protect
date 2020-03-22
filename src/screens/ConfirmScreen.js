@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, Text, Dimensions, View, StyleSheet, Alert, TouchableOpacity } from 'react-native'
+import { Image, Text, Dimensions, View, Alert, TouchableOpacity } from 'react-native'
 import * as Font from 'expo-font'
 
 import Database from './components/Database'

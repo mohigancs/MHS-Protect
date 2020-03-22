@@ -1,10 +1,10 @@
 import React from 'react'
-import { Dimensions, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native'
+import { Dimensions, Image, Text, View, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native'
 import * as Font from 'expo-font'
 
 import Database from './components/Database'
 const db = new Database()
-
+const screenHeight = Dimensions.get('window').height
 import styles from './components/allStyles'
 
 export default class KeyScreen extends React.Component {
@@ -31,7 +31,9 @@ export default class KeyScreen extends React.Component {
         const {assetsLoaded} = this.state
         if( assetsLoaded ) {
             return (
-                <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" enabled>
+                <KeyboardAvoidingView style={styles.contentContainer} behavior="height" 
+                keyboardVerticalOffset = {screenHeight*0.1}
+                >
                     <View style={styles.contentContainer}>
                         <Image
                             style={styles.logoImage}

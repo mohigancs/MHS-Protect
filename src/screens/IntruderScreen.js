@@ -1,11 +1,13 @@
 import React from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView, Picker } from 'react-native'
+import { Text, View,TextInput, TouchableOpacity, Alert, Image, Dimensions, KeyboardAvoidingView, Picker } from 'react-native'
 import AlertAsync from "react-native-alert-async"
 import * as Font from 'expo-font'
+import { IconButton } from 'react-native-paper'
 import Database from './components/Database'
 const db = new Database()
 import styles from './components/allStyles'
-
+const screenWidth = Dimensions.get('window').width
+const screenHeight = Dimensions.get('window').height
 export default class AdminScreen extends React.Component {
 
     entered_id = -1
@@ -75,7 +77,18 @@ export default class AdminScreen extends React.Component {
         this.gunmen = gunmen[0]
         this.clothing = 'unknown'
         return ( 
-                <View style = {styles.container}>
+                <KeyboardAvoidingView style = {styles.contentContainer} behavior="height"
+                keyboardVerticalOffset={screenHeight*0.3}>
+                  <View style = {styles.horizontalContainer}>
+                    <IconButton style = {styles.mainTopRightIcon}
+                      icon = 'close'
+                      color = 'black'
+                      size = {screenWidth*0.08}
+                      onPress={() => {
+                        this.props.navigation.navigate('Home')
+                      }}/>
+                  </View>
+                  <View style = {styles.intruderContainer}>
                   <Text style = {styles.title}>Intruder Alert</Text>
                     <Text>Type of Threat</Text>
                     <Picker
@@ -173,20 +186,33 @@ export default class AdminScreen extends React.Component {
                   <TouchableOpacity 
                         style={styles.button}
                         onPress={() => {
-                          // console.log(this.threat, this.location, this.race, this.gender, this.gunmen, this.injured, this.clothing)
-                          console.log("Submitted Emergency Information")
-                          db.getUserState().then(uid => {
-                            db.fetchUser(uid).then(user => {
-                              this.message = user.name + ' has detected a ' + this.threat + ' threat. The ' + this.gunmen + ' intruder(s) were spotted near the ' + this.location + '. The intruder is a ' + this.race + ' ' + this.gender + '. Their clothing is ' + this.clothing + '.' 
-                              db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
-                              this.props.navigation.navigate('Chat', {user: [user, uid]})
-                            })
-                          })
+                          Alert.alert(
+                            'Are you sure you want to report an emergency?',
+                            '$500 fine for false alarms',
+                            [
+                              {text: 'No', onPress: () => {}},
+                              {text: 'Yes', onPress: () => {
+                                // console.log(this.threat, this.location, this.race, this.gender, this.gunmen, this.injured, this.clothing)
+                                console.log("Submitted Emergency Information")
+                                db.getUserState().then(uid => {
+                                  db.fetchUser(uid).then(user => {
+                                    this.message = user.name + ' has detected a ' + this.threat + ' threat. The ' + this.gunmen + ' intruder(s) were spotted near the ' + this.location + '. The intruder is a ' + this.race + ' ' + this.gender + '. Their clothing is ' + this.clothing + '.' 
+                                    db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
+                                    this.props.navigation.navigate('Chat', {user: [user, uid]})
+                                  })
+                                })
+                              }},
+                            ],
+                            {cancelable: false}
+                          )
+                          
                         }}
                         >
                           <Text style = {styles.buttonText}>SUBMIT</Text>
                     </TouchableOpacity>
-                </View>
+                    </View>
+                  <View style={{ height: screenHeight*0.05 }} />
+                </KeyboardAvoidingView>
         )
     }
 }

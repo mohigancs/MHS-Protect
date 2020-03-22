@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { Text, Alert, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView} from 'react-native'
-import { IconButton, Paragraph } from 'react-native-paper'
+import { Text, Alert, View, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView} from 'react-native'
+import { IconButton } from 'react-native-paper'
 import { Notifications } from 'expo'
 import AlertAsync from "react-native-alert-async"
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
 import FlashMessage from 'react-native-flash-message'
-import SlideToConfirm from 'react-native-slide-to-confirm'
 import Database from './components/Database'
 const db = new Database()
 import styles from './components/allStyles'

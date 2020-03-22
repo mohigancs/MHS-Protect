@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, Alert, View, ScrollView, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView } from 'react-native'
+import { Text, Alert, View, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView } from 'react-native'
 import { IconButton, Paragraph } from 'react-native-paper'
 import { Notifications } from 'expo'
 import AlertAsync from "react-native-alert-async"

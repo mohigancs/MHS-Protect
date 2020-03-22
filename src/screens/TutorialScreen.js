@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { Text, View, TouchableOpacity, Image, Dimensions } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { IconButton, Paragraph } from 'react-native-paper'
 import { Notifications } from 'expo'

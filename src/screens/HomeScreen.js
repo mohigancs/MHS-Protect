@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, Alert, Modal, View, ScrollView, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { Text, Alert, View, TouchableOpacity, Image, Dimensions } from 'react-native'
 import { IconButton, Paragraph } from 'react-native-paper'
 import { Notifications } from 'expo'
 import * as Permissions from 'expo-permissions'
@@ -93,17 +93,7 @@ export default class HomeScreen extends Component {
           <TouchableOpacity 
             style={styles.emergency}
             onPress={() => {
-              Alert.alert(
-                'Are you sure you want to report an emergency?',
-                '$500 fine for false alarms',
-                [
-                  {text: 'No', onPress: () => {}},
-                  {text: 'Yes', onPress: () => {
-                    this.props.navigation.navigate('Intruder')
-                  }},
-                ],
-                {cancelable: false}
-              )
+              this.props.navigation.navigate('Intruder')
             }}
             >
             <Text style = {styles.homeButtonText}>INTRUDER ALERT</Text>

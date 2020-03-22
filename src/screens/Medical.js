@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView, Picker } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView, Picker } from 'react-native'
 import AlertAsync from "react-native-alert-async"
 import * as Font from 'expo-font'
+import { IconButton } from 'react-native-paper'
 import Database from './components/Database'
 const db = new Database()
 import styles from './components/allStyles'
+const screenWidth = Dimensions.get('window').width
 export default class AdminScreen extends React.Component {
 
     entered_id = -1
@@ -63,7 +65,18 @@ export default class AdminScreen extends React.Component {
         let emergency = ['Select Item', 'Seizure', 'Overdose', 'Broken Bone', 'Difficulty Breathing', 'Bleeding'];
 
         return ( 
-                <View style = {styles.container}>
+              <KeyboardAvoidingView style = {styles.contentContainer} behavior = "padding" enabled>
+                <View style = {styles.horizontalContainer}>
+                  <IconButton style = {styles.mainTopRightIcon}
+                    icon = 'close'
+                    color = 'black'
+                    size = {screenWidth*0.08}
+                    onPress={() => {
+                      this.props.navigation.navigate('Home')
+                    }}
+                  />
+                  </View>
+                  <View style = {styles.container}>
                   <Text style = {styles.title}>Medical Emergency</Text>
                     <Text>Type of Emergency</Text>
                     <Picker
@@ -100,6 +113,7 @@ export default class AdminScreen extends React.Component {
                     <Text style = {styles.buttonText}>SUBMIT</Text>
                   </TouchableOpacity>
                 </View>
+              </KeyboardAvoidingView>
         )
     }
 }
