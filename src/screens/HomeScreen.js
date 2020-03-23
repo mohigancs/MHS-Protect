@@ -93,7 +93,7 @@ export default class HomeScreen extends Component {
           <TouchableOpacity 
             style={styles.emergency}
             onPress={() => {
-              this.props.navigation.navigate('Intruder')
+              this.props.navigation.navigate('Slider')
             }}
             >
             <Text style = {styles.homeButtonText}>INTRUDER ALERT</Text>

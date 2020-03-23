@@ -22,7 +22,7 @@ export default class Slider extends Component {
     )
   
     if (choice === 'yes') {
-      this.props.navigation.navigate('Home')
+      this.props.navigation.navigate('Intruder')
     }
     else {
     }
@@ -42,7 +42,7 @@ export default class Slider extends Component {
         </View>
         <View style = {styles.container}>
         <Paragraph style = {styles.text}>
-            Slide to the right to confirm an active shooter. This function will call the police.
+            Slide to the right to confirm an active shooter. This function will send an alert to the police.
         </Paragraph>
         <SlideToConfirm
           ref={ref => this.slideRef = ref}

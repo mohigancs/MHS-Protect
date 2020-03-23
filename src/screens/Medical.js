@@ -81,7 +81,6 @@ export default class AdminScreen extends React.Component {
                     <Text>Type of Emergency</Text>
                     <Picker
                         style={styles.dropdown}
-                        mode="dropdown"
                         selectedValue={this.state.emergency}
                         onValueChange={(itemValue, itemIndex) => {
                           this.issue = emergency[itemValue]

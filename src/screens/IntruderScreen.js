@@ -93,7 +93,6 @@ export default class AdminScreen extends React.Component {
                     <Text>Type of Threat</Text>
                     <Picker
                         style={styles.dropdown}
-                        mode="dropdown"
                         selectedValue={this.state.threat}
                         onValueChange={(itemValue, itemIndex) => {
                           this.threat = threat[itemValue]
@@ -107,7 +106,6 @@ export default class AdminScreen extends React.Component {
                     <Text>Location</Text>
                     <Picker
                         style={styles.dropdown}
-                        mode="dropdown"
                         selectedValue={this.state.location}
                         onValueChange={(itemValue, itemIndex) => {
                           this.location = location[itemValue]
@@ -121,7 +119,6 @@ export default class AdminScreen extends React.Component {
                     <Text>Race</Text>
                     <Picker
                         style={styles.dropdown}
-                        mode="dropdown"
                         selectedValue={this.state.race}
                         onValueChange={(itemValue, itemIndex) => {
                           this.race = race[itemValue]
@@ -135,7 +132,6 @@ export default class AdminScreen extends React.Component {
                     <Text>Gender</Text>
                     <Picker
                         style={styles.dropdown}
-                        mode="dropdown"
                         selectedValue={this.state.gender}
                         onValueChange={(itemValue, itemIndex) => {
                           this.gender = gender[itemValue]
@@ -149,7 +145,6 @@ export default class AdminScreen extends React.Component {
                     <Text>Number Injured</Text>
                     <Picker
                         style={styles.dropdown}
-                        mode="dropdown"
                         selectedValue={this.state.numberInjured}
                         onValueChange={(itemValue, itemIndex) => {
                           this.injured = injured[itemValue]
@@ -163,7 +158,6 @@ export default class AdminScreen extends React.Component {
                     <Text>Number of Intruders</Text>
                     <Picker
                         style={styles.dropdown}
-                        mode="dropdown"
                         selectedValue={this.state.numberOfIntruders}
                         onValueChange={(itemValue, itemIndex) => {
                           this.gunmen = gunmen[itemValue]
