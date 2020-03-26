@@ -48,9 +48,7 @@ export default class Slider extends Component {
           ref={ref => this.slideRef = ref}
           width={screenWidth*0.833}
           onConfirm={()=>{
-            //db.phoneCall(+13042827110)            
-            db.reportEmergency('description')
-            this.alert()
+            this.props.navigation.navigate('Intruder')
           }}
           textColor='white'
           pathColor='#bbbbbb'

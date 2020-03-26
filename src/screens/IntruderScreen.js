@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text, View,TextInput, TouchableOpacity, Alert, Image, Dimensions, KeyboardAvoidingView, Picker } from 'react-native'
-import AlertAsync from "react-native-alert-async"
+import { Text, View,TextInput, TouchableOpacity, Alert, Image, Dimensions, KeyboardAvoidingView } from 'react-native'
 import * as Font from 'expo-font'
+import ActionSheet from 'react-native-enhanced-actionsheet'
 import { IconButton } from 'react-native-paper'
 import Database from './components/Database'
 const db = new Database()
@@ -9,25 +9,22 @@ import styles from './components/allStyles'
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
 export default class AdminScreen extends React.Component {
-
     entered_id = -1
     state = {
+        threatText: 'Type of Threat',
+        locationText: 'Select Location',
+        gunmenText: 'Number of Gunmen',
+        raceText: 'Race',
+        sexText: 'Gender',
+        injuredText: 'Number Injured',
         assetsLoaded: false,
+        threatVisible: false,
+        locationVisible: false,
+        raceVisible: false,
+        sexVisible: false,
+        injuredVisible: false,
+        gunmenVisible: false,
     }
-    
-    onPickerValueChange = (value, index) => {
-      this.setState(
-        {
-          pickerSelected: value
-        },
-        () => {
-  
-          console.log(value, index);
-  
-        }
-      );
-    }
-
     async componentDidMount(){
         await Font.loadAsync({
           'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
@@ -42,40 +39,58 @@ export default class AdminScreen extends React.Component {
         db.cNotifOn()
         await this.registerForPushNotificationsAsync()
     }
-    alert = async () => {
-        const choice = await AlertAsync(
-          'Message Sent',
-          '',
-          [
-            {text: 'OK', onPress: () => 'yes'},
-          ],
-          {
-            cancelable: true,
-            onDismiss: () => 'yes',
-          },
-        )
-      
-        if (choice === 'yes') {
-          this.props.navigation.navigate('Home')
-        }
-        else {
-        }
-      }
       
     render() {
-        let threat = ['Unknown', 'Gun', 'Bomb', 'Knife'];
-        let location = ['Unknown', 'Main Building', 'Science Wing', 'Cafeteria', 'Gym', 'Far Side'];
-        let race = ['Unknown', 'White', 'Black', 'Asian', 'Latino', 'Pacific Islander'];
-        let gender = ['Unknown', 'Male', 'Female'];
-        let injured = ['Unknown', '0', '1', '2', '3', '4', '5+'];
-        let gunmen = ['1', '2', '3', '4', '5+'];
-        // this.threat = threat[0]
-        // this.location = location[0]
-        // this.race = race[0]
-        // this.gender = gender[0]
-        // this.injured = injured[0]
-        this.gunmen = gunmen[0]
-        this.clothing = 'unknown'
+        t = 0
+        const threat = [
+          {id: t++, label: 'Gun'}, 
+          {id: t++, label: 'Bomb'}, 
+          {id: t++, label: 'Knife'},
+          {id: t++, label: 'Unknown'}, 
+        ]
+        l = 0
+        const location = [
+          {id: l++, label: 'Main Building'}, 
+          {id: l++, label: 'Science Wing'}, 
+          {id: l++, label: 'Cafeteria'},
+          {id: l++, label: 'Gym'}, 
+          {id: l++, label: 'Far Side'},
+          {id: l++, label: 'Unknown'},  
+        ]
+        r = 0
+        const race = [
+          {id: r++, label: 'White'}, 
+          {id: r++, label: 'Black'}, 
+          {id: r++, label: 'Asian'},
+          {id: r++, label: 'Latino'}, 
+          {id: r++, label: 'Pacific Islander'},
+          {id: r++, label: 'Unknown'},  
+        ]
+        s = 0
+        const sex = [
+          {id: s++, label: 'Male'}, 
+          {id: s++, label: 'Female'}, 
+          {id: s++, label: 'Unknown'},  
+        ]
+        i = 0
+        const injured = [
+          {id: i++, label: '0'}, 
+          {id: i++, label: '1'}, 
+          {id: i++, label: '2'}, 
+          {id: i++, label: '3'},
+          {id: i++, label: '4'},
+          {id: i++, label: '5+'},   
+          {id: i++, label: 'Unknown'},  
+        ]
+        g = 0 
+        const gunmen = [
+          {id: g++, label: '1'},
+          {id: g++, label: '2'},
+          {id: g++, label: '3'},
+          {id: g++, label: '4'},
+          {id: g++, label: '5+'},
+          {id: g++, label: 'Unknown'},
+        ]
         return ( 
                 <KeyboardAvoidingView style = {styles.contentContainer} behavior="height"
                 keyboardVerticalOffset={screenHeight*0.3}>
@@ -90,83 +105,101 @@ export default class AdminScreen extends React.Component {
                   </View>
                   <View style = {styles.intruderContainer}>
                   <Text style = {styles.title}>Intruder Alert</Text>
-                    <Text>Type of Threat</Text>
-                    <Picker
-                        style={styles.dropdown}
-                        selectedValue={this.state.threat}
-                        onValueChange={(itemValue, itemIndex) => {
-                          this.threat = threat[itemValue]
-                          this.setState({threat: itemValue})
-                        }}>
-                        {threat.map((item, index) => {
-                            return (<Picker.Item label={item} value={index} key={index}/>) 
-                        })}
-                    </Picker>
+                  <TouchableOpacity 
+                    style = {styles.fakeSmallInput}
+                    onPress = {() => {
+                      this.setState({threatVisible: true})
+                    }}
+                    >
+                    <Text style = {styles.actionSheetButtonText}>{this.state.threatText}</Text>
+                  </TouchableOpacity>
+                  <ActionSheet 
+                    title = 'Type of Threat'
+                    visible={this.state.threatVisible}
+                    data={threat} 
+                    onOptionPress={(e) => {
+                      this.setState({threatVisible: false, threatText: e.label})                  
+                    }}
+                    onCancelPress={() => this.setState({threatVisible: false})}
+                  />
+                  <TouchableOpacity 
+                    style = {styles.fakeSmallInput}
+                    onPress = {() => {
+                      this.setState({locationVisible: true})
+                    }}
+                    >
+                    <Text style = {styles.actionSheetButtonText}>{this.state.locationText}</Text>
+                  </TouchableOpacity>
+                  <ActionSheet 
+                    title = 'Location'
+                    visible={this.state.locationVisible}
+                    data={location} 
+                    onOptionPress={(e) => this.setState({locationVisible: false, locationText: e.label})}
+                    onCancelPress={() => this.setState({locationVisible: false})}
+                  />
+                  <TouchableOpacity 
+                    style = {styles.fakeSmallInput}
+                    onPress = {() => {
+                      this.setState({raceVisible: true})
+                    }}
+                    >
+                    <Text style = {styles.actionSheetButtonText}>{this.state.raceText}</Text>
+                  </TouchableOpacity>
+                  <ActionSheet 
+                    title = 'Race'
+                    visible={this.state.raceVisible}
+                    data={race} 
+                    onOptionPress={(e) => this.setState({raceVisible: false, raceText: e.label})}
+                    onCancelPress={() => this.setState({raceVisible: false})}
+                  />
+                  <TouchableOpacity 
+                    style = {styles.fakeSmallInput}
+                    onPress = {() => {
+                      this.setState({sexVisible: true})
+                    }}
+                    >
+                    <Text style = {styles.actionSheetButtonText}>{this.state.sexText}</Text>
+                  </TouchableOpacity>
+                  <ActionSheet 
+                    title = 'Gender'
+                    visible={this.state.sexVisible}
+                    data={sex} 
+                    onOptionPress={(e) => this.setState({sexVisible: false, sexText: e.label})}
+                    onCancelPress={() => this.setState({sexVisible: false})}
+                  />
 
-                    <Text>Location</Text>
-                    <Picker
-                        style={styles.dropdown}
-                        selectedValue={this.state.location}
-                        onValueChange={(itemValue, itemIndex) => {
-                          this.location = location[itemValue]
-                          this.setState({location: itemValue})
-                        }}>
-                        {location.map((item, index) => {
-                            return (<Picker.Item label={item} value={index} key={index}/>) 
-                        })}
-                    </Picker>
-
-                    <Text>Race</Text>
-                    <Picker
-                        style={styles.dropdown}
-                        selectedValue={this.state.race}
-                        onValueChange={(itemValue, itemIndex) => {
-                          this.race = race[itemValue]
-                          this.setState({race: itemValue})
-                        }}>
-                        {race.map((item, index) => {
-                            return (<Picker.Item label={item} value={index} key={index}/>) 
-                        })}
-                    </Picker>
-
-                    <Text>Gender</Text>
-                    <Picker
-                        style={styles.dropdown}
-                        selectedValue={this.state.gender}
-                        onValueChange={(itemValue, itemIndex) => {
-                          this.gender = gender[itemValue]
-                          this.setState({gender: itemValue})
-                        }}> 
-                        {gender.map((item, index) => {
-                            return (<Picker.Item label={item} value={index} key={index}/>) 
-                        })}
-                    </Picker>
-
-                    <Text>Number Injured</Text>
-                    <Picker
-                        style={styles.dropdown}
-                        selectedValue={this.state.numberInjured}
-                        onValueChange={(itemValue, itemIndex) => {
-                          this.injured = injured[itemValue]
-                          this.setState({numberInjured: itemValue})
-                        }}>
-                        {injured.map((item, index) => {
-                            return (<Picker.Item label={item} value={index} key={index}/>) 
-                        })}
-                    </Picker>
-
-                    <Text>Number of Intruders</Text>
-                    <Picker
-                        style={styles.dropdown}
-                        selectedValue={this.state.numberOfIntruders}
-                        onValueChange={(itemValue, itemIndex) => {
-                          this.gunmen = gunmen[itemValue]
-                          this.setState({numberOfIntruders: itemValue})
-                        }}>
-                        {gunmen.map((item, index) => {
-                          return (<Picker.Item label={item} value={index} key={index}/>) 
-                        })}
-                    </Picker>
+                  <TouchableOpacity 
+                    style = {styles.fakeSmallInput}
+                    onPress = {() => {
+                      this.setState({injuredVisible: true})
+                    }}
+                    >
+                    <Text style = {styles.actionSheetButtonText}>{this.state.injuredText}</Text>
+                  </TouchableOpacity>
+                  <ActionSheet 
+                    title = 'Number Injured'
+                    visible={this.state.injuredVisible}
+                    data={injured} 
+                    onOptionPress={(e) => this.setState({injuredVisible: false, injuredText: e.label})}
+                    onCancelPress={() => this.setState({injuredVisible: false})}
+                  />
+                    
+                  <TouchableOpacity 
+                    style = {styles.fakeSmallInput}
+                    onPress = {() => {
+                      this.setState({gunmenVisible: true})
+                    }}
+                    >
+                    <Text style = {styles.actionSheetButtonText}>{this.state.gunmenText}</Text>
+                  </TouchableOpacity>
+                  <ActionSheet 
+                    title = 'Number Gunmen'
+                    visible={this.state.gunmenVisible}
+                    data={gunmen} 
+                    onOptionPress={(e) => this.setState({gunmenVisible: false, gunmenText: e.label})}
+                    onCancelPress={() => this.setState({gunmenVisible: false})}
+                  />
+                    
 
                   <TextInput
                     style={styles.input}
@@ -180,25 +213,13 @@ export default class AdminScreen extends React.Component {
                   <TouchableOpacity 
                         style={styles.button}
                         onPress={() => {
-                          Alert.alert(
-                            'Are you sure you want to report an emergency?',
-                            '$500 fine for false alarms',
-                            [
-                              {text: 'No', onPress: () => {}},
-                              {text: 'Yes', onPress: () => {
-                                // console.log(this.threat, this.location, this.race, this.gender, this.gunmen, this.injured, this.clothing)
-                                console.log("Submitted Emergency Information")
-                                db.getUserState().then(uid => {
-                                  db.fetchUser(uid).then(user => {
-                                    this.message = user.name + ' has detected a ' + this.threat + ' threat. The ' + this.gunmen + ' intruder(s) were spotted near the ' + this.location + '. The intruder is a ' + this.race + ' ' + this.gender + '. Their clothing is ' + this.clothing + '.' 
-                                    db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
-                                    this.props.navigation.navigate('Chat', {user: [user, uid]})
-                                  })
-                                })
-                              }},
-                            ],
-                            {cancelable: false}
-                          )
+                          db.getUserState().then(uid => {
+                          db.fetchUser(uid).then(user => {
+                          this.message = user.name + ' has detected a ' + this.state.threatText + ' threat. The ' + this.state.gunmenText + ' intruder(s) were spotted near the ' + this.state.locationText + '. The intruder is a ' + this.state.raceText + ' ' + this.state.sexText + '. Their clothing is ' + this.clothing + '.' 
+                              db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
+                                this.props.navigation.navigate('Chat', {user: [user, uid]})
+                            })
+                          })
                           
                         }}
                         >

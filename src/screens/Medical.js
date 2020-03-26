@@ -1,32 +1,25 @@
 import React from 'react';
-import { Text, View, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView, Picker } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView} from 'react-native'
 import AlertAsync from "react-native-alert-async"
 import * as Font from 'expo-font'
+import ActionSheet from 'react-native-enhanced-actionsheet'
 import { IconButton } from 'react-native-paper'
 import Database from './components/Database'
 const db = new Database()
 import styles from './components/allStyles'
 const screenWidth = Dimensions.get('window').width
+
 export default class AdminScreen extends React.Component {
 
-    entered_id = -1
-    state = {
-        assetsLoaded: false,
-    }
-    
-    onPickerValueChange = (value, index) => {
-      this.setState(
-        {
-          pickerSelected: value
-        },
-        () => {
-  
-          console.log(value, index);
-  
-        }
-      );
-    }
 
+  
+  initials = ''
+  entered_id = -1
+  state = {
+    actionSheetText: 'Type of Emergency',
+    assetsLoaded: false,
+    visible: false,
+  }
     async componentDidMount(){
         await Font.loadAsync({
           'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
@@ -40,7 +33,9 @@ export default class AdminScreen extends React.Component {
         db.mNotifOn()
         db.cNotifOn()
         await this.registerForPushNotificationsAsync()
-    }
+      }
+
+
     alert = async () => {
         const choice = await AlertAsync(
           'Message Sent',
@@ -61,9 +56,17 @@ export default class AdminScreen extends React.Component {
         }
       }
       
+      
     render() {
-        let emergency = ['Select Item', 'Seizure', 'Overdose', 'Broken Bone', 'Difficulty Breathing', 'Bleeding'];
-
+      count = 0
+      const options = [
+        {id: count++, label: 'Seizure'}, 
+        {id: count++, label: 'Overdose'}, 
+        {id: count++, label: 'Broken Bone'},
+        {id: count++, label: 'Difficulty Breathing'}, 
+        {id: count++, label: 'Bleeding'},
+        {id: count++, label: 'Unknown'},
+      ]
         return ( 
               <KeyboardAvoidingView style = {styles.contentContainer} behavior = "padding" enabled>
                 <View style = {styles.horizontalContainer}>
@@ -78,19 +81,21 @@ export default class AdminScreen extends React.Component {
                   </View>
                   <View style = {styles.container}>
                   <Text style = {styles.title}>Medical Emergency</Text>
-                    <Text>Type of Emergency</Text>
-                    <Picker
-                        style={styles.dropdown}
-                        selectedValue={this.state.emergency}
-                        onValueChange={(itemValue, itemIndex) => {
-                          this.issue = emergency[itemValue]
-                          this.setState({emergency: itemValue})
-                        }}>
-                        {emergency.map((item, index) => {
-                            return (<Picker.Item label={item} value={index} key={index}/>) 
-                        })}
-                    </Picker>
 
+                  <TouchableOpacity 
+                    style = {styles.smallInput}
+                    onPress = {() => {
+                      this.setState({visible: true})
+                    }}
+                    >
+                    <Text style = {styles.actionSheetButtonText}>{this.state.actionSheetText}</Text>
+                  </TouchableOpacity>
+                  <ActionSheet 
+                    visible={this.state.visible}
+                    data={options} 
+                    onOptionPress={(e) => this.setState({visible: false, actionSheetText: e.label})}
+                    onCancelPress={() => this.setState({visible: false})}
+                  />
                   <TextInput
                     style={styles.smallInput}
                     placeholder="Students Initials"
@@ -103,7 +108,7 @@ export default class AdminScreen extends React.Component {
                   <TouchableOpacity 
                     style = {styles.button}
                     onPress = {() => {
-                      console.log(this.issue)
+                      db.requestHelp('Medical Emergency. Type: ' + this.state.actionSheetText + ' Student Initials: ' + this.initials)
                       //TODO: need to figure out how to text without bringing user out of app
                       //Communications.textWithoutEncoding('3048255608', this.details)
                       this.alert()
