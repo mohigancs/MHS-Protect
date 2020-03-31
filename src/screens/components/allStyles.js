@@ -133,23 +133,19 @@ export default StyleSheet.create({
         color: 'white',
         fontFamily: 'Lato-Bold',
     },
-    requestContainer: {
-        flex: 10,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    requestButton: {
-        marginBottom: screenHeight*0.06,
-      },
+     requestButton: {
+         alignContent: 'center',
+         justifyContent: 'space-evenly',
+         alignItems:'center',
+         marginBottom: screenHeight*0.2,
+       },
       otherText: {
         fontFamily: 'Lato-Bold',
         textAlign: 'center',
         fontSize: screenWidth*0.049,
-        top: screenWidth*0.2,
-        position: 'relative',
       },
       other: {
-          flex:1,
+        alignContent:'center',
       },
       labelText: {
         fontFamily: 'Lato-Regular',
@@ -160,7 +156,6 @@ export default StyleSheet.create({
       typeImage: {
         height: screenHeight*0.2,
         width: screenWidth*0.2,
-        bottom: screenHeight*0.035,
         alignSelf: 'center',
         position: 'relative',
         resizeMode: 'contain',

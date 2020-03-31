@@ -1,10 +1,9 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 15864,
-  "expoServerNgrokUrl": "https://4x-bcb.phantommr-potato.mhs-protect.exp.direct",
-  "packagerNgrokUrl": "https://packager.4x-bcb.phantommr-potato.mhs-protect.exp.direct",
-  "ngrokPid": 30844,
-  "devToolsPort": 19002,
-  "webpackServerPort": null
+  "packagerPid": 27308,
+  "expoServerNgrokUrl": "https://u7-ubf.mohigan.mhs-protect.exp.direct",
+  "packagerNgrokUrl": "https://packager.u7-ubf.mohigan.mhs-protect.exp.direct",
+  "ngrokPid": 22808,
+  "devToolsPort": 19002
 }

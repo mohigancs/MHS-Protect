@@ -31,8 +31,7 @@ export default class KeyScreen extends React.Component {
         const {assetsLoaded} = this.state
         if( assetsLoaded ) {
             return (
-                <KeyboardAvoidingView style={styles.contentContainer} behavior="height" 
-                keyboardVerticalOffset = {screenHeight*0.1}
+                <KeyboardAvoidingView style={styles.contentContainer} behavior="height" keyboardVerticalOffset = {screenHeight*0.07}
                 >
                     <View style={styles.contentContainer}>
                         <Image
