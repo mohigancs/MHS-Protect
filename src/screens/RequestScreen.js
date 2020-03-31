@@ -54,9 +54,10 @@ export default class AdminScreen extends React.Component {
       
     render() {
         return (
-            <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" enabled>
-                <View style = {styles.horizontalContainer}>
-                <IconButton style = {styles.mainTopRightIcon}
+          <View style={styles.contentContainer}>
+
+          <View style = {styles.horizontalContainer}>
+          <IconButton style = {styles.mainTopRightIcon}
                   icon = 'close'
                   color = 'black'
                   size = {screenWidth*0.08}
@@ -64,44 +65,30 @@ export default class AdminScreen extends React.Component {
                       this.props.navigation.navigate('Home')
                   }}
                 />
-                
-                </View>
-                <View style = {styles.requestContainer}>
-                  <TouchableOpacity style = {styles.requestButton}
-                   onPress= {() => {
-                    this.props.navigation.navigate('Medical')
-                  }}
-                  >
-                    <Image
-                      style={styles.typeImage}
-                      source={require('../images/medkit.png')} 
-                    />
-                    <Text style = {styles.labelText}>Medical Emergency</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style = {styles.requestButton}
+          </View> 
+          <View style = {styles.container}>
+          <TouchableOpacity style = {styles.requestButton}
                    onPress= {() => {
                     this.props.navigation.navigate('Fight')
                   }}
                   >
+            <Image
+              style={styles.typeImage}
+              source={require('../images/fight.png')} 
+            />
+          <Text style = {styles.labelText}>Fight</Text>        
+          </TouchableOpacity>
 
-                    <Image
-                      style={styles.typeImage}
-                      source={require('../images/fight.png')} 
-                    />
-                    <Text style = {styles.labelText}>Fight</Text>
+          <TouchableOpacity style = {styles.other}
+             onPress= {() => {
+              this.props.navigation.navigate('Other')
+              }}
+            >
+          <Text style = {styles.otherText}>REPORT OTHER</Text>
                     
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style = {styles.other}
-                    onPress= {() => {
-                      this.props.navigation.navigate('Other')
-                    }}
-                  >
-                    <Text style = {styles.otherText}>REPORT OTHER</Text>
-                    
-                  </TouchableOpacity>
-                </View>
-            </KeyboardAvoidingView>
+          </TouchableOpacity>
+          </View>
+      </View>
         )
     }
 }

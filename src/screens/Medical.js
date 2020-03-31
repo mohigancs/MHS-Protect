@@ -68,7 +68,7 @@ export default class AdminScreen extends React.Component {
         {id: count++, label: 'Unknown'},
       ]
         return ( 
-              <KeyboardAvoidingView style = {styles.contentContainer} behavior = "padding" enabled>
+              <KeyboardAvoidingView style = {styles.contentContainer} behavior = "padding">
                 <View style = {styles.horizontalContainer}>
                   <IconButton style = {styles.mainTopRightIcon}
                     icon = 'close'
@@ -92,6 +92,7 @@ export default class AdminScreen extends React.Component {
                   </TouchableOpacity>
                   <ActionSheet 
                     visible={this.state.visible}
+                    title = 'Type of Emergency'
                     data={options} 
                     onOptionPress={(e) => this.setState({visible: false, actionSheetText: e.label})}
                     onCancelPress={() => this.setState({visible: false})}
