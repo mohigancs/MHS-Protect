@@ -8,7 +8,7 @@ import Database from './components/Database'
 const db = new Database()
 import styles from './components/allStyles'
 const screenWidth = Dimensions.get('window').width
-
+const screenHeight = Dimensions.get('window').height
 export default class AdminScreen extends React.Component {
 
 
@@ -68,7 +68,7 @@ export default class AdminScreen extends React.Component {
         {id: count++, label: 'Unknown'},
       ]
         return ( 
-              <KeyboardAvoidingView style = {styles.contentContainer} behavior = "padding">
+              <KeyboardAvoidingView style = {styles.contentContainer} behavior="height" keyboardVerticalOffset = {screenHeight*0.07}>
                 <View style = {styles.horizontalContainer}>
                   <IconButton style = {styles.mainTopRightIcon}
                     icon = 'close'
@@ -109,10 +109,19 @@ export default class AdminScreen extends React.Component {
                   <TouchableOpacity 
                     style = {styles.button}
                     onPress = {() => {
-                      db.requestHelp('Medical Emergency. Type: ' + this.state.actionSheetText + ' Student Initials: ' + this.initials)
+
+                      db.requestHelp()
                       //TODO: need to figure out how to text without bringing user out of app
                       //Communications.textWithoutEncoding('3048255608', this.details)
+                      db.getUserState().then(uid => {
+                        db.fetchUser(uid).then(user => {
+                          this.emergency = 'Medical Emergency. Type: ' + this.state.actionSheetText + '\nStudent Initials: ' + this.initials + '\nRoom: ' + user.key;
+                          // db.textMessage('NUMBER', this.emergency)
+                        })
+                      })
+
                       this.alert()
+
                     }}
                     >
                     <Text style = {styles.buttonText}>SUBMIT</Text>

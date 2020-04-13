@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import { IconButton, Paragraph } from 'react-native-paper'
 import AlertAsync from "react-native-alert-async"
 import SlideToConfirm from 'react-native-slide-to-confirm';

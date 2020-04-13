@@ -81,8 +81,8 @@ class Database {
     
     phoneCall = (number) => {
 
-      let account_sid = "AC070ca362f6f7d966c4ebc54a7a882e3d";
-      let auth_token = "a07d94f880b828a131e169ca95f634de";
+      let account_sid = "REDACTED";
+      let auth_token = "REDACTED";
 
       let url = "https://api.twilio.com/2010-04-01/Accounts/" + account_sid + "/Calls.json";
 
@@ -100,6 +100,30 @@ class Database {
 
     }
 
+    textMessage = (number, body) => {
+
+        let account_sid = "REDACTED";
+        let auth_token = "REDACTED";
+        let message_sid = "REDACTED";
+        
+        let url = 'https://api.twilio.com/2010-04-01/Accounts/' + account_sid + '/Messages.json'
+
+        let authorizationBasic = base64.encode(account_sid + ':' + auth_token)
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.setRequestHeader('Authorization', 'Basic ' + authorizationBasic);
+        xhr.setRequestHeader('Accept', 'application/json');
+
+        let params = "MessagingServiceSid=" + message_sid + "&To=" + number + "&Body=" + body;
+        xhr.send(params);
+
+    }
+
+
+    
     
     /*
 
@@ -341,7 +365,7 @@ class Database {
             phone: phone,
             role: role
         })
-    
+
         Alert.alert('Success!', 'User ' + name + ' Added to the Database.')
         this.addkey(parseInt(id) + 1, false) // give the new user an access key
 

@@ -66,6 +66,7 @@ export default class AdminScreen extends React.Component {
                   }}
                 />
           </View> 
+          
           <View style = {styles.container}>
           <TouchableOpacity style = {styles.requestButton}
                    onPress= {() => {

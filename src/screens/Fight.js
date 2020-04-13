@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, Alert, View, TextInput, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView } from 'react-native'
-import { IconButton, Paragraph } from 'react-native-paper'
+import { IconButton} from 'react-native-paper'
 import { Notifications } from 'expo'
 import AlertAsync from "react-native-alert-async"
 import * as Permissions from 'expo-permissions'
@@ -10,10 +10,11 @@ import SlideToConfirm from 'react-native-slide-to-confirm'
 import Database from './components/Database'
 const db = new Database()
 const screenWidth = Dimensions.get('window').width
+const screenHeight = Dimensions.get('window').height
 import styles from './components/allStyles'
 
 export default class AdminScreen extends React.Component {
-
+    details = ''
     entered_id = -1
     state = {
         assetsLoaded: false,
@@ -56,7 +57,7 @@ export default class AdminScreen extends React.Component {
       
     render() {
         return (
-            <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" enabled>
+            <KeyboardAvoidingView style={styles.contentContainer} behavior="height" keyboardVerticalOffset = {screenHeight*0.07}>
                 <View style = {styles.horizontalContainer}>
                 <IconButton style = {styles.topLeftIcon}
                   icon = 'arrow-left'
@@ -77,7 +78,7 @@ export default class AdminScreen extends React.Component {
                 />
                 </View>
                 <View style = {styles.container}>
-                  <Text style = {styles.title}>Please provide details</Text>
+                  <Text style = {styles.title}>Report Fight</Text>
                   <TextInput 
                     style={styles.input}
                     placeholder="Details"
@@ -92,9 +93,14 @@ export default class AdminScreen extends React.Component {
                   <TouchableOpacity 
                     style = {styles.button}
                     onPress = {() => {
-                      db.requestHelp(this.details)
-                      //TODO: need to figure out how to text without bringing user out of app
-                      //Communications.textWithoutEncoding('3048255608', this.details)
+                      db.getUserState().then(uid => {
+                        db.fetchUser(uid).then(user => {
+                          this.emergency = 'Fight Emergency. Details:' + this.details + '\nRoom: ' + user.key
+                          db.requestHelp(this.emergency)
+                          // db.textMessage('NUMBER', this.emergency)
+                        })
+                      })
+
                       this.alert()
                     }}
                     >

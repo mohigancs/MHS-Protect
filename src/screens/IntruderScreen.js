@@ -110,7 +110,7 @@ export default class AdminScreen extends React.Component {
                     onPress = {() => {
                       this.setState({threatVisible: true})
                     }}
-                    >
+                  >
                     <Text style = {styles.actionSheetButtonText}>{this.state.threatText}</Text>
                   </TouchableOpacity>
                   <ActionSheet 
@@ -214,15 +214,15 @@ export default class AdminScreen extends React.Component {
                         style={styles.button}
                         onPress={() => {
                           db.getUserState().then(uid => {
-                          db.fetchUser(uid).then(user => {
-                          this.message = user.name + ' has detected a ' + this.state.threatText + ' threat. The ' + this.state.gunmenText + ' intruder(s) were spotted near the ' + this.state.locationText + '. The intruder is a ' + this.state.raceText + ' ' + this.state.sexText + '. Their clothing is ' + this.clothing + '.' 
-                              db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
-                                this.props.navigation.navigate('Chat', {user: [user, uid]})
+                            db.fetchUser(uid).then(user => {
+                            this.message = user.name + ' has detected a ' + this.state.threatText + ' threat. The ' + this.state.gunmenText + ' intruder(s) were spotted near the ' + this.state.locationText + '. The intruder is a ' + this.state.raceText + ' ' + this.state.sexText + '. Their clothing is ' + this.clothing + '.' 
+                                db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
+                                  this.props.navigation.navigate('Chat', {user: [user, uid]})
+                                  // db.textMessage('NUMBER', this.message)
+                              })
                             })
-                          })
-                          
                         }}
-                        >
+                    >
                           <Text style = {styles.buttonText}>SUBMIT</Text>
                     </TouchableOpacity>
                     </View>

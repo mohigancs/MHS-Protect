@@ -14,6 +14,7 @@ export default StyleSheet.create({
     container: {
         flex: 10,
         justifyContent: 'center',
+        alignContent: 'center',
         alignItems: 'center',
     },
     text: {
@@ -135,9 +136,9 @@ export default StyleSheet.create({
     },
      requestButton: {
          alignContent: 'center',
-         justifyContent: 'space-evenly',
+         justifyContent: 'center',
          alignItems:'center',
-         marginBottom: screenHeight*0.2,
+         bottom: screenHeight*0.2,
        },
       otherText: {
         fontFamily: 'Lato-Bold',
@@ -145,7 +146,14 @@ export default StyleSheet.create({
         fontSize: screenWidth*0.049,
       },
       other: {
-        alignContent:'center',
+        width: screenWidth*0.7299,
+        height: screenHeight*0.0534,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: 'black',
+        borderWidth: 0.5,
+        borderRadius: 5,
+        bottom: screenHeight*0.05,
       },
       labelText: {
         fontFamily: 'Lato-Regular',

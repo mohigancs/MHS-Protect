@@ -59,9 +59,6 @@ export default class AdminScreen extends React.Component {
                                         key = db.makekey(10)
                                         db.addkey(this.entered_id, key)
                                     }
-                                    console.log('YES pressed')
-                                    console.log(screenHeight)
-                                    console.log(screenWidth)
                                 }
                                 },
                             ],
