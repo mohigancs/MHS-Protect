@@ -60,9 +60,10 @@ export default class ChatScreen extends Component {
                 </View>
             )
         }
-        else {
+        if(Platform.OS === 'android') {
             return (     
                 <View style={{flex:1}}>
+                    
                     <Appbar.Header
                     dark = {true}
                     style={{backgroundColor:'#bfbfbf'}}
@@ -74,11 +75,12 @@ export default class ChatScreen extends Component {
                         onPress={() => this.props.navigation.navigate('Home')} />
                 </Appbar.Header>
                     <GiftedChat
+                    
                         messages={this.state.messages}
                         onSend={db.send}
                         user={this.user}
                     />
-                    <KeyboardAvoidingView behavior={'padding'}/> 
+                    <KeyboardAvoidingView behavior={'position'}/> 
                     <FlashMessage position="top" />
                 </View>
             )
