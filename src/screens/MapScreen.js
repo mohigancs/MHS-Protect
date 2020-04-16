@@ -72,7 +72,7 @@ export default class MapScreen extends Component {
             }}
         />
         </Appbar.Header>
-        <FlashMessage position="bottom" />
+        <FlashMessage position="top" />
       </View>
     );
   }

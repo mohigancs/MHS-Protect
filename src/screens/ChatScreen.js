@@ -75,12 +75,11 @@ export default class ChatScreen extends Component {
                         onPress={() => this.props.navigation.navigate('Home')} />
                 </Appbar.Header>
                     <GiftedChat
-                    
                         messages={this.state.messages}
                         onSend={db.send}
                         user={this.user}
                     />
-                    <KeyboardAvoidingView behavior={'position'}/> 
+                    <KeyboardAvoidingView behavior={'padding'}/> 
                     <FlashMessage position="top" />
                 </View>
             )

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "MHSProtect",
-    "slug": "App",
+    "slug": "MHSProtect",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/images/MHS_Logo_Square.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/images/MHS_Logo_Square.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -24,7 +24,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.MohiganCS.MHSProtect",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.MohiganCS.MHSProtect",
+      "versionCode": 1
     }
   }
 }

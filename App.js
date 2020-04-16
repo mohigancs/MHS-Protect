@@ -15,9 +15,7 @@ import FightScreen from './src/screens/Fight'
 import OtherScreen from './src/screens/Other'
 import firebase from 'firebase'
 import { firebaseConfig } from './config'
-
 firebase.initializeApp(firebaseConfig)
-
 const MainStack = createStackNavigator({
   Home: { 
     screen: HomeScreen // The main screen of the app. Has all the buttons
