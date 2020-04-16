@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import { Appbar } from 'react-native-paper'
 import { KeyboardAvoidingView, View } from 'react-native'
 import { Platform } from '@unimodules/core'
-import FlashMessage from 'react-native-flash-message'
-
 
 import Database from './components/Database'
 const db = new Database()
@@ -18,7 +16,6 @@ export default class ChatScreen extends Component {
     }
 
     componentDidMount() {
-        db.mNotifOn()
         db.chatOn(message => {
             this.setState(previousState => ({
                 messages: GiftedChat.append(previousState.messages, message),
@@ -56,7 +53,6 @@ export default class ChatScreen extends Component {
                         user={this.user}
                     />
                     <KeyboardAvoidingView behavior={'position'}/> 
-                    <FlashMessage position="top" />
                 </View>
             )
         }
@@ -80,14 +76,12 @@ export default class ChatScreen extends Component {
                         user={this.user}
                     />
                     <KeyboardAvoidingView behavior={'padding'}/> 
-                    <FlashMessage position="top" />
                 </View>
             )
         }
     }
 
     componentWillUnmount() {
-        db.mNotifOff()
         db.chatOff()
     }
 }

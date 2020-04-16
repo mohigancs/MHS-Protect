@@ -184,39 +184,7 @@ class Database {
 
         return tokens
     }
-
-    cNotifOn = () => { // Chat Notification
-        var ignoreItems = true;
-        var ref = firebase.database().ref('alerts/messages/')
-            ref.on('child_added', (code_snapshot) => {
-        if (!ignoreItems) {
-            this.sendInAppNotification(code_snapshot.val().user.name, code_snapshot.val().text, code_snapshot.val().user._id);
-        }
-        });
-            ref.once('value', function(snapshot) {
-            ignoreItems = false;
-        });
-    }
-    cNotifOff = () => { // Chat Notification
-        firebase.database().ref('alerts/messages/').off()
-    }
-
-    mNotifOn = () => { // Map Notificaiton
-        var ignoreItems = true;
-        var ref = firebase.database().ref('alerts/emergency/')
-            ref.on('child_added', (code_snapshot) => {
-        if (!ignoreItems) {
-            this.sendInAppNotification(code_snapshot.val().name, "Pressed the Emergency Button", code_snapshot.val().user);
-        }
-        });
-            ref.once('value', function(snapshot) {
-            ignoreItems = false;
-        });
-    }
-    mNotifOff = () => { // Map Notificaiton
-        firebase.database().ref('alerts/emergency/').off()
-    }
-
+    
 
     /*
 

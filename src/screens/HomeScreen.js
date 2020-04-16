@@ -4,11 +4,11 @@ import { IconButton, Paragraph } from 'react-native-paper'
 import { Notifications } from 'expo'
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
-import FlashMessage from 'react-native-flash-message'
 import Database from './components/Database'
 const db = new Database()
 const screenWidth = Dimensions.get('window').width
 import styles from './components/allStyles'
+
 export default class HomeScreen extends Component {
   details = ''
   user = this.props.navigation.getParam('user','error')
@@ -60,8 +60,6 @@ export default class HomeScreen extends Component {
     db.getUserState().then(uid => {
       this.currentUser = uid
     })
-    db.mNotifOn()
-    db.cNotifOn()
     await this.registerForPushNotificationsAsync()
   }
 
@@ -140,12 +138,7 @@ export default class HomeScreen extends Component {
           }}
           />
       </View>
-      <FlashMessage position="top" />
     </View>
     )
-  }
-  componentWillUnmount(){
-    db.mNotifOff()
-    db.cNotifOff();
   }
 }
