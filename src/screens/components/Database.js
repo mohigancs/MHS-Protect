@@ -1,6 +1,5 @@
 var firebase = require('firebase')
 import { AsyncStorage, Alert, Vibration } from 'react-native'
-import { showMessage } from 'react-native-flash-message'
 import base64 from 'react-native-base64'
 
 class Database {
@@ -131,33 +130,13 @@ class Database {
 
     */
 
-
-    sendInAppNotification = (name, description, omit) => {
-        this.getUserState().then(uid => {
-            if (omit !== uid){
-                Vibration.vibrate(1000);
-                showMessage({
-                    message: name,
-                    description: description,
-                    type: 'info',
-                    color: '#000000',
-                    backgroundColor: '#DDDDDD',
-                    type: 'success',
-                    onPress: () => {
-                        console.log("Send user to next screen")
-                    }
-                })
-            }
-        })
-    }
-
     sendPushNotification = (token, title, body) => { // sends pushs notification to the API
         let response = fetch('https://exp.host/--/api/v2/push/send',{ 
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            },
+            },            
             body: JSON.stringify({
                 to: token, // this token identifies the phone to be notified
                 sound:'default',
@@ -239,7 +218,6 @@ class Database {
     }
 
     send = (messages) => { // sends a message (handles giftedchat and firebase)
-        console.log(messages)
         const { text, user } = messages[0]
         const createdAt = this.timestamp()
         const message = { text, user, createdAt }

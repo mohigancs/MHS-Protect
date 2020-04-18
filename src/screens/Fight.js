@@ -5,7 +5,6 @@ import { Notifications } from 'expo'
 import AlertAsync from "react-native-alert-async"
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
-import FlashMessage from 'react-native-flash-message'
 import SlideToConfirm from 'react-native-slide-to-confirm'
 import Database from './components/Database'
 const db = new Database()
@@ -31,8 +30,6 @@ export default class AdminScreen extends React.Component {
         db.getUserState().then(uid => {
           this.currentUser = uid
         })
-        db.mNotifOn()
-        db.cNotifOn()
         await this.registerForPushNotificationsAsync()
     }
     alert = async () => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View,TextInput, TouchableOpacity, Alert, Image, Dimensions, KeyboardAvoidingView } from 'react-native'
 import * as Font from 'expo-font'
+import { Notifications } from 'expo'
 import ActionSheet from 'react-native-enhanced-actionsheet'
 import { IconButton } from 'react-native-paper'
 import Database from './components/Database'
@@ -35,11 +36,8 @@ export default class AdminScreen extends React.Component {
         db.getUserState().then(uid => {
           this.currentUser = uid
         })
-        db.mNotifOn()
-        db.cNotifOn()
         await this.registerForPushNotificationsAsync()
     }
-      
     render() {
         t = 0
         const threat = [
@@ -90,8 +88,9 @@ export default class AdminScreen extends React.Component {
           {id: g++, label: '4'},
           {id: g++, label: '5+'},
           {id: g++, label: 'Unknown'},
-        ]
-        return ( 
+        ]  
+
+         return ( 
                 <KeyboardAvoidingView style = {styles.contentContainer} behavior="height"
                 keyboardVerticalOffset={screenHeight*0.3}>
                   <View style = {styles.horizontalContainer}>
@@ -217,7 +216,7 @@ export default class AdminScreen extends React.Component {
                             db.fetchUser(uid).then(user => {
                             this.message = user.name + ' has detected a ' + this.state.threatText + ' threat. The ' + this.state.gunmenText + ' intruder(s) were spotted near the ' + this.state.locationText + '. The intruder is a ' + this.state.raceText + ' ' + this.state.sexText + '. Their clothing is ' + this.clothing + '.' 
                                 db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
-                                  this.props.navigation.navigate('Chat', {user: [user, uid]})
+                                  setTimeout(() => {this.props.navigation.navigate('Chat', {user: [user, uid]})},500)  
                                   // db.textMessage('NUMBER', this.message)
                               })
                             })

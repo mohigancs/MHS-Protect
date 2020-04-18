@@ -5,7 +5,6 @@ import { IconButton, Paragraph } from 'react-native-paper'
 import { Notifications } from 'expo'
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
-import FlashMessage from 'react-native-flash-message'
 import styles from './components/allStyles'
 const screenWidth = Dimensions.get('window').width
 export default class AdminScreen extends React.Component {
@@ -25,8 +24,6 @@ export default class AdminScreen extends React.Component {
         db.getUserState().then(uid => {
           this.currentUser = uid
         })
-        db.mNotifOn()
-        db.cNotifOn()
         await this.registerForPushNotificationsAsync()
     }
 
@@ -59,7 +56,7 @@ export default class AdminScreen extends React.Component {
 
             <View style = {styles.contentContainer}>
               <View style = {styles.horizontalContainer}>
-                <IconButton style = {styles.topRightIcon}
+                <IconButton style = {styles.mainTopRightIcon}
                   icon = 'close'
                   color = 'black'
                   size = {screenWidth*0.08}

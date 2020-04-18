@@ -132,7 +132,7 @@ export default class HomeScreen extends Component {
             onPress={() => {
               db.getUserState().then(uid => {
                 db.fetchUser(uid).then(user => {
-                  this.props.navigation.navigate('Chat', {user: [user, uid]})
+                  this.props.navigation.navigate('Chat', {usr: [user, uid]})
                 })
               })
           }}

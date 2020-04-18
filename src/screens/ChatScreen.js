@@ -8,19 +8,18 @@ import Database from './components/Database'
 const db = new Database()
 
 export default class ChatScreen extends Component {
-
+   
     usr = this.props.navigation.getParam('user','error')
-
     state = {
         messages: [],
     }
-
-    componentDidMount() {
+    componentDidMount(){
         db.chatOn(message => {
             this.setState(previousState => ({
                 messages: GiftedChat.append(previousState.messages, message),
             }))
         })
+
     }
 
    get user() { 
@@ -30,9 +29,9 @@ export default class ChatScreen extends Component {
             _id: this.usr[1],
         }
     }
+    
 
     render() {
-        console.log(this.user._id)
         if (Platform.OS === 'ios') {
             return (     
                 <View style={{flex:1}}>

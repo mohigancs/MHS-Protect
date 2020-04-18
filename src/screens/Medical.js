@@ -4,6 +4,7 @@ import AlertAsync from "react-native-alert-async"
 import * as Font from 'expo-font'
 import ActionSheet from 'react-native-enhanced-actionsheet'
 import { IconButton } from 'react-native-paper'
+import { Notifications } from 'expo'
 import Database from './components/Database'
 const db = new Database()
 import styles from './components/allStyles'
@@ -30,8 +31,6 @@ export default class AdminScreen extends React.Component {
         db.getUserState().then(uid => {
           this.currentUser = uid
         })
-        db.mNotifOn()
-        db.cNotifOn()
         await this.registerForPushNotificationsAsync()
       }
 

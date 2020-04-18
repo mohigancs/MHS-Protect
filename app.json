@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MHSProtect",
-    "slug": "MHSProtect",
+    "name": "SchoolProtect",
+    "slug": "SchoolProtect",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -25,12 +25,17 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.MohiganCS.MHSProtect",
+      "bundleIdentifier": "com.MohiganCS.SchoolProtect",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "com.MohiganCS.MHSProtect",
+      "package": "com.MohiganCS.SchoolProtect",
       "versionCode": 1
+    },
+    "notification": {
+      "icon": "./src/images/notificationMailbox.png",
+      "color": "#c80d00"
     }
+
   }
 }
