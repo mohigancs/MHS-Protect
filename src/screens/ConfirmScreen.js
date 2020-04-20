@@ -47,7 +47,7 @@ export default class ConfirmScreen extends React.Component {
                 <View style = {styles.buttonContainer}>
                     <TouchableOpacity style={styles.confirmButton}
                     onPress={() => {
-                        Alert.alert("We're sorry...", 'Ask Mr. Gibson for help.')
+                        Alert.alert("We're sorry...", 'We will work on resolving this issue.')
                         this.props.navigation.navigate('Key')
                     }}
                     >

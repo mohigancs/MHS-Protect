@@ -38,7 +38,7 @@ class Database {
 
     */
 
-    reportEmergency = (description) => { // panic button prototype
+    reportEmergency = (description) => {
 
         this.getUserState().then(uid => { // add alert to the database
             this.fetchUser(uid).then(user => {
