@@ -108,17 +108,13 @@ export default class AdminScreen extends React.Component {
                   <TouchableOpacity 
                     style = {styles.button}
                     onPress = {() => {
-
-                      db.requestHelp()
-                      //TODO: need to figure out how to text without bringing user out of app
-                      //Communications.textWithoutEncoding('3048255608', this.details)
                       db.getUserState().then(uid => {
                         db.fetchUser(uid).then(user => {
-                          this.emergency = 'Medical Emergency. Type: ' + this.state.actionSheetText + '\nStudent Initials: ' + this.initials + '\nRoom: ' + user.key;
+                          this.emergency = 'Medical Emergency. Type: ' + this.state.actionSheetText + '\nStudent Initials: ' + this.initials + '\n'+ 'Room: ' + user.key;
+                          db.requestHelp([{_id:user.uid, createdAt:0, text: this.emergency, user:{_id:uid, email:user.email, name:user.name}}])
                           // db.textMessage('NUMBER', this.emergency)
                         })
                       })
-
                       this.alert()
 
                     }}

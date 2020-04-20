@@ -88,13 +88,13 @@ export default class AdminScreen extends React.Component {
                     onPress = {() => {
                       db.getUserState().then(uid => {
                         db.fetchUser(uid).then(user => {
-                          this.emergency = 'Other Emergency. Details:' + this.details + '\nRoom: ' + user.key
-                          db.requestHelp(this.emergency)
+                          this.emergency = 'Other Emergency. Details: ' + this.details + '\n'+ 'Room: ' + user.key;
+                          db.requestHelp([{_id:user.uid, createdAt:0, text: this.emergency, user:{_id:uid, email:user.email, name:user.name}}])
                           // db.textMessage('NUMBER', this.emergency)
                         })
                       })
-
                       this.alert()
+                     
                     }}
                     >
                     <Text style = {styles.buttonText}>SUBMIT</Text>

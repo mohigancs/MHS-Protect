@@ -63,19 +63,18 @@ class Database {
         })
     }
 
-    requestHelp = (description) => { // request help button (firebase function)
-        this.getUserState().then(uid => {
-            this.fetchUser(uid).then(user => {
-                firebase.database().ref('alerts/help').push({
-                    user: uid,
-                    name: user.name,
-                    phone: user.phone,
-                    email: user.email,
-                    location: 'coords',
-                    description: description
-                })
-            })
-        })
+    requestHelp = (messages) => { // request help button (firebase function)
+        const { text, user } = messages[0]
+        const createdAt = this.timestamp()
+        const message = { text, user, createdAt }
+
+        firebase.database().ref('alerts/help').push(message) // add the message to the firebase
+            
+        // this.getUserTokens(user._id).then((tokens) => { // sends push notifications to all users
+        //     for (i = 0; i < tokens.length; i ++){
+        //         this.sendPushNotification(tokens[i], user.name, text)
+        //     }
+        // })
     }
     
     phoneCall = (number) => {
