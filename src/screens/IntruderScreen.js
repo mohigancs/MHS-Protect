@@ -216,7 +216,7 @@ export default class AdminScreen extends React.Component {
                             db.fetchUser(uid).then(user => {
                             this.message = user.name + ' has detected a ' + this.state.threatText + ' threat. The ' + this.state.gunmenText + ' intruder(s) were spotted near the ' + this.state.locationText + '. The intruder is a ' + this.state.raceText + ' ' + this.state.sexText + '. Their clothing is ' + this.clothing + '.' 
                                 db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
-                                  setTimeout(() => {this.props.navigation.navigate('Chat', {user: [user, uid]})},500)  
+                                  setTimeout(() => {this.props.navigation.navigate('Chat', {user: [user, uid]})},110)  
                                   // db.textMessage('NUMBER', this.message)
                               })
                             })
