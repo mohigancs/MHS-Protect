@@ -7,12 +7,10 @@ import ConfirmScreen from './src/screens/ConfirmScreen'
 import ChatScreen from './src/screens/ChatScreen'
 import MapScreen from './src/screens/MapScreen'
 import SliderScreen from './src/screens/SliderScreen'
-import RequestScreen from './src/screens/RequestScreen'
 import TutorialScreen from './src/screens/TutorialScreen'
 import IntruderScreen from './src/screens/IntruderScreen'
 import MedicalScreen from './src/screens/MedicalScreen'
-import FightScreen from './src/screens/FightScreen'
-import OtherScreen from './src/screens/OtherScreen'
+import HelpScreen from './src/screens/HelpScreen'
 import firebase from 'firebase'
 import { firebaseConfig } from './config'
 firebase.initializeApp(firebaseConfig)
@@ -32,9 +30,6 @@ const MainStack = createStackNavigator({
   Slider: {
     screen: SliderScreen
   },
-  Request: {
-    screen: RequestScreen
-  },
   Tutorial: {
     screen: TutorialScreen
   },
@@ -44,11 +39,8 @@ const MainStack = createStackNavigator({
   Medical: {
     screen: MedicalScreen
   },
-  Fight: {
-    screen: FightScreen
-  },
-  Other: {
-    screen: OtherScreen
+  Help: {
+    screen: HelpScreen
   },
 
 }, {

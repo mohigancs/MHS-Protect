@@ -5,6 +5,7 @@ import { IconButton, Paragraph } from 'react-native-paper'
 import { Notifications } from 'expo'
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
+import SlideToConfirm from 'react-native-slide-to-confirm';
 import styles from './components/allStyles'
 const screenWidth = Dimensions.get('window').width
 export default class AdminScreen extends React.Component {
@@ -67,16 +68,52 @@ export default class AdminScreen extends React.Component {
                 </View>
               <View style = {styles.container}>
               <TouchableOpacity 
-                style={styles.help}
+                style={styles.emergency}
                 >
-              <Text style = {styles.buttonText}>REQUEST HELP</Text>
+                <Text style = {styles.homeButtonText}>INTRUDER ALERT</Text>
               </TouchableOpacity>
                 <Paragraph style = {styles.text}>
-                  This is the REQUEST HELP button. Press this for medical emergencies, fights, etc.
-                  This will notify the nurse, administrators, and nearby teachers.
+                  This is the INTRUDER ALERT button. In the event of an active shooter situation, press this button.
+                  It will bring you to a screen with a slider. 
                 </Paragraph>
+              <Paragraph></Paragraph>
+              <SlideToConfirm
+                ref={ref => this.slideRef = ref}
+                width={screenWidth*0.833}
+                onConfirm={()=>{}}
+                textColor='white'
+                pathColor='#bbbbbb'
+                pathCoverColor='#c80d00'
+                sliderColor='white'
+                text='Slide To Confirm'
+              />
+                <Paragraph style = {styles.text}>
+                  Swipe right on the slider to confirm you want to begin the process of reporting an emergency.
+                </Paragraph>
+
               </View>
             </View>
+
+            <View style = {styles.contentContainer}>
+              <View style = {styles.horizontalContainer}>
+                <IconButton style = {styles.mainTopRightIcon}
+                  icon = 'close'
+                  color = 'black'
+                  size = {screenWidth*0.08}
+                  onPress={() => {
+                    this.props.navigation.navigate('Home')
+                  }}
+                />
+                </View>
+              <View style = {styles.container}>
+
+                <Paragraph style = {styles.text}>
+                  Emergency procedures blah blah
+                </Paragraph>
+
+              </View>
+            </View>
+
         </Swiper>
         )
     }

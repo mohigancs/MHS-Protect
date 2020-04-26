@@ -1,5 +1,7 @@
 import React from 'react';
-import { Text, View,TextInput, TouchableOpacity, Alert, Image, Dimensions, KeyboardAvoidingView } from 'react-native'
+import { Text, View,TextInput, TouchableOpacity, Alert, Dimensions, KeyboardAvoidingView } from 'react-native'
+import Communications from 'react-native-communications';
+
 import * as Font from 'expo-font'
 import { Notifications } from 'expo'
 import ActionSheet from 'react-native-enhanced-actionsheet'
@@ -26,6 +28,7 @@ export default class AdminScreen extends React.Component {
         injuredVisible: false,
         gunmenVisible: false,
     }
+    clothing = ''
     async componentDidMount(){
         await Font.loadAsync({
           'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
@@ -39,6 +42,7 @@ export default class AdminScreen extends React.Component {
         await this.registerForPushNotificationsAsync()
     }
     render() {
+        
         t = 0
         const threat = [
           {id: t++, label: 'Gun'}, 
@@ -192,7 +196,7 @@ export default class AdminScreen extends React.Component {
                     <Text style = {styles.actionSheetButtonText}>{this.state.gunmenText}</Text>
                   </TouchableOpacity>
                   <ActionSheet 
-                    title = 'Number Gunmen'
+                    title = 'Number of Gunmen'
                     visible={this.state.gunmenVisible}
                     data={gunmen} 
                     onOptionPress={(e) => this.setState({gunmenVisible: false, gunmenText: e.label})}
@@ -201,7 +205,7 @@ export default class AdminScreen extends React.Component {
                     
 
                   <TextInput
-                    style={styles.input}
+                    style={styles.intruderInput}
                     placeholder="Clothing Description"
                     placeholderTextColor = "black"
                     returnKeyType="default"
@@ -209,21 +213,85 @@ export default class AdminScreen extends React.Component {
                     autoCorrect={false}
                     onChange={(text) => this.clothing = text.nativeEvent.text}
                   />
-                  <TouchableOpacity 
-                        style={styles.button}
-                        onPress={() => {
-                          db.getUserState().then(uid => {
-                            db.fetchUser(uid).then(user => {
-                            this.message = user.name + ' has detected a ' + this.state.threatText + ' threat. The ' + this.state.gunmenText + ' intruder(s) were spotted near the ' + this.state.locationText + '. The intruder is a ' + this.state.raceText + ' ' + this.state.sexText + '. Their clothing is ' + this.clothing + '.' 
-                                db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
-                                  setTimeout(() => {this.props.navigation.navigate('Chat', {user: [user, uid]})},110)  
-                                  // db.textMessage('NUMBER', this.message)
-                              })
+                <View style = {styles.horizontalContainer}>
+                  <TouchableOpacity style={styles.intruderButton}
+                      onPress={() => {
+                        db.getUserState().then(uid => {
+                          db.fetchUser(uid).then(user => {
+                            a = this.state.threatText
+                            b = this.state.gunmenText
+                            c = this.state.locationText
+                            d = this.state.raceText
+                            e = this.state.sexText
+                            f = this.clothing
+                            if(a == 'Type of Threat'){
+                              a = 'Unspecified'
+                            }
+                            if(b == 'Number of Gunmen'){
+                              b = 'Unspecified Number Of'
+                            }
+                            if(c == 'Select Location'){
+                              c = 'Unspecified Location'
+                            }
+                            if(d == 'Race'){
+                              d = 'Unspecified Race'
+                            }
+                            if(e == 'Gender'){
+                              e = 'Unspecified Gender'
+                            }
+                            if(f == ''){
+                              f = 'Unspecified'
+                            }
+                          this.message = user.name + ' has detected a ' + a + ' threat. The ' + b + ' intruder(s) were spotted near the ' + c + '. The intruder is a ' + d + ' ' + e + '. Their clothing is ' + f + '.' 
+                          db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
+                          //need to replace this with 911 eventually
+                          Communications.phonecall('3049064441', true)
+                          //db.textMessage('NUMBER', this.message)
                             })
-                        }}
-                    >
-                          <Text style = {styles.buttonText}>SUBMIT</Text>
-                    </TouchableOpacity>
+                          })
+                      }}
+                  >
+                  <Text style = {styles.confirmButtonText}>TEXT + CALL 911</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.intruderButton}
+                      onPress={() => {
+                        db.getUserState().then(uid => {
+                          db.fetchUser(uid).then(user => {
+                            a = this.state.threatText
+                            b = this.state.gunmenText
+                            c = this.state.locationText
+                            d = this.state.raceText
+                            e = this.state.sexText
+                            f = this.clothing
+                            if(a == 'Type of Threat'){
+                              a = 'Unspecified'
+                            }
+                            if(b == 'Number of Gunmen'){
+                              b = 'Unspecified Number Of'
+                            }
+                            if(c == 'Select Location'){
+                              c = 'Unspecified Location'
+                            }
+                            if(d == 'Race'){
+                              d = 'Unspecified Race'
+                            }
+                            if(e == 'Gender'){
+                              e = 'Unspecified Gender'
+                            }
+                            if(f == ''){
+                              f = 'Unspecified'
+                            }
+                          this.message = user.name + ' has detected a ' + a + ' threat. The ' + b + ' intruder(s) were spotted near the ' + c + '. The intruder is a ' + d + ' ' + e + '. Their clothing is ' + f + '.' 
+                          db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
+                          setTimeout(() => {this.props.navigation.navigate('Chat', {user: [user, uid]})},100)  
+                                // db.textMessage('NUMBER', this.message)
+                            })
+                          })
+                      }}
+                  >
+                  <Text style = {styles.confirmButtonText}>TEXT 911</Text>
+                  </TouchableOpacity>
+                </View>
                     </View>
                   <View style={{ height: screenHeight*0.05 }} />
                 </KeyboardAvoidingView>

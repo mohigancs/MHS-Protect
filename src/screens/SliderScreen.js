@@ -40,7 +40,7 @@ export default class Slider extends Component {
         </View>
         <View style = {styles.container}>
         <Paragraph style = {styles.text}>
-            Slide to the right to confirm an active shooter. This function will send an alert to the police.
+            Slide to the right to confirm that there is an active intruder.
         </Paragraph>
         <SlideToConfirm
           ref={ref => this.slideRef = ref}
@@ -54,7 +54,6 @@ export default class Slider extends Component {
           sliderColor='white'
           text='Slide To Confirm'
         />
-
         </View>
       </View>
     );

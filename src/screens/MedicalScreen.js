@@ -17,7 +17,7 @@ export default class AdminScreen extends React.Component {
   initials = ''
   entered_id = -1
   state = {
-    actionSheetText: 'Type of Emergency',
+    medicalText: 'Type of Emergency',
     assetsLoaded: false,
     visible: false,
   }
@@ -82,7 +82,7 @@ export default class AdminScreen extends React.Component {
                   <Text style = {styles.title}>Medical Emergency</Text>
 
                   <TouchableOpacity 
-                    style = {styles.smallInput}
+                    style = {styles.fakeSmallInput}
                     onPress = {() => {
                       this.setState({visible: true})
                     }}
@@ -108,9 +108,17 @@ export default class AdminScreen extends React.Component {
                   <TouchableOpacity 
                     style = {styles.button}
                     onPress = {() => {
+                      a = this.state.medicalText
+                      if(a == 'Type of Emergency'){
+                        a = 'Unspecified Emergency'
+                      }
+                      b = this.initials
+                      if(b == ''){
+                        a = 'Unspecified Student Initials'
+                      }
                       db.getUserState().then(uid => {
                         db.fetchUser(uid).then(user => {
-                          this.emergency = 'Medical Emergency. Type: ' + this.state.actionSheetText + '\nStudent Initials: ' + this.initials + '\n'+ 'Room: ' + user.key;
+                          this.emergency = 'Medical Emergency. Type: ' + a + '\nStudent Initials: ' + b + '\n'+ 'Room: ' + user.key;
                           db.requestHelp([{_id:user.uid, createdAt:0, text: this.emergency, user:{_id:uid, email:user.email, name:user.name}}])
                           // db.textMessage('NUMBER', this.emergency)
                         })

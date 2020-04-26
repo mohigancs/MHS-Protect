@@ -14,7 +14,8 @@ export default class KeyScreen extends React.Component {
     
     async componentDidMount() {
         await Font.loadAsync({
-            'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
+            'Lato-Regular': require('../../assets/fonts/Lato-Regular.ttf'),
+            'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf')
         })
         db.getUserState().then(loggedin => {
             if (loggedin != 0) {

@@ -109,7 +109,7 @@ export default class HomeScreen extends Component {
           <TouchableOpacity 
             style={styles.help}
             onPress={() => {
-              this.props.navigation.navigate('Request')   
+              this.props.navigation.navigate('Help')   
             }}
           >
             <Text style = {styles.homeButtonText}>REQUEST HELP</Text>
