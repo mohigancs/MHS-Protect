@@ -234,16 +234,17 @@ export default StyleSheet.create({
     fakeSmallInput: {
         width: screenWidth*0.7299,
         height: screenHeight*0.0534,
-        backgroundColor: '#bbbbbb',
-        alignItems: 'center',
+        backgroundColor: '#d5d5d5',
         marginBottom: screenHeight*0.027,
         borderColor: 'black',
         borderWidth: 0.5,
         borderRadius: 5,
-        justifyContent: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         fontFamily: 'Lato-Bold',
         fontSize: screenWidth*0.0487,
-        paddingHorizontal: screenWidth*0.0487,
+        paddingHorizontal: screenWidth*0.02,
     },
     intruderButton: {
         width: screenWidth*0.45,
@@ -274,7 +275,7 @@ export default StyleSheet.create({
         textAlignVertical: 'top',
         fontSize: screenWidth*0.0487,
         paddingHorizontal: screenWidth*0.0487,
-        marginBottom: screenHeight*0.0344,
+        marginBottom: screenHeight*0.04,
     },
 
 })

@@ -5,6 +5,7 @@ import * as Font from 'expo-font'
 import ActionSheet from 'react-native-enhanced-actionsheet'
 import { IconButton } from 'react-native-paper'
 import { Notifications } from 'expo'
+import { Icon } from 'react-native-elements'
 import Database from './components/Database'
 const db = new Database()
 import styles from './components/allStyles'
@@ -83,12 +84,17 @@ export default class AdminScreen extends React.Component {
                     }}
                     >
                     <Text style = {styles.actionSheetButtonText}>{this.state.problemText}</Text>
+                    <Icon
+                      name='down'
+                      type='antdesign'
+                      color='black'
+                    />
                   </TouchableOpacity>
                   <ActionSheet 
                     visible={this.state.visible}
                     title = 'Type of Issue'
                     data={options} 
-                    onOptionPress={(e) => this.setState({visible: false, actionSheetText: e.label})}
+                    onOptionPress={(e) => this.setState({visible: false, problemText: e.label})}
                     onCancelPress={() => this.setState({visible: false})}
                   />
                   <TextInput

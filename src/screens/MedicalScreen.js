@@ -4,6 +4,7 @@ import AlertAsync from "react-native-alert-async"
 import * as Font from 'expo-font'
 import ActionSheet from 'react-native-enhanced-actionsheet'
 import { IconButton } from 'react-native-paper'
+import { Icon } from 'react-native-elements'
 import { Notifications } from 'expo'
 import Database from './components/Database'
 const db = new Database()
@@ -87,13 +88,18 @@ export default class AdminScreen extends React.Component {
                       this.setState({visible: true})
                     }}
                     >
-                    <Text style = {styles.actionSheetButtonText}>{this.state.actionSheetText}</Text>
+                    <Text style = {styles.actionSheetButtonText}>{this.state.medicalText}</Text>
+                    <Icon
+                      name='down'
+                      type='antdesign'
+                      color='black'
+                    />
                   </TouchableOpacity>
                   <ActionSheet 
                     visible={this.state.visible}
                     title = 'Type of Emergency'
                     data={options} 
-                    onOptionPress={(e) => this.setState({visible: false, actionSheetText: e.label})}
+                    onOptionPress={(e) => this.setState({visible: false, medicalText: e.label})}
                     onCancelPress={() => this.setState({visible: false})}
                   />
                   <TextInput

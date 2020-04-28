@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View,TextInput, TouchableOpacity, Alert, Dimensions, KeyboardAvoidingView } from 'react-native'
 import Communications from 'react-native-communications';
-
+import { Icon } from 'react-native-elements'
 import * as Font from 'expo-font'
 import { Notifications } from 'expo'
 import ActionSheet from 'react-native-enhanced-actionsheet'
@@ -115,6 +115,11 @@ export default class AdminScreen extends React.Component {
                     }}
                   >
                     <Text style = {styles.actionSheetButtonText}>{this.state.threatText}</Text>
+                    <Icon
+                      name='down'
+                      type='antdesign'
+                      color='black'
+                    />
                   </TouchableOpacity>
                   <ActionSheet 
                     title = 'Type of Threat'
@@ -132,6 +137,11 @@ export default class AdminScreen extends React.Component {
                     }}
                     >
                     <Text style = {styles.actionSheetButtonText}>{this.state.locationText}</Text>
+                    <Icon
+                      name='down'
+                      type='antdesign'
+                      color='black'
+                    />
                   </TouchableOpacity>
                   <ActionSheet 
                     title = 'Location'
@@ -147,6 +157,11 @@ export default class AdminScreen extends React.Component {
                     }}
                     >
                     <Text style = {styles.actionSheetButtonText}>{this.state.raceText}</Text>
+                    <Icon
+                      name='down'
+                      type='antdesign'
+                      color='black'
+                    />
                   </TouchableOpacity>
                   <ActionSheet 
                     title = 'Race'
@@ -162,6 +177,11 @@ export default class AdminScreen extends React.Component {
                     }}
                     >
                     <Text style = {styles.actionSheetButtonText}>{this.state.sexText}</Text>
+                    <Icon
+                      name='down'
+                      type='antdesign'
+                      color='black'
+                    />
                   </TouchableOpacity>
                   <ActionSheet 
                     title = 'Gender'
@@ -178,6 +198,11 @@ export default class AdminScreen extends React.Component {
                     }}
                     >
                     <Text style = {styles.actionSheetButtonText}>{this.state.injuredText}</Text>
+                    <Icon
+                      name='down'
+                      type='antdesign'
+                      color='black'
+                    />
                   </TouchableOpacity>
                   <ActionSheet 
                     title = 'Number Injured'
@@ -194,6 +219,11 @@ export default class AdminScreen extends React.Component {
                     }}
                     >
                     <Text style = {styles.actionSheetButtonText}>{this.state.gunmenText}</Text>
+                    <Icon
+                      name='down'
+                      type='antdesign'
+                      color='black'
+                    />
                   </TouchableOpacity>
                   <ActionSheet 
                     title = 'Number of Gunmen'
@@ -224,26 +254,31 @@ export default class AdminScreen extends React.Component {
                             d = this.state.raceText
                             e = this.state.sexText
                             f = this.clothing
+                            g = this.state.injuredText
                             if(a == 'Type of Threat'){
-                              a = 'Unspecified'
+                              a = 'Unknown'
                             }
                             if(b == 'Number of Gunmen'){
-                              b = 'Unspecified Number Of'
+                              b = 'Unknown Amount of'
                             }
                             if(c == 'Select Location'){
-                              c = 'Unspecified Location'
+                              c = 'Unknown Location'
                             }
                             if(d == 'Race'){
-                              d = 'Unspecified Race'
+                              d = 'Unknown Race'
                             }
                             if(e == 'Gender'){
-                              e = 'Unspecified Gender'
+                              e = 'Unknown Gender'
                             }
                             if(f == ''){
-                              f = 'Unspecified'
+                              f = 'Unknown'
                             }
-                          this.message = user.name + ' has detected a ' + a + ' threat. The ' + b + ' intruder(s) were spotted near the ' + c + '. The intruder is a ' + d + ' ' + e + '. Their clothing is ' + f + '.' 
+                            if(g == 'Number Injured'){
+                              g = 'Unknown Amount of'
+                            }
+                          this.message = user.name + ' has detected a ' + a + ' threat.' + b + ' intruder(s) were spotted near ' + c + '. The intruder is a ' + d + ' ' + e + '. Their clothing is ' + f + '.' + g + 'people are injured.'
                           db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
+                         
                           //need to replace this with 911 eventually
                           Communications.phonecall('3049064441', true)
                           //db.textMessage('NUMBER', this.message)
@@ -263,25 +298,29 @@ export default class AdminScreen extends React.Component {
                             d = this.state.raceText
                             e = this.state.sexText
                             f = this.clothing
+                            g = this.state.injuredText
                             if(a == 'Type of Threat'){
-                              a = 'Unspecified'
+                              a = 'Unknown'
                             }
-                            if(b == 'Number of Gunmen'){
-                              b = 'Unspecified Number Of'
+                            if(b == 'Number of Gunmen' || b == 'Unknown'){
+                              b = 'Unknown Amount Of'
                             }
-                            if(c == 'Select Location'){
-                              c = 'Unspecified Location'
+                            if(c == 'Select Location' || c == 'Unknown'){
+                              c = 'Unknown Location'
                             }
-                            if(d == 'Race'){
-                              d = 'Unspecified Race'
+                            if(d == 'Race' || d == 'Unknown'){
+                              d = 'Unknown Race'
                             }
-                            if(e == 'Gender'){
-                              e = 'Unspecified Gender'
+                            if(e == 'Gender' || e == 'Unknown'){
+                              e = 'Unknown Gender'
                             }
                             if(f == ''){
-                              f = 'Unspecified'
+                              f = 'Unknown'
                             }
-                          this.message = user.name + ' has detected a ' + a + ' threat. The ' + b + ' intruder(s) were spotted near the ' + c + '. The intruder is a ' + d + ' ' + e + '. Their clothing is ' + f + '.' 
+                            if(g == 'Number Injured' || f == 'Unknown'){
+                              g = 'Unknown Amount'
+                            }
+                          this.message = user.name + ' has detected a ' + a + ' threat. The ' + b + ' intruder(s) were spotted near the ' + c + '. The intruder is a ' + d + ' ' + e + '. Their clothing is ' + f + '. ' + g + ' people are injured.' 
                           db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
                           setTimeout(() => {this.props.navigation.navigate('Chat', {user: [user, uid]})},100)  
                                 // db.textMessage('NUMBER', this.message)

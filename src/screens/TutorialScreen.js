@@ -108,7 +108,9 @@ export default class AdminScreen extends React.Component {
               <View style = {styles.container}>
 
                 <Paragraph style = {styles.text}>
-                  Emergency procedures blah blah
+                  You will be brought to the Intruder Screen. Try to report all the information you know about the situation. 
+                  You have an option to call and text 911, or to simply text 911. If you are in a situation that allows you to call, please do so.
+                  If not, only hit the text 911 button. Texts are automated, but the call will move you into your phone app to call 911.
                 </Paragraph>
 
               </View>
