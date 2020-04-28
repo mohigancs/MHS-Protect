@@ -17,11 +17,11 @@ export default class KeyScreen extends React.Component {
             'Lato-Regular': require('../../assets/fonts/Lato-Regular.ttf'),
             'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf')
         })
-        // db.getUserState().then(loggedin => {
-        //     if (loggedin != 0) {
-        //         this.props.navigation.navigate('Home')
-        //     }
-        // })
+        db.getUserState().then(loggedin => {
+            if (loggedin != 0) {
+                this.props.navigation.navigate('Home')
+            }
+        })
     
         this.setState({ assetsLoaded: true })
     }
