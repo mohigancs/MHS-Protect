@@ -1,6 +1,6 @@
 # MHS-Protect
 
-IOS and Android application written in React Native to promote communication between school staff during emergencies. 
+IOS and Android application written in React Native to promote communication between school staff during emergencies. Works with school staff, administration, and local authorities. 
 
 ## Functionalities
 ### > Login Screen
