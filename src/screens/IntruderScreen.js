@@ -258,25 +258,25 @@ export default class AdminScreen extends React.Component {
                             if(a == 'Type of Threat'){
                               a = 'Unknown'
                             }
-                            if(b == 'Number of Gunmen'){
-                              b = 'Unknown Amount of'
+                            if(b == 'Number of Gunmen' || b == 'Unknown'){
+                              b = 'Unknown Amount Of'
                             }
-                            if(c == 'Select Location'){
+                            if(c == 'Select Location' || c == 'Unknown'){
                               c = 'Unknown Location'
                             }
-                            if(d == 'Race'){
+                            if(d == 'Race' || d == 'Unknown'){
                               d = 'Unknown Race'
                             }
-                            if(e == 'Gender'){
+                            if(e == 'Gender' || e == 'Unknown'){
                               e = 'Unknown Gender'
                             }
                             if(f == ''){
                               f = 'Unknown'
                             }
-                            if(g == 'Number Injured'){
-                              g = 'Unknown Amount of'
+                            if(g == 'Number Injured' || f == 'Unknown'){
+                              g = 'Unknown Amount'
                             }
-                          this.message = user.name + ' has detected a ' + a + ' threat.' + b + ' intruder(s) were spotted near ' + c + '. The intruder is a ' + d + ' ' + e + '. Their clothing is ' + f + '.' + g + 'people are injured.'
+                          this.message = user.name + ' has detected a ' + a + ' threat. The ' + b + ' intruder(s) were spotted near the ' + c + '. The intruder is a ' + d + ' ' + e + '. Their clothing is ' + f + '. ' + g + ' people are injured.' 
                           db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
                          
                           //need to replace this with 911 eventually
