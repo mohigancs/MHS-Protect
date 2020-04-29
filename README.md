@@ -35,7 +35,31 @@ Provides a means of communciation between school staff and administration. Infor
 * bus runnning late
 * missing student, etc.
 
-## Notifications
-Alerts will be sent out to all users in times of emergency to spread the information faster.
+## Components
+### > User Functions
+Uses Google Firebase to store credentials of all school staff and administration.
+
+### > Panic Button
+To report emergencies, intakes information for:
+* user
+* name
+* phone, using Twilio services for call/text
+* email
+* location, using latitude/longitude coords
+* description
+and adds alert to database. Request help buttons works with firebase function, and message will be added to database.
+
+### > Notifications 
+Alerts will be sent out to all users in times of emergency to spread the information faster. 
+**Push Notifications** are sent to the API.
+**Messaging Functions**: gifted chat, utlizes firebase, sent to all users.
+**Access Control Features**: random key id is generated for each user.
+**Admin Features** allows principal to add a new user to databse. Requires inputs for:
+* email
+* name
+* phone
+* role
+and the new user is given an access key to log in. Also has the ability to delete a user from database.
+
 
 <img src="https://github.com/mohigancs/MHS-Protect/blob/master/preview.PNG" alt="App Preview" width="300"/>
