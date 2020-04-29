@@ -50,10 +50,10 @@ To report emergencies, intakes information for:
 and adds alert to database. Request help buttons works with firebase function, and message will be added to database.
 
 ### > Notifications 
-Alerts will be sent out to all users in times of emergency to spread the information faster. 
-**Push Notifications** are sent to the API.
-**Messaging Functions**: gifted chat, utlizes firebase, sent to all users.
-**Access Control Features**: random key id is generated for each user.
+Alerts will be sent out to all users in times of emergency to spread the information faster. <br/>
+**Push Notifications** are sent to the API. <br/>
+**Messaging Functions**: gifted chat, utlizes firebase, sent to all users. <br/>
+**Access Control Features**: random key id is generated for each user. <br/>
 **Admin Features** allows principal to add a new user to databse. Requires inputs for:
 * email
 * name
