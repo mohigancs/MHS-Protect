@@ -8,6 +8,8 @@ import * as Font from 'expo-font'
 import SlideToConfirm from 'react-native-slide-to-confirm';
 import styles from './components/allStyles'
 const screenWidth = Dimensions.get('window').width
+import Database from './components/Database'
+const db = new Database()
 export default class AdminScreen extends React.Component {
 
     entered_id = -1
@@ -49,8 +51,8 @@ export default class AdminScreen extends React.Component {
                   source={require('../images/logo.png')} 
                 />
                 <Paragraph style = {styles.text}>
-                  Welcome to MHS-Protect, an app dedicated to keeping our school safe.
-                  Swipe for the tutorial.
+                  Welcome to SchoolProtect, an app dedicated to keeping our school safe.
+                  Swipe for the the MHS Active Intruder procedures.
                 </Paragraph>
               </View>
             </View>
@@ -67,33 +69,12 @@ export default class AdminScreen extends React.Component {
                 />
                 </View>
               <View style = {styles.container}>
-              <TouchableOpacity 
-                style={styles.emergency}
-                >
-                <Text style = {styles.homeButtonText}>INTRUDER ALERT</Text>
-              </TouchableOpacity>
                 <Paragraph style = {styles.text}>
-                  This is the INTRUDER ALERT button. In the event of an active shooter situation, press this button.
-                  It will bring you to a screen with a slider. 
+                  Alert - Try to provide as much information as you can to 911 with the Intruder Alert button.
+                  If you can call 911, hit the 'Call and Text' button to provide more information.
                 </Paragraph>
-              <Paragraph></Paragraph>
-              <SlideToConfirm
-                ref={ref => this.slideRef = ref}
-                width={screenWidth*0.833}
-                onConfirm={()=>{}}
-                textColor='white'
-                pathColor='#bbbbbb'
-                pathCoverColor='#c80d00'
-                sliderColor='white'
-                text='Slide To Confirm'
-              />
-                <Paragraph style = {styles.text}>
-                  Swipe right on the slider to confirm you want to begin the process of reporting an emergency.
-                </Paragraph>
-
               </View>
             </View>
-
             <View style = {styles.contentContainer}>
               <View style = {styles.horizontalContainer}>
                 <IconButton style = {styles.mainTopRightIcon}
@@ -106,16 +87,65 @@ export default class AdminScreen extends React.Component {
                 />
                 </View>
               <View style = {styles.container}>
-
                 <Paragraph style = {styles.text}>
-                  You will be brought to the Intruder Screen. Try to report all the information you know about the situation. 
-                  You have an option to call and text 911, or to simply text 911. If you are in a situation that allows you to call, please do so.
-                  If not, only hit the text 911 button. Texts are automated, but the call will move you into your phone app to call 911.
+                  Lockdown - If the intruder is reported to be in an area far away from you and you have enough
+                  time to evacuate, EVACUATE. If not, shelter in place, lock the doors and barricade the entrances.
                 </Paragraph>
-
               </View>
             </View>
-
+            <View style = {styles.contentContainer}>
+              <View style = {styles.horizontalContainer}>
+                <IconButton style = {styles.mainTopRightIcon}
+                  icon = 'close'
+                  color = 'black'
+                  size = {screenWidth*0.08}
+                  onPress={() => {
+                    this.props.navigation.navigate('Home')
+                  }}
+                />
+                </View>
+              <View style = {styles.container}>
+                <Paragraph style = {styles.text}>
+                  Inform - Even if the Intruder Alert button has been pressed and messages have been sent, if you see something,
+                  press the button! This will update the information for emergency responders.
+                </Paragraph>
+              </View>
+            </View>
+            <View style = {styles.contentContainer}>
+              <View style = {styles.horizontalContainer}>
+                <IconButton style = {styles.mainTopRightIcon}
+                  icon = 'close'
+                  color = 'black'
+                  size = {screenWidth*0.08}
+                  onPress={() => {
+                    this.props.navigation.navigate('Home')
+                  }}
+                />
+                </View>
+              <View style = {styles.container}>
+                <Paragraph style = {styles.text}>
+                  Counter - If you are unable to evacuate and are with the intruder, take a stand.
+                  Be a hard target; move around and throw things and yell to distract the intruder. If the intruder is not making a move, run.
+                </Paragraph>
+              </View>
+            </View>
+            <View style = {styles.contentContainer}>
+              <View style = {styles.horizontalContainer}>
+                <IconButton style = {styles.mainTopRightIcon}
+                  icon = 'close'
+                  color = 'black'
+                  size = {screenWidth*0.08}
+                  onPress={() => {
+                    this.props.navigation.navigate('Home')
+                  }}
+                />
+                </View>
+              <View style = {styles.container}>
+                <Paragraph style = {styles.text}>
+                  Evacuate - If the opportunity presents itself, exit the building and go to the designated safe zone.
+                </Paragraph>
+              </View>
+            </View>
         </Swiper>
         )
     }
