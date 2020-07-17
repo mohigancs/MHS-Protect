@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
-import MapView from 'react-native-maps'
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import { Appbar } from 'react-native-paper'
 
 import Database from './components/Database'
@@ -30,12 +30,13 @@ export default class MapScreen extends Component {
           style={styles.absoluteFillView}
           mapType={"satellite"}
           showsUserLocation={true}
-          region={{
+          initialRegion={{
             latitude: 39.625083,
             longitude:  -79.956796,
             latitudeDelta: 0.0025,
             longitudeDelta: 0.0025,
           }}
+          provider = {PROVIDER_GOOGLE}
         >
           {this.state.emergencies.map(emergency => {
             if(k + 1 == this.state.emergencies.length){
@@ -45,13 +46,13 @@ export default class MapScreen extends Component {
               color = 'orange';
             }
             return (
-              <MapView.Marker 
+              <Marker 
                 key = {k++}
-                title={emergency.title}
-                description={emergency.description}
+                title= {emergency.title}
+                description= {emergency.description}
                 coordinate={{
                   latitude: emergency.latitude,
-                  longitude: emergency.longitude,
+                  longitude: emergency.longitude
                 }}
                 pinColor={color}
               />

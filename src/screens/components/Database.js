@@ -23,7 +23,7 @@ class Database {
     logInUser = async (uid) => await AsyncStorage.setItem('loggedin', uid)
 
     // set loggedin to false in asyncstorage
-    logOutUser = async() => await AsyncStorage.setItem('loggedin', 'false')
+    //logOutUser = async() => await AsyncStorage.setItem('loggedin', 'false')
 
     // returns userid if user is logged in (else 'false')
     getUserState = async() => await AsyncStorage.getItem('loggedin')
@@ -38,25 +38,39 @@ class Database {
 
     */
 
-    reportEmergency = (description) => {
+    reportEmergency = (location, description) => {
 
         this.getUserState().then(uid => { // add alert to the database
             this.fetchUser(uid).then(user => {
-                navigator.geolocation.getCurrentPosition(position => {
-                    firebase.database().ref('alerts/emergency/').push({
+                //navigator.geolocation.getCurrentPosition(position => {
+
+                
+            if(location == 'Main Building'){
+                latitude = 39.625060;
+                longitude = -80.000000;
+              }
+            else{
+                latitude = 39.625083;
+                longitude = -79.965029;
+              }
+                    firebase.database().ref('alerts/emergency').push({
                         user: uid,
                         name: user.name,
                         phone: user.phone,
                         email: user.email,
-                        location: {latitude: position.coords.latitude, longitude: position.coords.longitude},
+                        location: location,
+                        latitude: latitude,
+                        longitude: longitude,
+                        //location: {latitude: position.coords.latitude, longitude: position.coords.longitude},
                         description: description
                     })
-                })
-                
+                //})
             
                 this.getUserTokens(uid).then((tokens) => { // send all users notifications
                     for (i = 0; i < tokens.length; i ++){
-                        this.sendPushNotification(tokens[i], user.name, user.name + " has pressed the Emergency Button.")
+                        if(i != uid){
+                            this.sendPushNotification(tokens[i], user.name, user.name + " has pressed the Emergency Button.")
+                        }
                     }
                 })
             })
@@ -182,14 +196,12 @@ class Database {
     }
 
     edit = snapshot => { // ??? (used in mapOn)
-
-        const { name, description } = snapshot.val()
-        const { longitude, latitude } = snapshot.val().location
-
+        const{name} = snapshot.val().name
+        const{description} = snapshot.val().description
+        const{longitude} = snapshot.val().longitude
+        const{latitude}  = snapshot.val().latitude
         const emergency = { title: name, description, longitude, latitude}
-
         return emergency
-
     }
 
 
@@ -225,7 +237,9 @@ class Database {
             
         this.getUserTokens(user._id).then((tokens) => { // sends push notifications to all users
             for (i = 0; i < tokens.length; i ++){
-                this.sendPushNotification(tokens[i], user.name, text)
+                if(i != uid){
+                    this.sendPushNotification(tokens[i], user.name, user.name + " has pressed the Emergency Button.")
+                }
             }
         })
     }

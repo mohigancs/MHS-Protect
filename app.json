@@ -30,7 +30,10 @@
     },
     "android": {
       "package": "com.MohiganCS.SchoolProtect",
-      "versionCode": 1
+      "versionCode": 1,
+      "config": {
+        "googleMaps": { "apiKey": "askAmandaForTheKey" }   
+      }
     },
     "notification": {
       "icon": "./src/images/notificationMailbox.png",
