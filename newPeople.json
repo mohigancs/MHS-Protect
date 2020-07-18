@@ -1,0 +1,537 @@
+{
+    "people" : [
+        {
+        "email" : "sydney.cheesebrough@k12.wv.us",
+        "name" : "Sydney Cheesebrough",
+        "phone" : "(304) 906-5713",
+        "role" : "Faculty",
+        "room" : "001"
+      },
+      {
+        "email" : "samuel.lusk@k12.wv.us",
+        "name" : "Samuel Lusk",
+        "phone" : "(304) 276-1271",
+        "role" : "Faculty",
+        "room" : "002"
+      },
+      {
+        "email" : "jbidwell@k12.wv.us",
+        "name" : "James Bidwell",
+        "phone" : "(304) 322-1983",
+        "role" : "Faculty",
+        "room" : "004"
+      },
+      {
+        "email" : "kpalumbo@k12.wv.us",
+        "name" : "kristina palumbo",
+        "phone" : "(304) 276-9068",
+        "role" : "Faculty",
+        "room" : "020"
+      },
+      {
+        "email" : "sjbrunet@k12.wv.us",
+        "name" : "Samuel Brunett",
+        "phone" : "(304) 216-1922",
+        "role" : "Faculty",
+        "room" : "021"
+      },
+      {
+        "email" : "mmward@k12.wv.us",
+        "name" : "Megan Ward",
+        "phone" : "(304) 288-9402",
+        "role" : "Faculty",
+        "room" : "029"
+      },
+      {
+        "email" : "Hebarnes@k12.wv.us",
+        "name" : "Hannah Barnes",
+        "phone" : "(304) 692-1117",
+        "role" : "Faculty",
+        "room" : "097"
+      },
+      {
+        "email" : "cmccabe@k12.wv.us",
+        "name" : "Crissy McCabe",
+        "phone" : "(304) 685-4250",
+        "role" : "Faculty",
+        "room" : "098"
+      },
+      {
+        "email" : "ljweber@k12.wv.us",
+        "name" : "Linda Weber",
+        "phone" : "(304) 692-1364",
+        "role" : "Faculty",
+        "room" : "099"
+      },
+      {
+        "email" : "kristen.smallwood@k12.wv.us",
+        "name" : "Kristen Smallwood",
+        "phone" : "(304) 276-3694",
+        "role" : "Faculty",
+        "room" : "102"
+      },
+      {
+        "email" : "jessica.robertson@k12.wv.us",
+        "name" : "Jessica Robertson",
+        "phone" : "(412) 855-6783",
+        "role" : "Faculty",
+        "room" : "105"
+      },
+      {
+        "email" : "victoria.bugg@k12.wv.us",
+        "name" : "Victoria Bugg",
+        "phone" : "(304) 276-8585",
+        "role" : "Faculty",
+        "room" : "106"
+      },
+      {
+        "email" : "katherine.leone@k12.wv.us",
+        "name" : "Katherine Leone",
+        "phone" : "(304) 777-8318",
+        "role" : "Faculty",
+        "room" : "107"
+      },
+      {
+        "email" : "jenny.dayton@k12.wv.us",
+        "name" : "Jenny Dayton",
+        "phone" : "(724) 550-3661",
+        "role" : "Faculty",
+        "room" : "108"
+      },
+      {
+        "email" : "baberry@k12.wv.us",
+        "name" : "becky berry",
+        "phone" : "(304) 919-1115",
+        "role" : "Faculty",
+        "room" : "112"
+      },
+      {
+        "email" : "jcbarret@k12.wv.us",
+        "name" : "Joel Barrett",
+        "phone" : "(724) 747-5952",
+        "role" : "Faculty",
+        "room" : "113"
+      },
+      {
+        "email" : "jpoland@k12.wv.us",
+        "name" : "Jennifer Poland",
+        "phone" : "(304) 276-9726",
+        "role" : "Faculty",
+        "room" : "115"
+      },
+      {
+        "email" : "alexis.m.george@k12.wv.us",
+        "name" : "Alexis George",
+        "phone" : "(304) 280-8868",
+        "role" : "Faculty",
+        "room" : "116"
+      },
+      {
+        "email" : "brianna.parks@k12.wv.us",
+        "name" : "Brianna Parks",
+        "phone" : "(304) 692-8169",
+        "role" : "Faculty",
+        "room" : "118"
+      },
+      {
+        "email" : "dmonahan@k12.wv.us",
+        "name" : "Donna Monahan",
+        "phone" : "(304) 692-3535",
+        "role" : "Faculty",
+        "room" : "120"
+      },
+      {
+        "email" : "tpowers@k12.wv.us",
+        "name" : "Thomas Powers",
+        "phone" : "(304) 692-0599",
+        "role" : "Faculty",
+        "room" : "122"
+      },
+      {
+        "email" : "jkruger@k12.wv.us",
+        "name" : "Jason Kruger",
+        "phone" : "(304) 284-9280",
+        "role" : "Faculty",
+        "room" : "132"
+      },
+      {
+        "email" : "Charlene.Scott@k12.wv.us",
+        "name" : "Charlene Scott",
+        "phone" : "(304) 906-7480",
+        "role" : "Faculty",
+        "room" : "133"
+      },
+      {
+        "email" : "croot@k12.wv.is",
+        "name" : "Christian Root",
+        "phone" : "(301) 538-7831",
+        "role" : "Faculty",
+        "room" : "140"
+      },
+      {
+        "email" : "jmelia@k12.wv.us",
+        "name" : "Joseph Melia",
+        "phone" : "(304) 692-5031",
+        "role" : "Faculty",
+        "room" : "142"
+      },
+      {
+        "email" : "estanescu@k12.wv.us",
+        "name" : "Elvira Stanescu",
+        "phone" : "(301) 300-5523",
+        "role" : "Faculty",
+        "room" : "144"
+      },
+      {
+        "email" : "nnastasi@k12.wv.us",
+        "name" : "Nicole Nastasi",
+        "phone" : "(304) 771-4750",
+        "role" : "Faculty",
+        "room" : "New 167"
+      },
+      {
+        "email" : "lauren.brandon@k12.wv.us",
+        "name" : "Lauren Brandon",
+        "phone" : "(304) 669-7664",
+        "role" : "Faculty",
+        "room" : "176"
+      },
+      {
+        "email" : "jessica.dalton@k12.wv.us",
+        "name" : "Jessica Dalton",
+        "phone" : "(815) 355-5945",
+        "role" : "Faculty",
+        "room" : "201"
+      },
+      {
+        "email" : "tbelden@k12.wv.us",
+        "name" : "Thomas Belden",
+        "phone" : "(304) 680-0269",
+        "role" : "Faculty",
+        "room" : "202"
+      },
+      {
+        "email" : "kcolistra@k12.wv.us",
+        "name" : "Kevin Colistra",
+        "phone" : "(304) 692-0137",
+        "role" : "Faculty",
+        "room" : "206"
+      },
+      {
+        "email" : "rbourne@k12.wv.us",
+        "name" : "Randi Bourne",
+        "phone" : "(304) 685-4374",
+        "role" : "Staff",
+        "room" : "209"
+      },
+      {
+        "email" : "awarbel@k12.wv.us",
+        "name" : "Adam Warbel",
+        "phone" : "(304) 692-6393",
+        "role" : "Faculty",
+        "room" : "210"
+      },
+      {
+        "email" : "kalvarez@k12.wv.us",
+        "name" : "Kristine Alvarez",
+        "phone" : "(304) 685-2056",
+        "role" : "Faculty",
+        "room" : "211"
+      },
+      {
+        "email" : "mmkelly@k12.wv.us",
+        "name" : "Matthew Kelly",
+        "phone" : "(443) 742-7451",
+        "role" : "Faculty",
+        "room" : "213"
+      },
+      {
+        "email" : "triffon@k12.wv.us",
+        "name" : "Tracy Riffon",
+        "phone" : "(304) 906-8050",
+        "role" : "Staff",
+        "room" : "214"
+      },
+      {
+        "email" : "sknaggs@k12.wv.us",
+        "name" : "stacy knaggs",
+        "phone" : "(304) 376-0599",
+        "role" : "Faculty",
+        "room" : "215"
+      },
+      {
+        "email" : "kmick@k12.wv.us",
+        "name" : "Kerianne Smead",
+        "phone" : "(412) 491-7414",
+        "role" : "Faculty",
+        "room" : "220"
+      },
+      {
+        "email" : "duglik@k12.wv.us",
+        "name" : "Danielle Uglik",
+        "phone" : "(412) 582-3652",
+        "role" : "Faculty",
+        "room" : "300"
+      },
+      {
+        "email" : "ekincaid@k12.wv.us",
+        "name" : "Eric Kincaid",
+        "phone" : "(304) 365-2303",
+        "role" : "Faculty",
+        "room" : "301"
+      },
+      {
+        "email" : "syuhase@k12.wv.us ",
+        "name" : "Stacey Yuhase",
+        "phone" : "(304) 639-8760",
+        "role" : "Faculty",
+        "room" : "302"
+      },
+      {
+        "email" : "bborn@k12.wv.us",
+        "name" : "Barbara Born",
+        "phone" : "(304) 685-5959",
+        "role" : "Faculty",
+        "room" : "304"
+      },
+      {
+        "email" : "shawilli@k12.wv.us",
+        "name" : "Sherri Williamson",
+        "phone" : "(304) 282-9425",
+        "role" : "Faculty",
+        "room" : "306"
+      },
+      {
+        "email" : "shovland@k12.wv.us ",
+        "name" : "Sharon Hovland",
+        "phone" : "(575) 937-9169",
+        "role" : "Faculty",
+        "room" : "308"
+      },
+      {
+        "email" : "spryan@k12.wv.us",
+        "name" : "Scott Ryan",
+        "phone" : "(304) 435-1011",
+        "role" : "Faculty",
+        "room" : "310"
+      },
+      {
+        "email" : "dcrouso@k12.wv.us",
+        "name" : "Densel Crouso",
+        "phone" : "(304) 692-7625",
+        "role" : "Faculty",
+        "room" : "311"
+      },
+      {
+        "email" : "jsecreto@k12.wv.us",
+        "name" : "Jennifer Secreto",
+        "phone" : "(304) 282-5724",
+        "role" : "Faculty",
+        "room" : "313"
+      },
+        {
+        "email" : "scumpsto@k12.wv.us",
+        "name" : "Sherri Cumpston",
+        "phone" : "(304) 216-4822",
+        "role" : "Faculty",
+        "room" : "315"
+      },
+        {
+        "email" : "ggibson@k12.wv.us",
+        "name" : "Gretchen Gibson",
+        "phone" : "(304) 906-6050",
+        "role" : "Faculty",
+        "room" : "316"
+      },
+      {
+        "email" : "todd.goblinger@k12.wv.us",
+        "name" : "Todd Goblinger",
+        "phone" : "(304) 680-2226",
+        "role" : "Faculty",
+        "room" : "317"
+      },
+      {
+        "email" : "brindi.kandel@k12.wv.us",
+        "name" : "Brindi Kandel",
+        "phone" : "(740) 485-0095",
+        "role" : "Faculty",
+        "room" : "323"
+      },
+      {
+        "email" : "anna.noon@k12.wv.us",
+        "name" : "Anna Noon",
+        "phone" : "(304) 871-7385",
+        "role" : "Faculty",
+        "room" : "324"
+      },
+      {
+        "email" : "cullen.hencke@k12.wv.us",
+        "name" : "Cullen Hencke",
+        "phone" : "(304) 703-2073",
+        "role" : "Faculty",
+        "room" : "401"
+      },
+      {
+        "email" : "mlemine@k12.wv.us",
+        "name" : "Matthew Lemine",
+        "phone" : "(304) 288-9981",
+        "role" : "Faculty",
+        "room" : "402"
+      },
+      {
+        "email" : "btjackso@k12.wv.us",
+        "name" : "Brian Jackson",
+        "phone" : "(304) 376-5215",
+        "role" : "Faculty",
+        "room" : "403"
+      },
+      {
+        "email" : "madesimone@k12.wv.us",
+        "name" : "Michael DeSimone",
+        "phone" : "(516) 776-7901",
+        "role" : "Faculty", 
+        "room" : "404"
+      },
+      {
+        "email" : "ksjenkins@k12.wv.us",
+        "name" : "Karen Jenkins",
+        "phone" : "(304) 826-7933",
+        "role" : "Staff",
+        "room" : "2021 (ask her)"
+      },
+      {
+        "email" : "carlie.canter@k12.wv.us",
+        "name" : "Carlie Canter",
+        "phone" : "(301) 471-2366",
+        "role" : "Faculty",
+        "room" : "095-Pit"
+      },
+      {
+        "email" : "anflemin@k12.wv.us",
+        "name" : "Anna Fleming",
+        "phone" : "(304) 906-0369",
+        "role" : "Faculty",
+        "room" : "214-B"
+      },
+      {
+        "email" : "lauren.landry@k12.wv.us",
+        "name" : "Lauren Landry",
+        "phone" : "(717) 448-0013",
+        "role" : "Faculty",
+        "room" : "214-C"
+      },
+      {
+        "email" : "alisha.kingery@k12.wv.us",
+        "name" : "Alisha Kingery",
+        "phone" : "(304) 206-8507",
+        "role" : "Faculty",
+        "room" : "214-E"
+      },
+      {
+        "email" : "karen.baileymartinez@k12.wv.us",
+        "name" : "Karen Bailey-Martinez",
+        "phone" : "(646) 573-5024",
+        "role" : "Faculty",
+        "room" : "217-A"
+      },
+      {
+        "email" : "ejanes@k12.wv.us",
+        "name" : "Erica Janes",
+        "phone" : "(304) 282-1171",
+        "role" : "Faculty",
+        "room" : "Art Clyde Gym"
+      },
+      {
+        "email" : "lauren.smith@k12.wv.us",
+        "name" : "Lauren Smith",
+        "phone" : "(814) 619-8811",
+        "role" : "Faculty",
+        "room" : "Counseling"
+      },
+      {
+        "email" : "Anna.sommer@k12.wv.us",
+        "name" : "Anna Sommer",
+        "phone" : "(304) 685-2628",
+        "role" : "Faculty",
+        "room" : "Gym"
+      },
+      {
+        "email" : "ginger.ault@k12.wv.us",
+        "name" : "Ginger Ault",
+        "phone" : "(304) 276-2283",
+        "role" : "Staff",
+        "room" : "Kitchen"
+      },
+      {
+        "email" : "shaseborg@k12.wv.us",
+        "name" : "Sara ter Haseborg",
+        "phone" : "(304) 602-3950",
+        "role" : "Faculty",
+        "room" : "library"
+      },
+      {
+        "email" : "mkwolfe@k12.wv.us",
+        "name" : "Michelle Wolfe",
+        "phone" : "(304) 282-4653",
+        "role" : "Staff",
+        "room" : "Main Office"
+      },
+      {
+        "email" : "lorne.hyskell@k12.wv.us",
+        "name" : "Lorne Hyskell",
+        "phone" : "(814) 952-3757",
+        "role" : "Faculty",
+        "room" : "New 169"
+      },
+      {
+        "email" : "lmellie@k12.wv.us",
+        "name" : "Kim Mellie",
+        "phone" : "(304) 216-9943",
+        "role" : "Faculty",
+        "room" : "New 170"
+      },
+      {
+        "email" : "adam.fox@k12.wv.us",
+        "name" : "Adam Fox",
+        "phone" : "(304) 290-8846",
+        "role" : "Faculty",
+        "room" : "New 4"
+      },
+      {
+        "email" : "elrmille@k12.wv.us",
+        "name" : "Elissa Miller",
+        "phone" : "(304) 216-7083",
+        "role" : "Administrator",
+        "room" : "Office"
+      },
+      {
+        "email" : "holiann.rucker@k12.wv.us",
+        "name" : "Holiann Rucker",
+        "phone" : "(304) 680-4313",
+        "role" : "Faculty",
+        "room" : "TIS Office"
+      },
+      {
+        "email" : "debbie.scheitlin@k12.wv.us",
+        "name" : "Debbie Scheitlin",
+        "phone" : "(304) 694-6756",
+        "role" : "Staff",
+        "room" : "Office"
+      },
+      {
+        "email" : "mlkelly@k12.wv.us",
+        "name" : "Michele Kelly",
+        "phone" : "(304) 692-5909",
+        "role" : "Faculty",
+        "room" : "Library"
+      },
+      {
+        "email" : "dorsey.nicholson@k12.wv.us",
+        "name" : "Dorsey Nicholson",
+        "phone" : "(304) 376-7562",
+        "role" : "Staff",
+        "room" : "unknown"
+      }
+    ]
+  }
+  

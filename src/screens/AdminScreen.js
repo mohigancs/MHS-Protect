@@ -42,30 +42,30 @@ export default class AdminScreen extends React.Component {
 
                 <TouchableOpacity 
                     style={styles.button}
-                    onPress={() => {
-                        Alert.alert(
-                            'Are you sure?',
-                            'Do you want to add a key for the user with ID '+ this.entered_id + '?',
-                            [
-                                {text: 'NO', style: 'cancel'},
-                                {text: '',},
-                                {text: 'YES', onPress: () => {
-                                    if (this.entered_id == 'ALL') {
-                                        for(i = 0; i < 147; i++) {
-                                            key = db.makekey(10)
-                                            db.addkey(i, key)
-                                            }
-                                    } else {
-                                        key = db.makekey(10)
-                                        db.addkey(this.entered_id, key)
-                                    }
-                                }
-                                },
-                            ],
-                            { cancelable: false }
-                          )
-                        //this.iskey(this.id).then((res) => console.log(res))
-                    }}
+                    // onPress={() => {
+                    //     Alert.alert(
+                    //         'Are you sure?',
+                    //         'Do you want to add a key for this new user?',
+                    //         [
+                    //             {text: 'NO', style: 'cancel'},
+                    //             {text: '',},
+                    //             {text: 'YES', onPress: () => {
+                    //                 if (this.entered_id == 'ALL') {
+                    //                     for(i = 0; i < 147; i++) {
+                    //                         key = db.makekey(10)
+                    //                         db.addkey(i, key)
+                    //                         }
+                    //                 } else {
+                    //                     key = db.makekey(10)
+                    //                     db.addkey(this.entered_id, key)
+                    //                 }
+                    //             }
+                    //             },
+                    //         ],
+                    //         { cancelable: false }
+                    //       )
+                    //     //this.iskey(this.id).then((res) => console.log(res))
+                    // }}
                 >
                     <Text style = {styles.buttonText}>SUBMIT</Text>
                 </TouchableOpacity>
@@ -84,28 +84,28 @@ export default class AdminScreen extends React.Component {
 
                 <TouchableOpacity 
                     style={styles.button}
-                    onPress={() => {
-                        Alert.alert(
-                            'Are you sure?',
-                            'Do you want to remove the key for the user with ID '+ this.entered_id + '?',
-                            [
-                                {text: 'NO', style: 'cancel'},                              
-                                {text: '',},
-                                {text: 'YES', onPress: () => {
-                                    if (this.entered_id == 'ALL') {
-                                        for(i = 0; i < 147; i++) {
-                                            db.removekey(i)
-                                        }
-                                    } else {
-                                        db.removekey(this.entered_id)
-                                    }
-                                    console.log('YES pressed')
-                                    }
-                                },
-                            ],
-                            { cancelable: false }
-                        )
-                    }}
+                    // onPress={() => {
+                    //     Alert.alert(
+                    //         'Are you sure?',
+                    //         'Do you want to remove the key for the user with ID '+ this.entered_id + '?',
+                    //         [
+                    //             {text: 'NO', style: 'cancel'},                              
+                    //             {text: '',},
+                    //             {text: 'YES', onPress: () => {
+                    //                 if (this.entered_id == 'ALL') {
+                    //                     for(i = 0; i < 147; i++) {
+                    //                         db.removekey(i)
+                    //                     }
+                    //                 } else {
+                    //                     db.removekey(this.entered_id)
+                    //                 }
+                    //                 console.log('YES pressed')
+                    //                 }
+                    //             },
+                    //         ],
+                    //         { cancelable: false }
+                    //     )
+                    // }}
                 >
                     <Text style = {styles.buttonText}>SUBMIT</Text>
                 </TouchableOpacity>

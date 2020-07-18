@@ -75,6 +75,7 @@ class Database {
                         name: user.name,
                         phone: user.phone,
                         email: user.email,
+                        room: user.room,
                         location: location,
                         latitude: nlatitude,
                         longitude: nlongitude,
@@ -324,7 +325,7 @@ class Database {
 
     */
 
-    async adduser(email, name, phone, role) { // adds a user to the database
+    async adduser(email, name, phone, role, room) { // adds a user to the database
 
         id = -1
 
@@ -338,7 +339,8 @@ class Database {
             email: email,
             name: name,
             phone: phone,
-            role: role
+            role: role,
+            room: room
         })
 
         Alert.alert('Success!', 'User ' + name + ' Added to the Database.')
