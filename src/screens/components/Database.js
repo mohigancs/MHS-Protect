@@ -43,29 +43,45 @@ class Database {
         this.getUserState().then(uid => { // add alert to the database
             this.fetchUser(uid).then(user => {
                 //navigator.geolocation.getCurrentPosition(position => {
-
-                
+                          
             if(location == 'Main Building'){
-                latitude = 39.625060;
-                longitude = -80.000000;
+                nlatitude = 39.62449498;
+                nlongitude = -79.9571979;
               }
+
+            else if(location == 'Cafeteria'){
+                nlatitude = 39.62424293;
+                nlongitude = -79.95632887;
+              }
+            else if(location == 'Gym'){
+                nlatitude = 39.62403634;
+                nlongitude = -79.95591044;
+            }
+            else if(location == 'Science Wing'){
+                nlatitude = 39.62453216;
+                nlongitude = -79.9558568;
+            }
+            else if(location == 'Far Side'){
+                nlatitude = 39.62513542;
+                nlongitude = -79.95599627;
+            }
             else{
-                latitude = 39.625083;
-                longitude = -79.965029;
-              }
+                nlatitude = 39.62496188;
+                nlongitude = -79.95674014;
+            }
+             
                     firebase.database().ref('alerts/emergency').push({
                         user: uid,
                         name: user.name,
                         phone: user.phone,
                         email: user.email,
                         location: location,
-                        latitude: latitude,
-                        longitude: longitude,
+                        latitude: nlatitude,
+                        longitude: nlongitude,
                         //location: {latitude: position.coords.latitude, longitude: position.coords.longitude},
                         description: description
                     })
                 //})
-            
                 this.getUserTokens(uid).then((tokens) => { // send all users notifications
                     for (i = 0; i < tokens.length; i ++){
                         if(i != uid){
@@ -196,11 +212,11 @@ class Database {
     }
 
     edit = snapshot => { // ??? (used in mapOn)
-        const{name} = snapshot.val().name
-        const{description} = snapshot.val().description
-        const{longitude} = snapshot.val().longitude
-        const{latitude}  = snapshot.val().latitude
-        const emergency = { title: name, description, longitude, latitude}
+        var name = snapshot.val().name
+        var description = snapshot.val().description
+        var longitude = snapshot.val().longitude
+        var latitude  = snapshot.val().latitude
+        var emergency = {name, description, longitude, latitude}
         return emergency
     }
 

@@ -30,6 +30,7 @@ export default class MapScreen extends Component {
           style={styles.absoluteFillView}
           mapType={"satellite"}
           showsUserLocation={true}
+          showsCompass={true}
           initialRegion={{
             latitude: 39.625083,
             longitude:  -79.956796,
@@ -45,14 +46,17 @@ export default class MapScreen extends Component {
             else {
               color = 'orange';
             }
+            nlatitude = emergency.latitude;
+            nlongitude = emergency.longitude;
+            console.log(nlatitude, nlongitude)
             return (
               <Marker 
                 key = {k++}
-                title= {emergency.title}
+                title= {emergency.name}
                 description= {emergency.description}
                 coordinate={{
-                  latitude: emergency.latitude,
-                  longitude: emergency.longitude
+                  latitude: nlatitude,
+                  longitude: nlongitude
                 }}
                 pinColor={color}
               />

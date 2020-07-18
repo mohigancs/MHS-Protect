@@ -12,6 +12,8 @@ import IntruderScreen from './src/screens/IntruderScreen'
 import MedicalScreen from './src/screens/MedicalScreen'
 import HelpScreen from './src/screens/HelpScreen'
 import firebase from 'firebase'
+import Database from './src/screens/components/Database'
+const db = new Database()
 import { firebaseConfig } from './config'
 firebase.initializeApp(firebaseConfig)
 const MainStack = createStackNavigator({
