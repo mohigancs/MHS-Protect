@@ -50,16 +50,16 @@ class Database {
               }
 
             else if(location == 'Cafeteria'){
-                nlatitude = 39.62424293;
-                nlongitude = -79.95632887;
+                nlatitude = 39.62408867;
+                nlongitude = -79.9562341;
               }
             else if(location == 'Gym'){
                 nlatitude = 39.62403634;
                 nlongitude = -79.95591044;
             }
             else if(location == 'Science Wing'){
-                nlatitude = 39.62453216;
-                nlongitude = -79.9558568;
+                nlatitude = 39.62429114;
+                nlongitude = -79.95629311;
             }
             else if(location == 'Far Side'){
                 nlatitude = 39.62513542;
@@ -217,7 +217,8 @@ class Database {
         var description = snapshot.val().description
         var longitude = snapshot.val().longitude
         var latitude  = snapshot.val().latitude
-        var emergency = {name, description, longitude, latitude}
+        var room = snapshot.val().room
+        var emergency = {name, description, longitude, latitude, room}
         return emergency
     }
 

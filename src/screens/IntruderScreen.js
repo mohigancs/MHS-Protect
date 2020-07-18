@@ -277,7 +277,7 @@ export default class AdminScreen extends React.Component {
                               g = 'Unknown'
                             }
                           this.message = user.name + ' has detected a ' + a + ' threat. The ' + b + ' intruder(s) were seen near the ' + c + '. The intruder is a ' + d + ' ' + e + '. Their clothing is ' + f + '. ' + g + ' people are injured.' 
-                          db.reportEmergency(c, a +' threat. Near room ' + user.room)
+                          db.reportEmergency(c, a +' threat. Likely near room ' + user.room)
                           db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
 
                           //need to replace this with 911 eventually
@@ -322,7 +322,7 @@ export default class AdminScreen extends React.Component {
                               g = 'Unknown'
                             }
                           this.message = user.name + ' has detected a ' + a + ' threat. The ' + b + ' intruder(s) were seen near the ' + c + '. The intruder is a ' + d + ' ' + e + '. Their clothing is ' + f + '. ' + g + ' people are injured.' 
-                          db.reportEmergency(c, a +' threat. Near room ' + user.room)
+                          db.reportEmergency(c, a +' threat. Likely near ' + c)
                           db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
                           setTimeout(() => {this.props.navigation.navigate('Chat', {user: [user, uid]})}, 110)  
                                 // db.textMessage('NUMBER', this.message)
