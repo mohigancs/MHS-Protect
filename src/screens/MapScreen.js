@@ -52,7 +52,7 @@ export default class MapScreen extends Component {
             return (
               <Marker 
                 key = {k++}
-                title= {emergency.name}
+                title= {emergency.name + ', ' + emergency.room}
                 description= {emergency.description}
                 coordinate={{
                   latitude: nlatitude,
