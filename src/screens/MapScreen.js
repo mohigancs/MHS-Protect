@@ -48,7 +48,6 @@ export default class MapScreen extends Component {
             }
             nlatitude = emergency.latitude;
             nlongitude = emergency.longitude;
-            console.log(nlatitude, nlongitude)
             return (
               <Marker 
                 key = {k++}

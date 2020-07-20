@@ -32,7 +32,7 @@
       "package": "com.MohiganCS.SchoolProtect",
       "versionCode": 1,
       "config": {
-        "googleMaps": { "apiKey": "askAmandaForKeyorFindItYourself" }   
+        "googleMaps": { "apiKey": "AIzaSyBaDGOFanbsQNqGbKyxvLOYfZRT1UdFsFQ" }   
       }
     },
     "notification": {

@@ -23,7 +23,7 @@ class Database {
     logInUser = async (uid) => await AsyncStorage.setItem('loggedin', uid)
 
     // set loggedin to false in asyncstorage
-    //logOutUser = async() => await AsyncStorage.setItem('loggedin', 'false')
+    logOutUser = async() => await AsyncStorage.setItem('loggedin', 'false')
 
     // returns userid if user is logged in (else 'false')
     getUserState = async() => await AsyncStorage.getItem('loggedin')
@@ -40,36 +40,25 @@ class Database {
 
     reportEmergency = (location, description) => {
 
+		var locations = {
+			"Main Building": [39.62449498, -79.9571979],
+			"Cafeteria": [39.62408867, -79.9562341],
+			"Gym": [39.62403634, -79.95591044],
+			"Science Wing": [39.62429114, -79.95629311],
+			"Far Side": [29.62513542, -79.95599627],
+			"Default": [39.62496188, -79.95674014]
+		}
+
         this.getUserState().then(uid => { // add alert to the database
             this.fetchUser(uid).then(user => {
-                //navigator.geolocation.getCurrentPosition(position => {
-                          
-            if(location == 'Main Building'){
-                nlatitude = 39.62449498;
-                nlongitude = -79.9571979;
-              }
-
-            else if(location == 'Cafeteria'){
-                nlatitude = 39.62408867;
-                nlongitude = -79.9562341;
-              }
-            else if(location == 'Gym'){
-                nlatitude = 39.62403634;
-                nlongitude = -79.95591044;
-            }
-            else if(location == 'Science Wing'){
-                nlatitude = 39.62429114;
-                nlongitude = -79.95629311;
-            }
-            else if(location == 'Far Side'){
-                nlatitude = 39.62513542;
-                nlongitude = -79.95599627;
-            }
-            else{
-                nlatitude = 39.62496188;
-                nlongitude = -79.95674014;
-            }
              
+					if (!locations.hasOwnProperty(location)) {
+						location = "Default"
+					}
+
+					nlatitude = locations[location][0]
+					nlongitude = locations[location][1]
+
                     firebase.database().ref('alerts/emergency').push({
                         user: uid,
                         name: user.name,
@@ -85,7 +74,7 @@ class Database {
                 //})
                 this.getUserTokens(uid).then((tokens) => { // send all users notifications
                     for (i = 0; i < tokens.length; i ++){
-                        if(i != uid){
+                        if(i != uid) {
                             this.sendPushNotification(tokens[i], user.name, user.name + " has pressed the Emergency Button.")
                         }
                     }
@@ -150,7 +139,6 @@ class Database {
         xhr.send(params);
 
     }
-
 
     
     
@@ -330,13 +318,14 @@ class Database {
 
         id = -1
 
-        await firebase.database().ref('people/').once('value').then(function(snapshot) { // finds last user id
-            snapshot.forEach((child) => {
-                id = child.key
-            }) // TODO: find a better way to get last id without cycling through all ids
-        })
+		await firebase.database().ref('people/').limitToLast(1).once('value').then(function(snapshot) {
+			snapshot.forEach((child) => {
+				id = child.key
+			})
+		})
 
-        firebase.database().ref('people/' + (parseInt(id) + 1)).set({ // appends user to [last user id] + 1
+
+        firebase.database().ref('people/' + (parseInt(id) + 1)).set({  
             email: email,
             name: name,
             phone: phone,
@@ -345,7 +334,7 @@ class Database {
         })
 
         Alert.alert('Success!', 'User ' + name + ' Added to the Database.')
-        this.addkey(parseInt(id) + 1, false) // give the new user an access key
+        this.addkey(parseInt(id) + 1, false)  
 
     }
 

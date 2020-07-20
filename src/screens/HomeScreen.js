@@ -10,10 +10,16 @@ const screenWidth = Dimensions.get('window').width
 import styles from './components/allStyles'
 
 export default class HomeScreen extends Component {
+
   details = ''
-  user = this.props.navigation.getParam('user','error')
-  state = {
-      assetsLoaded: false,
+  //user = this.props.navigation.getParam('user','error')
+
+  constructor(props) {
+	  super();
+	  this.state = {
+		  assetsLoaded: false,
+		  isadmin: null
+	  }
   }
 
 
@@ -51,6 +57,8 @@ export default class HomeScreen extends Component {
   }
   
   async componentDidMount(){
+	  b = <TouchableOpacity style={styles.emergency} onPress={() => { this.props.navigation.navigate("Admin") }} > <Text style = {styles.homeButtonText}>ADMIN CONTROLS</Text> </TouchableOpacity>
+
     await Font.loadAsync({
       'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
       'Lato-Regular' : require('../../assets/fonts/Lato-Regular.ttf'),
@@ -61,10 +69,22 @@ export default class HomeScreen extends Component {
       this.currentUser = uid
     })
     await this.registerForPushNotificationsAsync()
+	db.getUserState().then(uid => {
+		db.fetchUser(uid).then(user => {
+			if (user["role"] == "Administrator") {
+				this.setState({ isadmin: true })
+			} else {
+				this.setState({ isadmin: false })
+			}
+		})
+	})
   }
+
 
   
   render() {
+
+
 
     return (
 
@@ -114,7 +134,20 @@ export default class HomeScreen extends Component {
           >
             <Text style = {styles.homeButtonText}>REQUEST HELP</Text>
           </TouchableOpacity>
+
+		  {!!this.state.isadmin && (
+			<TouchableOpacity style={styles.emergency} 
+				style={styles.emergency}
+				onPress={() => { this.props.navigation.navigate("Admin") }} 
+			> 
+				<Text style = {styles.homeButtonText}>ADMIN CONTROLS</Text> 
+			</TouchableOpacity>
+		  )}
+
+
         </View>
+
+
 
         <View style = {styles.horizontalContainer}>
           <IconButton style = {styles.mapIcon}
@@ -139,6 +172,6 @@ export default class HomeScreen extends Component {
           />
       </View>
     </View>
-    )
+    );
   }
 }

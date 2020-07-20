@@ -17,9 +17,10 @@ export default class KeyScreen extends React.Component {
             'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf')
         })
         db.getUserState().then(loggedin => {
-            if (loggedin!=null) {
-                this.props.navigation.navigate('Home')
-            }
+			db.logOutUser() // for testing purposes
+            //if (loggedin!=null) {
+            //    this.props.navigation.navigate('Home')
+            //}
         })
     
         this.setState({ assetsLoaded: true })
@@ -68,6 +69,7 @@ export default class KeyScreen extends React.Component {
                                 if (result[0]) {
                                     //Alert.alert('Success!', 'Your key was found in the database.')
                                     db.fetchUser(result[1]).then(user => {
+										console.log([user, result[1]])
                                         this.props.navigation.navigate('Confirm', {user: [user, result[1]]})
                                     })
                                     //db.removekey(result[1], false)
