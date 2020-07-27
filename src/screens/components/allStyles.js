@@ -165,6 +165,16 @@ export default StyleSheet.create({
         borderRadius: 5,
         marginBottom: screenHeight*0.0333,
       },
+      admin: {
+          width: screenWidth*0.62,
+          height: screenHeight*0.0534,
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderColor: '#bdbdbd',
+          borderWidth: 2.5,
+          borderRadius: 5,
+          marginBottom: screenHeight*0.0333,
+      },
       messageIcon: {
         marginLeft: screenWidth*0.15,
       },

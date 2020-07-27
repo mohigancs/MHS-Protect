@@ -11,7 +11,7 @@ const db = new Database()
 import styles from './components/allStyles'
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
-export default class AdminScreen extends React.Component {
+export default class IntruderScreen extends React.Component {
     entered_id = -1
     state = {
         threatText: 'Type of Threat',

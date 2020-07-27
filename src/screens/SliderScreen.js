@@ -42,6 +42,7 @@ export default class Slider extends Component {
         <Paragraph style = {styles.text}>
             Slide to the right to confirm that there is an active intruder.
         </Paragraph>
+        <Paragraph></Paragraph>
         <SlideToConfirm
           ref={ref => this.slideRef = ref}
           width={screenWidth*0.833}

@@ -11,6 +11,7 @@ import TutorialScreen from './src/screens/TutorialScreen'
 import IntruderScreen from './src/screens/IntruderScreen'
 import MedicalScreen from './src/screens/MedicalScreen'
 import HelpScreen from './src/screens/HelpScreen'
+import AddUserScreen from './src/screens/AddUserScreen'
 import firebase from 'firebase'
 import Database from './src/screens/components/Database'
 const db = new Database()
@@ -43,6 +44,9 @@ const MainStack = createStackNavigator({
   },
   Help: {
     screen: HelpScreen
+  },
+  AddUser: {
+    screen: AddUserScreen
   },
 
 }, {

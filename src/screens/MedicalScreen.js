@@ -11,7 +11,7 @@ const db = new Database()
 import styles from './components/allStyles'
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
-export default class AdminScreen extends React.Component {
+export default class MedicalScreen extends React.Component {
 
 
   

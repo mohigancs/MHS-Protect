@@ -12,7 +12,6 @@ import styles from './components/allStyles'
 export default class HomeScreen extends Component {
 
   details = ''
-  //user = this.props.navigation.getParam('user','error')
 
   constructor(props) {
 	  super();
@@ -136,15 +135,12 @@ export default class HomeScreen extends Component {
           </TouchableOpacity>
 
 		  {!!this.state.isadmin && (
-			<TouchableOpacity style={styles.emergency} 
-				style={styles.emergency}
-				onPress={() => { this.props.navigation.navigate("Admin") }} 
+      <TouchableOpacity style={styles.admin}
+				onPress={() => { this.props.navigation.navigate('Admin') }} 
 			> 
 				<Text style = {styles.homeButtonText}>ADMIN CONTROLS</Text> 
 			</TouchableOpacity>
 		  )}
-
-
         </View>
 
 

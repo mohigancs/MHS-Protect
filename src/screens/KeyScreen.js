@@ -16,12 +16,11 @@ export default class KeyScreen extends React.Component {
             'Lato-Regular': require('../../assets/fonts/Lato-Regular.ttf'),
             'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf')
         })
-        db.getUserState().then(loggedin => {
-			db.logOutUser() // for testing purposes
-            //if (loggedin!=null) {
-            //    this.props.navigation.navigate('Home')
-            //}
-        })
+        // db.getUserState().then(loggedin => {
+        //     if (loggedin!=null) {
+        //        this.props.navigation.navigate('Home')
+        //     }
+        // })
     
         this.setState({ assetsLoaded: true })
     }
@@ -51,7 +50,6 @@ export default class KeyScreen extends React.Component {
                             onSubmitEditing={() => {
                                 db.isValidKey(this.key).then(result => {
                                     if (result[0]) {
-                                        //Alert.alert('Success!', 'Your key was found in the database.')
                                         db.fetchUser(result[1]).then(user => {
                                             this.props.navigation.navigate('Confirm', {user: [user, result[1]]})
                                         })
@@ -67,7 +65,6 @@ export default class KeyScreen extends React.Component {
                         onPress={() => {
                             db.isValidKey(this.key).then(result => {
                                 if (result[0]) {
-                                    //Alert.alert('Success!', 'Your key was found in the database.')
                                     db.fetchUser(result[1]).then(user => {
 										console.log([user, result[1]])
                                         this.props.navigation.navigate('Confirm', {user: [user, result[1]]})
