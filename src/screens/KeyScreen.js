@@ -31,7 +31,7 @@ export default class KeyScreen extends React.Component {
         const {assetsLoaded} = this.state
         if( assetsLoaded ) {
             return (
-                <KeyboardAvoidingView style={styles.contentContainer} behavior="height" keyboardVerticalOffset = {screenHeight*0.07}>
+                <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" >
                     <View style={styles.contentContainer}>
                         <Image
                             style={styles.logoImage}
@@ -55,7 +55,7 @@ export default class KeyScreen extends React.Component {
                                         })
                                         //db.removekey(result[1], false)
                                     } else {
-                                        Alert.alert('Key Not Found.', 'Visit Mr. Gibson for help.')
+                                        Alert.alert('Key Not Found.', '')
                                     }
                                 })
                             }}

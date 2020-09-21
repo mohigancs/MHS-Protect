@@ -10,16 +10,18 @@ const db = new Database()
 export default class ChatScreen extends Component {
    
     usr = this.props.navigation.getParam('user','error')
+    grp = this.props.navigation.getParam('group', '')
+
     state = {
         messages: [],
     }
+
     componentDidMount(){
-        db.chatOn(message => {
+        db.chatOn((message => {
             this.setState(previousState => ({
                 messages: GiftedChat.append(previousState.messages, message),
             }))
-        })
-
+        }), this.grp)
     }
 
    get user() { 
@@ -48,7 +50,7 @@ export default class ChatScreen extends Component {
 
                     <GiftedChat
                         messages={this.state.messages}
-                        onSend={db.send}
+                        onSend={newMessage => db.send(newMessage, this.grp)}
                         user={this.user}
                     />
                     <KeyboardAvoidingView behavior={'position'}/> 
@@ -71,7 +73,7 @@ export default class ChatScreen extends Component {
                 </Appbar.Header>
                     <GiftedChat
                         messages={this.state.messages}
-                        onSend={db.send}
+                        onSend={newMessage => db.send(newMessage, this.grp)}
                         user={this.user}
                     />
                     <KeyboardAvoidingView behavior={'padding'}/> 

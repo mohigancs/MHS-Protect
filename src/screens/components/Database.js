@@ -40,24 +40,24 @@ class Database {
 
     reportEmergency = (location, description) => {
 
-		var locations = {
-			"Main Building": [39.62449498, -79.9571979],
-			"Cafeteria": [39.62408867, -79.9562341],
-			"Gym": [39.62403634, -79.95591044],
-			"Science Wing": [39.62429114, -79.95629311],
-			"Far Side": [29.62513542, -79.95599627],
-			"Default": [39.62496188, -79.95674014]
-		}
+  var locations = {
+    "Main Building": [39.62449498, -79.9571979],
+    "Cafeteria": [39.62408867, -79.9562341],
+    "Gym": [39.62403634, -79.95591044],
+    "Science Wing": [39.62429114, -79.95629311],
+    "Far Side": [29.62513542, -79.95599627],
+    "Default": [39.62496188, -79.95674014]
+  }
 
         this.getUserState().then(uid => { // add alert to the database
             this.fetchUser(uid).then(user => {
              
-					if (!locations.hasOwnProperty(location)) {
-						location = "Default"
-					}
-
-					nlatitude = locations[location][0]
-					nlongitude = locations[location][1]
+        if (!locations.hasOwnProperty(location)) {
+          location = "Default"
+        }
+        
+        nlatitude = locations[location][0]
+        nlongitude = locations[location][1]
 
                     firebase.database().ref('alerts/emergency').push({
                         user: uid,
@@ -72,7 +72,7 @@ class Database {
                         description: description
                     })
                 //})
-                this.getUserTokens(uid).then((tokens) => { // send all users notifications
+                this.getUserTokens([], uid).then((tokens) => { // send all users notifications
                     for (i = 0; i < tokens.length; i ++){
                         if(i != uid) {
                             this.sendPushNotification(tokens[i], user.name, user.name + " has pressed the Emergency Button.")
@@ -90,7 +90,7 @@ class Database {
 
         firebase.database().ref('alerts/help').push(message) // add the message to the firebase
             
-        // this.getUserTokens(user._id).then((tokens) => { // sends push notifications to all users
+        // this.getUserTokens([], user._id).then((tokens) => { // sends push notifications to all users
         //     for (i = 0; i < tokens.length; i ++){
         //         this.sendPushNotification(tokens[i], user.name, text)
         //     }
@@ -166,7 +166,7 @@ class Database {
         return response
     }
     
-    getUserTokens = async(omit) => { // fetches all user tokens (except for the current user)
+    getUserTokens = async(group, current) => { // fetches user tokens in group, all if empty list
 
         tokens = new Array()
 
@@ -174,8 +174,12 @@ class Database {
 
         db_snapshot.forEach(code_snapshot => {
             // check if token exists and isn't the current user's
-            if ((code_snapshot.val().push_token !== undefined) && (code_snapshot.key !== omit)) {
-                tokens.push(code_snapshot.val().push_token) // append token to array
+            if (
+                    code_snapshot.val().push_token !== undefined &&
+                    code_snapshot.key !== current &&
+                    (group.includes(code_snapshot.key) || group.length == 0)
+                ) {
+                    tokens.push(code_snapshot.val().push_token) // append token to array
             }
         })
 
@@ -218,6 +222,7 @@ class Database {
     */
 
     parse = (snapshot) => {
+
         const { timestamp: numberStamp, text, user } = snapshot.val()
         const { key: id } = snapshot
         const { key: _id } = snapshot // for giftedchat
@@ -234,24 +239,26 @@ class Database {
         return firebase.database.ServerValue.TIMESTAMP
     }
 
-    send = (messages) => { // sends a message (handles giftedchat and firebase)
+    send = (messages, group) => { // sends a message (handles giftedchat and firebase)
+
         const { text, user } = messages[0]
         const createdAt = this.timestamp()
         const message = { text, user, createdAt }
 
-        firebase.database().ref('alerts/messages').push(message) // add the message to the firebase
-            
-        this.getUserTokens(user._id).then((tokens) => { // sends push notifications to all users
+        firebase.database().ref('alerts/messages/' + group).push(message) // add the message to the firebase
+
+        this.getUserTokens([], user._id).then((tokens) => { // sends push notifications to all users
             for (i = 0; i < tokens.length; i ++){
                 if(i != uid){
                     this.sendPushNotification(tokens[i], user.name, user.name + " has pressed the Emergency Button.")
                 }
             }
         })
+    
     }
 
-    chatOn = (callback) => { // ???
-        firebase.database().ref('alerts/messages/').on('child_added', (snapshot) => {
+    chatOn = (callback, group) => { // ???
+        firebase.database().ref('alerts/messages/' + group).on('child_added', (snapshot) => {
             callback(this.parse(snapshot))
         })
     }
@@ -318,11 +325,11 @@ class Database {
 
         id = -1
 
-		await firebase.database().ref('people/').limitToLast(1).once('value').then(function(snapshot) {
-			snapshot.forEach((child) => {
-				id = child.key
-			})
-		})
+    await firebase.database().ref('people/').limitToLast(1).once('value').then(function(snapshot) {
+        snapshot.forEach((child) => {
+            id = child.key
+        })
+    })
 
 
         firebase.database().ref('people/' + (parseInt(id) + 1)).set({  

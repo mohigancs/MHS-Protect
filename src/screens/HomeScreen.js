@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Text, Alert, View, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { Text, Alert, View, TouchableOpacity, Image, Dimensions, Linking } from 'react-native'
 import { IconButton, Paragraph } from 'react-native-paper'
 import { Notifications } from 'expo'
+import ActionSheet from 'react-native-actionsheet'
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
+import Dialog from "react-native-dialog"
 import Database from './components/Database'
 const db = new Database()
 const screenWidth = Dimensions.get('window').width
@@ -12,13 +14,15 @@ import styles from './components/allStyles'
 export default class HomeScreen extends Component {
 
   details = ''
+  room = ''
 
   constructor(props) {
 	  super();
-	  this.state = {
-		  assetsLoaded: false,
-		  isadmin: null
-	  }
+      this.state = {
+        assetsLoaded: false,
+        isadmin: null,
+        dialogVisible: false
+      }
   }
 
 
@@ -79,11 +83,20 @@ export default class HomeScreen extends Component {
 	})
   }
 
+  joinChat = (grp) => {
+    db.getUserState().then(uid => {
+      db.fetchUser(uid).then(user => {
+        this.props.navigation.navigate('Chat', {user: [user, uid], group: grp})
+        this.handle_cancel()
+      })
+    })
+  }
 
-  
+  handle_cancel = () => {
+    this.setState({ dialogVisible: false })
+  }
+
   render() {
-
-
 
     return (
 
@@ -95,11 +108,11 @@ export default class HomeScreen extends Component {
             size = {screenWidth*0.08}
             color = 'black'
             onPress={() => {
-              this.props.navigation.navigate('Tutorial')
+              // this.props.navigation.navigate('Tutorial')
+              Linking.openURL('https://github.com/mohigancs/MHS-Protect').catch(err => console.error("Couldn't load page", err));
             }}
           />
         </View>
-              
 
         <View style = {styles.container}>
           <Image
@@ -143,8 +156,6 @@ export default class HomeScreen extends Component {
 		  )}
         </View>
 
-
-
         <View style = {styles.horizontalContainer}>
           <IconButton style = {styles.mapIcon}
             icon = 'google-maps'
@@ -159,14 +170,22 @@ export default class HomeScreen extends Component {
             size = {screenWidth*0.15}
             color = '#47b9ea'
             onPress={() => {
-              db.getUserState().then(uid => {
-                db.fetchUser(uid).then(user => {
-                  this.props.navigation.navigate('Chat', {user: [user, uid]})
-                })
-              })
-          }}
+              this.setState({dialogVisible: true})
+            }}
           />
       </View>
+
+        <Dialog.Container visible={this.state.dialogVisible}>
+          <Dialog.Title>Chat Selection</Dialog.Title>
+          <Dialog.Description>
+            Which chat would you like to join?
+          </Dialog.Description>
+          <Dialog.Button label="Cancel" onPress={this.handle_cancel} />
+          <Dialog.Button label="Public" onPress={() => this.joinChat('public')} />
+          <Dialog.Button label="Private" onPress={() => this.joinChat('private')} />
+          {/* We can make as many of these as we need :) */}
+        </Dialog.Container>
+
     </View>
     );
   }
