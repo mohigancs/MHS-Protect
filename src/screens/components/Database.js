@@ -320,7 +320,9 @@ class Database {
     ADMIN FEATURES
 
     */
-
+    async removeEmergency(){
+        firebase.database().ref('alerts/emergency').remove()
+    }
     async adduser(email, name, phone, role, room) { // adds a user to the database
 
         id = -1

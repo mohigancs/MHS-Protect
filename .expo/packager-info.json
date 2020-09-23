@@ -1,10 +1,9 @@
 {
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "devToolsPort": 19002,
-  "webpackServerPort": null
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 5812,
+  "expoServerNgrokUrl": "https://k3-zzp.mohigan.mhs-protect.exp.direct",
+  "packagerNgrokUrl": "https://packager.k3-zzp.mohigan.mhs-protect.exp.direct",
+  "ngrokPid": 17660,
+  "devToolsPort": 19002
 }

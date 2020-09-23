@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Text, Alert, View, TouchableOpacity, Image, Dimensions, Linking } from 'react-native'
-import { IconButton, Paragraph } from 'react-native-paper'
+import { Text, View, TouchableOpacity, Image, Dimensions, Linking } from 'react-native'
+import { IconButton } from 'react-native-paper'
 import { Notifications } from 'expo'
-import ActionSheet from 'react-native-actionsheet'
 import * as Permissions from 'expo-permissions'
 import * as Font from 'expo-font'
 import Dialog from "react-native-dialog"

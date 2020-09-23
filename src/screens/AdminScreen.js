@@ -123,6 +123,26 @@ export default class AdminScreen extends React.Component {
             <TouchableOpacity 
                 style={styles.button}
                  onPress={() => {
+                     Alert.alert(
+                         'Are you sure?',
+                         'Do you want to remove the location history of emergencies? This information will be permanently lost.',
+                         [
+                             {text: 'NO', style: 'cancel'},                              
+                             {text: '',},
+                             {text: 'YES', onPress: () => {
+                                db.removeEmergency()
+                                 }
+                             },
+                         ],
+                         { cancelable: false }
+                     )
+                 }}
+            >
+                <Text style = {styles.buttonText}>REMOVE EMERGENCIES</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+                style={styles.button}
+                 onPress={() => {
                         this.props.navigation.navigate('AddUser');
                  }}
             >

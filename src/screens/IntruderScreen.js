@@ -41,6 +41,13 @@ export default class IntruderScreen extends React.Component {
         })
         await this.registerForPushNotificationsAsync()
     }
+     joinChat = (grp) => {
+    db.getUserState().then(uid => {
+      db.fetchUser(uid).then(user => {
+        this.props.navigation.navigate('Chat', {user: [user, uid], group: grp})
+      })
+    })
+  }
     render() {
         
         t = 0
@@ -278,8 +285,7 @@ export default class IntruderScreen extends React.Component {
                             }
                           this.message = user.name + ' has detected a ' + a + ' threat. The ' + b + ' intruder(s) were seen near the ' + c + '. The intruder is a ' + d + ' ' + e + '. Their clothing is ' + f + '. ' + g + ' people are injured.' 
                           db.reportEmergency(c, a +' threat. Likely near room ' + user.room)
-                          db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
-
+                          db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}], 'public')
                           //need to replace this with 911 eventually
                           Communications.phonecall('3049064441', true)
                           //db.textMessage('NUMBER', this.message)
@@ -323,8 +329,8 @@ export default class IntruderScreen extends React.Component {
                             }
                           this.message = user.name + ' has detected a ' + a + ' threat. The ' + b + ' intruder(s) were seen near the ' + c + '. The intruder is a ' + d + ' ' + e + '. Their clothing is ' + f + '. ' + g + ' people are injured.' 
                           db.reportEmergency(c, a +' threat. Likely near ' + c)
-                          db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}])
-                          setTimeout(() => {this.props.navigation.navigate('Chat', {user: [user, uid]})}, 110)  
+                          db.send([{_id:user.uid, createdAt:0, text: this.message, user:{_id:uid, email:user.email, name:user.name}}], 'public')
+                          setTimeout(() => {this.joinChat('public')}, 110)  
                                 // db.textMessage('NUMBER', this.message)
                             })
                           })
